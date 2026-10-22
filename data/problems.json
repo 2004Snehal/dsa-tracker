@@ -1,5 +1,58 @@
 [
   {
+    "id": 928,
+    "slug": "minimize-malware-spread-ii",
+    "title": "Minimize Malware Spread II",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "hash-table",
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "graph"
+    ],
+    "firstSolvedAt": "2026-10-22T14:01:47.000Z",
+    "lastSolvedAt": "2026-10-22T14:01:47.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
+    "id": 924,
+    "slug": "minimize-malware-spread",
+    "title": "Minimize Malware Spread",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "hash-table",
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "graph"
+    ],
+    "firstSolvedAt": "2026-10-22T13:26:05.000Z",
+    "lastSolvedAt": "2026-10-22T13:26:05.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
+    "id": 188,
+    "slug": "best-time-to-buy-and-sell-stock-iv",
+    "title": "Best Time to Buy and Sell Stock IV",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": "2026-10-21T18:07:21.000Z",
+    "lastSolvedAt": "2026-10-21T18:07:21.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
     "id": 354,
     "slug": "russian-doll-envelopes",
     "title": "Russian Doll Envelopes",
