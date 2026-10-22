@@ -118,6 +118,8 @@ export const patternName = (section: string, pattern?: string | null) =>
 const RULES: [tag: string, section: string, pattern: string | null][] = [
   ["database", "sql", null],
   ["longest-increasing-subsequence", "dp", "lis"],
+  ["longest-common-subsequence", "dp", "strings"],
+  ["knapsack-problem", "dp", "knapsack"],
   ["bitmask", "dp", "bitmask"],
   ["0-1-bfs", "graphs", "zero-one-bfs"],
   ["topological-sort", "graphs", "topo"],

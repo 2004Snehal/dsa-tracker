@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { problems, problemBySlug, fmtDate } from "@/lib/data";
+import { problems, problemBySlug, fmtDate, neetcodeUrl, SOURCE_NAME } from "@/lib/data";
 import { patternName, sectionById } from "@/content/taxonomy";
 import { highlight, renderMarkdown } from "@/lib/markdown";
 import { Card, Chip, DiffBadge } from "@/components/ui";
@@ -18,7 +18,8 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
   if (!p) notFound();
   const section = sectionById(p.section);
   const pName = patternName(p.section, p.pattern);
-  const code = p.solution ? await highlight(p.solution.code, p.solution.lang) : null;
+  const solutions = await Promise.all(p.solutions.map(async (s) => ({ ...s, html: await highlight(s.code, s.lang) })));
+  const lc = p.solutions.find((s) => s.runtime);
   const notes = p.notes ? await renderMarkdown(p.notes) : null;
   const siblings = problems.filter((x) => x.section === p.section && x.pattern === p.pattern && x.slug !== p.slug && p.pattern);
 
@@ -38,14 +39,17 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
             </Link>
           )}
           <a href={p.url} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">LeetCode ↗</a>
+          {p.ncSlug && (
+            <a href={neetcodeUrl(p.ncSlug)} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">NeetCode ↗</a>
+          )}
         </div>
       </div>
 
       <div className="grid md:grid-cols-4 gap-4">
-        <Card><div className="text-xs text-ink-3">First solved</div><div className="mt-1 font-medium">{fmtDate(p.firstSolvedAt)}</div></Card>
+        <Card><div className="text-xs text-ink-3">First solved{p.sources.length === 1 && ` · ${SOURCE_NAME[p.sources[0]]}`}</div><div className="mt-1 font-medium">{fmtDate(p.firstSolvedAt)}</div></Card>
         <Card><div className="text-xs text-ink-3">Last accepted</div><div className="mt-1 font-medium">{fmtDate(p.lastSolvedAt)}</div></Card>
         <Card><div className="text-xs text-ink-3">Submissions</div><div className="mt-1 font-medium tabular-nums">{p.submissions} <span className="text-ink-3 font-normal">({p.accepted} accepted)</span></div></Card>
-        <Card><div className="text-xs text-ink-3">Runtime · Memory</div><div className="mt-1 font-medium">{p.solution ? `${p.solution.runtime} · ${p.solution.memory}` : "—"}</div></Card>
+        <Card><div className="text-xs text-ink-3">Runtime · Memory</div><div className="mt-1 font-medium">{lc ? `${lc.runtime} · ${lc.memory}` : "—"}</div></Card>
       </div>
 
       <div className="flex flex-wrap gap-1.5">
@@ -59,14 +63,17 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
         </Card>
       )}
 
-      {code && (
-        <div>
+      {solutions.map((s) => (
+        <div key={s.source}>
           <h2 className="font-semibold mb-2">
-            My solution <span className="text-sm font-normal text-ink-3">({p.solution!.lang})</span>
+            My solution{" "}
+            <span className="text-sm font-normal text-ink-3">
+              ({solutions.length > 1 ? `${SOURCE_NAME[s.source]}, ` : ""}{s.lang})
+            </span>
           </h2>
-          <div dangerouslySetInnerHTML={{ __html: code }} />
+          <div dangerouslySetInnerHTML={{ __html: s.html }} />
         </div>
-      )}
+      ))}
 
       {siblings.length > 0 && (
         <Card>

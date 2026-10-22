@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { Difficulty, Problem } from "@/lib/data";
+import type { Difficulty, Problem, Source } from "@/lib/data";
 import { fmtDate } from "@/lib/data";
 import { patternName, sectionById } from "@/content/taxonomy";
 
@@ -10,6 +10,21 @@ export function DiffBadge({ d }: { d: Difficulty }) {
     <span className="inline-flex items-center gap-1.5 text-xs text-ink-2 whitespace-nowrap">
       <span className="size-2 rounded-full" style={{ background: DIFF_VAR[d] }} />
       {d}
+    </span>
+  );
+}
+
+const SOURCE_SHORT: Record<Source, string> = { leetcode: "LC", neetcode: "NC" };
+const SOURCE_TITLE: Record<Source, string> = { leetcode: "Solved on LeetCode", neetcode: "Solved on NeetCode" };
+
+export function SourceTags({ sources }: { sources: Source[] }) {
+  return (
+    <span className="inline-flex gap-1">
+      {sources.map((s) => (
+        <span key={s} title={SOURCE_TITLE[s]} className="rounded border border-line px-1 text-[10px] leading-4 font-medium text-ink-3">
+          {SOURCE_SHORT[s]}
+        </span>
+      ))}
     </span>
   );
 }
@@ -45,6 +60,7 @@ export function ProblemList({ list, showSection = true }: { list: Problem[]; sho
               {p.pattern && ` · ${patternName(p.section, p.pattern)}`}
             </span>
           )}
+          <SourceTags sources={p.sources} />
           <DiffBadge d={p.difficulty} />
           <span className="text-xs text-ink-3 tabular-nums w-24 text-right">{fmtDate(p.firstSolvedAt)}</span>
         </li>

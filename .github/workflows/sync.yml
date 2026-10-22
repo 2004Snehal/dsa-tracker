@@ -23,6 +23,10 @@ jobs:
           LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
           LEETCODE_CSRF: ${{ secrets.LEETCODE_CSRF }}
         run: node scripts/sync.mjs
+      - name: Fetch NeetCode submissions
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: node scripts/neetcode.mjs
       - name: Commit if changed
         run: |
           if git diff --quiet data/; then echo "No new problems"; exit 0; fi

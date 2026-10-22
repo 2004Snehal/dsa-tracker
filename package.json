@@ -8,6 +8,7 @@
     "build": "next build",
     "start": "next start",
     "sync": "node --env-file-if-exists=.env.local scripts/sync.mjs",
+    "neetcode": "node --env-file-if-exists=.env.local scripts/neetcode.mjs",
     "backfill": "node --env-file-if-exists=.env.local scripts/sync.mjs --full"
   },
   "dependencies": {

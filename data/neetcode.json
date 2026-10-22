@@ -1,0 +1,857 @@
+[
+  {
+    "ncSlug": "binary-search",
+    "lcSlug": "binary-search",
+    "id": 704,
+    "title": "Binary Search",
+    "difficulty": "Easy",
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "firstSolvedAt": "2026-06-09T16:59:01Z",
+    "lastSolvedAt": "2026-06-09T16:59:01Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/binary-search/submission-2.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int search(vector<int>& nums, int target) {\n        int hi=nums.size();\n        int lo=0;\n        return bin(lo,hi,target,nums);//pass function by reference so as not to create a copy\n\n    }\n    bool check(int mid, int target,vector<int>&nums){\n        // 0 0 0 1 1 \n        //on index\n        return nums[mid]>=target;\n    }\n    int bin(int lo,int hi, int target, vector<int>&nums){\n        while(lo<hi){\n            int mid= lo + (hi-lo)/2;\n            if(check(mid,target,nums))\n            hi=mid;\n            else\n            lo=mid+1;//if lo=mid then forever loop\n        }\n    \n        if(nums[lo]==target)\n            return lo;\n        return -1;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "buy-and-sell-crypto",
+    "lcSlug": "best-time-to-buy-and-sell-stock",
+    "id": 121,
+    "title": "Best Time to Buy and Sell Stock",
+    "difficulty": "Easy",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/buy-and-sell-crypto/submission-0.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int maxProfit(vector<int>& prices) {\n        int mn=prices[0];\n        int ans=0;\n        int n=prices.size();\n        for(int i=0;i<n;i++){\n            mn=min(mn,prices[i]);\n            ans=max(ans,prices[i]-mn);\n\n        }\n        return ans;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "buy-and-sell-crypto-with-cooldown",
+    "lcSlug": "best-time-to-buy-and-sell-stock-with-cooldown",
+    "id": 309,
+    "title": "Best Time to Buy and Sell Stock with Cooldown",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/buy-and-sell-crypto-with-cooldown/submission-1.cpp",
+      "lang": "cpp",
+      "code": "#include <cstring>\nclass Solution {\n\npublic:\n    int dp[5001][3];\n    int n;\n    int rec(int i,int j,vector<int>& p){\n        // i is the day\n        // j is the sttate hold,sell,rest <=> 0,1,2\n\n        //base case\n        if(i==n)\n            return 0;\n        //cache chek\n        if(dp[i][j]!=-1){\n            return dp[i][j];\n        }\n        //transition\n        int ans=0;\n        if(j==0){\n            ans=max(p[i]+rec(i+1,1,p),rec(i+1,0,p));\n        }\n        else if(j==1){\n            ans=rec(i+1,2,p);\n        }\n        else\n            ans=max(-p[i]+rec(i+1,0,p),rec(i+1,2,p));\n        //save and return\n        dp[i][j]=ans;\n        return dp[i][j];\n    }\n    int maxProfit(vector<int>& prices) {\n        n=prices.size();\n        memset(dp,-1,sizeof(dp));\n\n        return rec(0,2,prices);\n\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "car-fleet",
+    "lcSlug": "car-fleet",
+    "id": 853,
+    "title": "Car Fleet",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "stack",
+      "sorting",
+      "monotonic-stack"
+    ],
+    "firstSolvedAt": "2026-06-08T19:12:48Z",
+    "lastSolvedAt": "2026-06-08T19:12:48Z",
+    "submissions": 16,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/car-fleet/submission-15.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int carFleet(int target, vector<int>& position, vector<int>& speed) {\n        int n=position.size();\n        vector<pair<int,double>>times(n);\n        stack<int>st;\n\n        for(int i=0;i<n;i++){\n            times[i].first=position[i];\n            times[i].second=double(target-position[i])/double(speed[i]);\n        }\n        sort(times.begin(),times.end());\n        st.push(0);\n\n        // 1.33 1\n        // 0 1 2 3 4\n        cout<<times[0].second;\n                \n        for(int i=1;i<n;i++){\n            while(!st.empty() && times[i].second>=times[st.top()].second){\n                st.pop();\n            }\n            st.push(i);\n        }\n        return st.size();\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "coin-change",
+    "lcSlug": "coin-change",
+    "id": 322,
+    "title": "Coin Change",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "breadth-first-search",
+      "knapsack-problem",
+      "complete-knapsack"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/coin-change/submission-2.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int n;\n    vector<int> dp;\n    const int INF = 1e9;\n\n    int rec(int rem,vector<int>&coins){\n        //prunning if rem is negative then invalid\n        if(rem<0) \n            return INF;\n        //base case check\n        if(!rem){\n            return 0;\n        }\n\n        //cache check\n        if(dp[rem]!=-1){\n            return dp[rem];\n        }\n        //transition\n        int ans = INF;\n        for(int i=0;i<n;i++){\n            ans=min(ans,1+rec(rem-coins[i],coins));\n        }\n        dp[rem]=ans;\n\n        return ans;\n    }\n    int coinChange(vector<int>& coins, int amount) {\n        n=coins.size();\n\n        dp.assign(amount+1,-1);\n\n        int ans=rec(amount,coins);\n        if(ans!=INF)\n            return ans;\n        return -1;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "coin-change-ii",
+    "lcSlug": "coin-change-ii",
+    "id": 518,
+    "title": "Coin Change II",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "knapsack-problem",
+      "complete-knapsack"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 7,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/coin-change-ii/submission-6.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int tar;\n    vector<vector<int>> dp;\n\n    int rec(int i, int s, vector<int>& c){\n        //pruning\n        if(s > tar || i == (int)c.size())\n            return 0;\n        //base case\n        if(s == tar)\n            return 1;\n        //cache check\n        if(dp[i][s] != -1)\n            return dp[i][s];\n        //transition\n        int ans = 0;\n        ans += rec(i+1, s, c);       // don't use coin i anymore\n        ans += rec(i, s+c[i], c);    // use coin i again (unlimited supply)\n\n        //save and return\n        dp[i][s] = ans;\n        return dp[i][s];\n    }\n\n    int change(int amount, vector<int>& coins){\n        tar = amount;\n        dp.assign(coins.size()+1, vector<int>(tar+1, -1));\n\n        return rec(0, 0, coins);\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "count-connected-components",
+    "lcSlug": "number-of-connected-components-in-an-undirected-graph",
+    "id": 323,
+    "title": "Number of Connected Components in an Undirected Graph",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "graph"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/count-connected-components/submission-3.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int countComponents(int n, vector<vector<int>>& edges) {\n        vector<vector<bool>>adj(n,vector<bool>(n,false));\n\n        for(auto v:edges){\n            adj[v[0]][v[1]]=true;\n            adj[v[1]][v[0]]=true;\n        }\n\n        vector<bool>vis(n,false);\n        int count=0;\n        for(int i=0;i<n;i++){\n            if(!vis[i]){\n            count++;\n            dfs(adj,vis,i,n);\n            }\n        }\n        return count;\n    }\n    void dfs(vector<vector<bool>>&adj,vector<bool>&vis,int node,int n){\n        vis[node]=true;\n        \n        for(int i=0;i<n;i++){\n            if(adj[node][i]==true && vis[i]==false){\n                dfs(adj,vis,i,n);\n            }\n        }\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "count-number-of-islands",
+    "lcSlug": "number-of-islands",
+    "id": 200,
+    "title": "Number of Islands",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "matrix"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/count-number-of-islands/submission-1.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int numIslands(vector<vector<char>>& grid) {\n        int rows=grid.size();\n        int cols=grid[0].size();\n\n        int count=0;\n\n        for(int r=0;r<rows;r++){\n            for(int c=0;c<cols;c++){\n                if(grid[r][c]=='1'){\n                    count++;\n                    dfs(grid,r,c);\n                }\n            }\n        }\n        return count;\n    }\n\n    void dfs(vector<vector<char>>& grid,int r,int c){\n        int rows=grid.size();\n        int cols=grid[0].size();\n\n        if (r < 0 || r >= rows || c < 0 || c >= cols || grid[r][c] == '0')\n            return;\n        \n        grid[r][c]='0';//mark visited by sinking\n        dfs(grid,r-1,c);\n        dfs(grid,r+1,c);\n        dfs(grid,r,c-1);\n        dfs(grid,r,c+1);\n\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "count-paths",
+    "lcSlug": "unique-paths",
+    "id": 62,
+    "title": "Unique Paths",
+    "difficulty": "Medium",
+    "tags": [
+      "math",
+      "dynamic-programming",
+      "combinatorics"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/count-paths/submission-3.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>> dp;\n    int rec(int x,int y,int m,int n){\n        //prunning\n        if(x<0||y<0||x>m||y>n){\n            return 0;\n        }\n\n        //base case\n        if(x==m && y==n)\n            return 1;\n        //cache check\n        if(dp[x][y]!=-1)\n            return dp[x][y];\n        //transition\n        \n        //dp=2 directions\n        int ans = rec(x + 1, y, m, n) + rec(x, y + 1, m, n);\n\n        dp[x][y]=ans;\n\n        return dp[x][y];\n\n    }\n    int uniquePaths(int m, int n) {\n        m=m-1;\n        n=n-1;//0 based indexing\n        dp.assign(m + 1, vector<int>(n + 1, -1)); \n\n        return rec(0,0,m,n);\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "count-subsequences",
+    "lcSlug": "distinct-subsequences",
+    "id": 115,
+    "title": "Distinct Subsequences",
+    "difficulty": "Hard",
+    "tags": [
+      "string",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/count-subsequences/submission-0.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int n,m;\n    string s1,s2;\n    vector<vector<int>>dp;\n    int rec(int i,int j){\n        //pruning\n        if(i>=n && j<m)\n            return 0;\n        //base \n        if(j>=m){\n            return 1;\n        }\n        //cache chek\n        if(dp[i][j]!=-1)\n            return dp[i][j];\n        //transition\n        int ans=0;\n            if(s1[i]==s2[j]){\n                ans+=(rec(i+1,j+1)+rec(i+1,j));\n            }\n            else\n                ans+=rec(i+1,j);\n        //save and return\n        dp[i][j]=ans;\n\n        return dp[i][j];\n    }\n    int numDistinct(string s, string t) {\n        s1=s;\n        s2=t;\n        n=s1.size();\n        m=s2.size();\n\n        dp.assign(1001,vector<int>(1001,-1));\n\n        return rec(0,0);\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "daily-temperatures",
+    "lcSlug": "daily-temperatures",
+    "id": 739,
+    "title": "Daily Temperatures",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "stack",
+      "monotonic-stack"
+    ],
+    "firstSolvedAt": "2026-06-08T18:18:32Z",
+    "lastSolvedAt": "2026-06-08T18:18:41Z",
+    "submissions": 14,
+    "accepted": 2,
+    "solution": {
+      "file": "Data Structures & Algorithms/daily-temperatures/submission-13.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<int> dailyTemperatures(vector<int>& temperatures) {\n        stack<int>st;\n        st.push(0);\n        int n=temperatures.size();\n        vector<int>ans(n);\n        \n        for(int i=1;i<n;i++){\n            if(temperatures[i-1]<temperatures[i]){\n                \n                while(!st.empty() &&temperatures[st.top()]<temperatures[i]){\n                    ans[st.top()]=i-st.top();\n                    st.pop();\n                }\n            }\n            st.push(i);\n            \n        }\n        return ans;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "decode-ways",
+    "lcSlug": "decode-ways",
+    "id": 91,
+    "title": "Decode Ways",
+    "difficulty": "Medium",
+    "tags": [
+      "string",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/decode-ways/submission-2.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int numDecodings(string s) {\n        int n = s.size();\n        vector<int> memo(n, -1);\n        return dfs(0, n, s, memo);\n    }\n\n    int dfs(int i, int n, string& s, vector<int>& memo) {\n        if (i == n)\n            return 1;\n        if (s[i] == '0')\n            return 0;\n        if (memo[i] != -1)\n            return memo[i];\n\n        int ways = dfs(i + 1, n, s, memo);\n        if (i + 1 < n && stoi(s.substr(i, 2)) <= 26) {\n            ways += dfs(i + 2, n, s, memo);\n        }\n\n        memo[i] = ways;\n        return ways;\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "eating-bananas",
+    "lcSlug": "koko-eating-bananas",
+    "id": 875,
+    "title": "Koko Eating Bananas",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "firstSolvedAt": "2026-06-15T19:32:39Z",
+    "lastSolvedAt": "2026-06-15T19:32:39Z",
+    "submissions": 16,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/eating-bananas/submission-15.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    // hours is fixed\n    // it is a search problem \n    // we need to find k\n    // k minimum \n    // any large value of k will return true obv\n    //chek function \n    //k ranges 0 to 1,000,000,000\n    // complexity of check function can be challenge eklse its a easy problem\n    //sort the array atleast\n    bool check(int k,int h, vector<int>&a){\n        int n=a.size();\n        for(int i=n-1;i>=0;i--){\n            h-=(a[i]/k+bool(a[i]%k));\n            if(h<0)\n                break;\n        }\n        return (h>=0);\n    }\n    int minEatingSpeed(vector<int>& piles, int h) {\n        sort(piles.begin(),piles.end());\n        int l=1;\n        int hi=1000000000+1;\n        int mid=l+(h-l)/2;\n\n        while(l<hi){\n            mid=l+(hi-l)/2;\n            if(check(mid,h,piles)){\n                hi=mid;\n            }\n            else\n                l=mid+1;\n        }\n        return l;\n    }\n}; \n"
+    }
+  },
+  {
+    "ncSlug": "edit-distance",
+    "lcSlug": "edit-distance",
+    "id": 72,
+    "title": "Edit Distance",
+    "difficulty": "Medium",
+    "tags": [
+      "string",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 12,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/edit-distance/submission-11.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int n,m;\n    string w1,w2;\n    vector<vector<int>>dp;\n    int rec(int i,int j){\n        //base case\n        if(i==n && j==m) return 0;\n            if(i==n) return m-j;   // insert remaining word2 chars\n            if(j==m) return n-i;   // delete remaining word1 chars\n        //cache chek\n        if(dp[i][j]!=-1)\n            return dp[i][j];\n        //transition\n        int ans=0;\n\n        if(w1[i]==w2[j])\n            if(i<n)\n                ans=rec(i+1,j+1);\n            else\n                ans=rec(i,j+1);\n        else\n            {\n                if(i<n)\n                    ans=min({1+rec(i+1,j),1+rec(i+1,j+1),1+rec(i,j+1)});\n                else\n                    ans=1+rec(i,j+1);\n            }\n        //save and return\n        dp[i][j]=ans;\n        return ans;\n\n    }\n    int minDistance(string word1, string word2) {\n        w1=word1;\n        w2=word2;\n        n=w1.size();\n        m=w2.size();\n\n        dp.assign(101,vector<int>(101,-1));\n        return rec(0,0);\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "evaluate-reverse-polish-notation",
+    "lcSlug": "evaluate-reverse-polish-notation",
+    "id": 150,
+    "title": "Evaluate Reverse Polish Notation",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "math",
+      "stack"
+    ],
+    "firstSolvedAt": "2026-06-08T17:23:51Z",
+    "lastSolvedAt": "2026-06-08T17:23:51Z",
+    "submissions": 13,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/evaluate-reverse-polish-notation/submission-12.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int evalRPN(vector<string>& tokens) {\n        stack <int> st;\n        int ans=0;\n        for (auto c:tokens){\n            \n            if(c!=\"+\" && c!=\"-\" && c!=\"*\" && c!=\"/\")\n                st.push(stoi(c));\n            else {\n                int a=st.top();\n                st.pop();\n                int b=st.top();\n                st.pop();\n                if(c==\"+\")\n                    st.push(b+a);\n                else if(c==\"-\")\n                    st.push(b-a);\n                else if(c==\"*\")\n                    st.push(a*b);\n                else\n                    st.push(b/a);\n            }\n        }\n        return st.top();\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "find-minimum-in-rotated-sorted-array",
+    "lcSlug": "find-minimum-in-rotated-sorted-array",
+    "id": 153,
+    "title": "Find Minimum in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "firstSolvedAt": "2026-06-15T18:50:49Z",
+    "lastSolvedAt": "2026-06-15T18:50:49Z",
+    "submissions": 32,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/find-minimum-in-rotated-sorted-array/submission-31.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int findMin(vector<int> &nums) {\n        // 3 4 5 6 1 2\n        // 0 0 0 0 1 1\n        // 1 2 3 4\n        // 0 0 0 0\n        //l=0 r=3, m=1\n        //l=2 r=3\n        //l=3 r=3//no looping here l==r\n        //l=4\n        // compare with first element\n        // \n        \n\n        int left =0; \n        int right = nums.size()-1;\n\n        int mid=left + (right-left)/2;\n        cout<<left<<right<<mid;\n\n        while (left<right){\n            mid=left + (right-left)/2;\n            if(nums[0]>nums[mid]){\n                right=mid;\n            }\n            else\n                left=mid+1;\n            cout<<left<<right<<mid;\n        }\n        // if(left>=nums.size()-1){\n        //     return nums[0];\n        // }\n        // else \n        if(nums[0]>nums[left])\n            return nums[left];\n        else\n            return nums[0];\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "find-target-in-rotated-sorted-array",
+    "lcSlug": "search-in-rotated-sorted-array",
+    "id": 33,
+    "title": "Search in Rotated Sorted Array",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/find-target-in-rotated-sorted-array/submission-0.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool check(vector<int>& nums, int mi) {\n        if(nums[0]>nums[mi]){\n            return true;\n        }\n        return false;\n    }\n\n    bool check2(vector<int>& nums, int mi,int t) {\n        if(nums[mi]>=t){\n            return true;\n        }\n        return false;\n    }\n\n    int search(vector<int>& nums, int target) {\n        int rot=0;\n        int n=nums.size();\n        int lo=0;\n        int hi=n-1;\n\n        while(lo<=hi){\n            int mi = lo + (hi-lo)/2;\n            if (check(nums, mi)) {\n                rot = mi;\n                hi = mi-1;\n            }\n            else \n                lo = mi+1;\n        }\n\n        int ans=-1;\n        lo=0;\n        hi=n-1;\n        while(lo<=hi){\n            int mid = lo + (hi-lo)/2;\n            int mi = (mid + rot) % n;\n            if (check2(nums, mi, target)) {\n                ans = mi;\n                hi = mid - 1;\n            }\n            else \n                lo = mid + 1;\n        }\n        if(ans!=-1){\n            if(nums[ans]!=target){\n                ans=-1;\n            }\n        }\n        return ans;\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "house-robber",
+    "lcSlug": "house-robber",
+    "id": 198,
+    "title": "House Robber",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/house-robber/submission-1.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int dp[1001];\n\n    int rec(int i,vector<int>& nums,int n){\n    //basecase\n    if(i >= n){\n        return 0;\n    }\n    //cache check\n    if(dp[i]!=-1){//dekh ho ki ye value pehele calculate kiya ki nahi\n        return dp[i];\n    }\n    //transition\n    int ans=nums[i];\n    ans+=max(rec(i+2,nums,n),rec(i+3,nums,n));\n    //save and return\n    dp[i]=ans;\n\n    return ans;\n    }\n    int rob(vector<int>& nums) {\n        fill(dp, dp + 1001, -1);\n        int n=nums.size();\n        return max(rec(0, nums, n), rec(1, nums, n));\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "house-robber-ii",
+    "lcSlug": "house-robber-ii",
+    "id": 213,
+    "title": "House Robber II",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/house-robber-ii/submission-4.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int dp[2][1001];\n    int rec(int i, vector<int>& nums, int n, int r) {\n        if (i == r) return 0;\n        if (i >= n) return 0;\n\n        int cached = (r == -1) ? dp[0][i] : dp[1][i];\n        if (cached != -1) return cached;\n\n        int ans = max(nums[i] + rec(i+2, nums, n, r),   // take current\n                                  rec(i+1, nums, n, r)); // skip current\n\n        if (r == -1) dp[0][i] = ans;\n        else         dp[1][i] = ans;\n\n        return ans;\n    }\n\n    int rob(vector<int>& nums) {\n        int n = nums.size();\n        if (n == 1) return nums[0];\n\n        fill(dp[0], dp[0]+1001, -1);\n        fill(dp[1], dp[1]+1001, -1);\n\n        int case1 = rec(0, nums, n, n-1);  // start 0, last house blocked\n        int case2 = rec(1, nums, n, -1);   // start 1, no restriction\n\n        return max(case1, case2);\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "interleaving-string",
+    "lcSlug": "interleaving-string",
+    "id": 97,
+    "title": "Interleaving String",
+    "difficulty": "Medium",
+    "tags": [
+      "string",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/interleaving-string/submission-2.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>> dp;\n    string t1, t2, t3;\n\n    int rec(int i, int j) {\n        //base case\n        if (i == 0 && j == 0)\n            return 1;\n        //cache chek\n        if (dp[i][j] != -1)\n            return dp[i][j];\n        //transition\n        int ans = 0;\n        if (i > 0 && t1[i-1] == t3[i+j-1])\n            ans = ans || rec(i-1, j);\n        if (j > 0 && t2[j-1] == t3[i+j-1])\n            ans = ans || rec(i, j-1);\n\n        return dp[i][j] = ans;\n    }\n\n    bool isInterleave(string s1, string s2, string s3) {\n        if (s1.size() + s2.size() != s3.size()) return false;\n        t1 = s1; t2 = s2; t3 = s3;\n        dp.assign(101, vector<int>(101, -1));\n        return rec(s1.size(), s2.size());\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "invert-a-binary-tree",
+    "lcSlug": "invert-binary-tree",
+    "id": 226,
+    "title": "Invert Binary Tree",
+    "difficulty": "Easy",
+    "tags": [
+      "tree",
+      "depth-first-search",
+      "breadth-first-search",
+      "binary-tree"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 4,
+    "accepted": 2,
+    "solution": {
+      "file": "Data Structures & Algorithms/invert-a-binary-tree/submission-3.cpp",
+      "lang": "cpp",
+      "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\n\nclass Solution {\npublic:\n    TreeNode* invertTree(TreeNode* root) {\n        \n        if(root== NULL){\n            return NULL;\n        }\n\n        queue<TreeNode*> q;\n        q.push(root);\n\n        while(!q.empty()){\n            \n            TreeNode* node=q.front();\n            q.pop();\n            //swap node\n            TreeNode* temp=node->left;\n            node->left=node->right;\n            node->right=temp;\n\n            if(node->left!=NULL)\n                q.push(node->left);\n            if(node->right!=NULL)\n                q.push(node->right);\n        }\n        return root;\n\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "islands-and-treasure",
+    "lcSlug": "walls-and-gates",
+    "id": 286,
+    "title": "Walls and Gates",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "breadth-first-search",
+      "matrix"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/islands-and-treasure/submission-1.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    void islandsAndTreasure(vector<vector<int>>& grid) {\n        int row=grid.size();\n        int col=grid[0].size();\n\n        int INF=2147483647;\n\n        queue<pair<int,int>>q;\n\n        for(int i=0;i<row;i++){\n            for(int j=0;j<col;j++){\n                if(grid[i][j]==0)\n                q.push({i,j});\n            }\n        }\n\n        int dist=0;\n        int dr[]={1,-1,0,0};\n        int dc[]={0,0,1,-1};\n\n        while(!q.empty()){\n            int k=q.size();\n            for(int x=0;x<k;x++){//msbfs\n                int r=q.front().first;\n                int c=q.front().second;\n\n                q.pop();\n\n                for(int i=0;i<4;i++){\n                    int nr=r+dr[i];\n                    int nc=c+dc[i];\n\n                    if(nr>=0&&nr<row&&nc>=0&&nc<col&&grid[nr][nc]==INF){\n                        grid[nr][nc]=dist+1;\n                        q.push({nr,nc});\n                    }\n                }\n            }\n            dist++;\n        }\n\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "longest-common-subsequence",
+    "lcSlug": "longest-common-subsequence",
+    "id": 1143,
+    "title": "Longest Common Subsequence",
+    "difficulty": "Medium",
+    "tags": [
+      "string",
+      "dynamic-programming",
+      "longest-common-subsequence"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/longest-common-subsequence/submission-4.cpp",
+      "lang": "cpp",
+      "code": "#include <cstring>  \nclass Solution {\n    \npublic:\n    int dp[1001][1001];\n    int n,m;\n    int rec(int i,int j,string& s1,string& s2){\n        //prunnig\n        //basecase\n        if(i==n||j==m){\n            return 0;\n        }\n        //cache check\n        if(dp[i][j]!=-1)\n            return dp[i][j];\n        //transition\n        int ans=0;\n        if(s1[i]==s2[j])\n            ans=1+rec(i+1,j+1,s1,s2);\n        else\n            ans=max(rec(i+1,j,s1,s2),rec(i,j+1,s1,s2));\n        //save and treturn\n        dp[i][j]=ans;\n\n        return dp[i][j];\n\n    }\n    int longestCommonSubsequence(string text1, string text2) {\n        n=text1.size();\n        m=text2.size();\n\n        memset(dp, -1, sizeof(dp));\n\n        return rec(0,0,text1,text2);\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "longest-increasing-path-in-matrix",
+    "lcSlug": "longest-increasing-path-in-a-matrix",
+    "id": 329,
+    "title": "Longest Increasing Path in a Matrix",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "topological-sort",
+      "memoization",
+      "matrix",
+      "directed-acyclic-graph"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 6,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/longest-increasing-path-in-matrix/submission-5.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int n,m;\n    vector<vector<int>>dp;\n    int rec(int i,int j,vector<vector<int>>& matrix){\n        //prunning\n        if(i<0||i>n||j<0||j>m)\n            return 0;\n        //base cacse\n        if(i==n||j==m)\n            return 0;\n        //cache chek\n        if(dp[i][j]!=-1)\n            return dp[i][j];\n        //transition\n        int ans=1;\n        int dx[]={-1,1,0,0};\n        int dy[]={0,0,-1,1};\n\n        for(int dir=0;dir<4;dir++){\n            int x=i+dx[dir];\n            int y=j+dy[dir];\n            if(x<0||x>=n||y<0||y>=m)\n                ans+=0;\n            else\n                if (matrix[x][y] > matrix[i][j])\n                    ans = max(ans, 1 + rec(x, y,matrix));\n        }\n        //save and return\n        dp[i][j]=ans;\n        return dp[i][j];\n    }\n    int longestIncreasingPath(vector<vector<int>>& matrix) {\n        n=matrix.size();\n        m=matrix[0].size();\n\n        dp.assign(101,vector<int>(101,-1));\n        int ans=0;\n        for(int i=0;i<n;i++){\n            for(int j=0;j<m;j++){\n                ans=max(ans,rec(i,j,matrix));\n            }\n        }\n        return ans;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "longest-increasing-subsequence",
+    "lcSlug": "longest-increasing-subsequence",
+    "id": 300,
+    "title": "Longest Increasing Subsequence",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search",
+      "dynamic-programming",
+      "longest-increasing-subsequence"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/longest-increasing-subsequence/submission-3.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int n=0;\n    vector<int>dp;\n    int rec(int i,vector<int>&nums){\n        //prunning\n\n        //basecase\n        if(i==n)\n            return 0;\n        //cache check\n        if(dp[i]!=-1){\n            return dp[i];\n        }\n\n        //transition\n        int ans=1;\n        for(int j=i+1;j<n;j++){\n            if(nums[j]>nums[i])\n                ans=max(ans,1+rec(j,nums));\n        }\n        dp[i]=ans;\n\n        return ans;\n    }\n\n    int lengthOfLIS(vector<int>& nums) {\n        n=nums.size();\n        dp.assign(n+1,-1);\n        \n        int ans=0;\n        for(int i=0;i<n;i++){\n            ans=max(ans,rec(i,nums));\n        }\n        return ans;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "longest-palindromic-substring",
+    "lcSlug": "longest-palindromic-substring",
+    "id": 5,
+    "title": "Longest Palindromic Substring",
+    "difficulty": "Medium",
+    "tags": [
+      "two-pointers",
+      "string",
+      "dynamic-programming",
+      "manacher"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 10,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/longest-palindromic-substring/submission-9.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\n    vector<vector<int>>dp;\n    string s;\n    int start=0;\n    int maxLen=1;\npublic:\n    string longestPalindrome(string str) {\n        s=str;\n        int n=str.size();\n        if(n==0)\n            return \"\";\n        \n        dp.assign(n,vector<int>(n,-1));\n\n        for(int i=0;i<n;i++){\n            for(int j=i;j<n;j++){\n                if(rec(i,j)&&j-i+1>maxLen){\n                    start=i;\n                    maxLen=j-i+1;\n                }\n            }\n        }\n        cout<<start<<maxLen;\n        return s.substr(start,maxLen);\n\n    }\n    bool rec(int l,int r){\n        //pruning\n\n        //base case\n        if(r-l+1<=1){\n            return 1;\n        }\n        //cache chek\n        if(dp[l][r]!=-1){\n            return dp[l][r];\n        }\n        bool res=(s[l]==s[r]&&rec(l+1,r-1));\n\n        return res;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "longest-repeating-substring-with-replacement",
+    "lcSlug": "longest-repeating-character-replacement",
+    "id": 424,
+    "title": "Longest Repeating Character Replacement",
+    "difficulty": "Medium",
+    "tags": [
+      "hash-table",
+      "string",
+      "sliding-window"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 6,
+    "accepted": 2,
+    "solution": {
+      "file": "Data Structures & Algorithms/longest-repeating-substring-with-replacement/submission-5.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int characterReplacement(string s, int k) {\n        int left = 0;\n        int n = s.size();\n        int maxf = 0;\n        int ans = 0;\n        vector<int> freq(26, 0);\n\n        for (int right = 0; right < n; right++) {\n            freq[s[right] - 'A']++;\n            maxf = max(maxf, freq[s[right] - 'A']);\n\n            while ((right - left + 1) - maxf > k) {\n                freq[s[left] - 'A']--;\n                left++;\n            }\n\n            ans = max(ans, right - left + 1);\n        }\n\n        return ans;\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "longest-substring-without-duplicates",
+    "lcSlug": "longest-substring-without-repeating-characters",
+    "id": 3,
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "tags": [
+      "hash-table",
+      "string",
+      "sliding-window"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 9,
+    "accepted": 2,
+    "solution": {
+      "file": "Data Structures & Algorithms/longest-substring-without-duplicates/submission-8.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int lengthOfLongestSubstring(string s) {\n        int left = 0;\n        int n = s.size();\n        int ans = 0;\n        vector<int> freq(128, 0);\n\n        for (int right = 0; right < n; right++) {\n            freq[s[right]]++;\n\n            while (freq[s[right]] > 1) {\n                freq[s[left]]--;\n                left++;\n            }\n\n            ans = max(ans, right - left + 1);\n        }\n\n        return ans;\n    }\n};"
+    }
+  },
+  {
+    "ncSlug": "max-area-of-island",
+    "lcSlug": "max-area-of-island",
+    "id": 695,
+    "title": "Max Area of Island",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "matrix"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 6,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/max-area-of-island/submission-5.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int maxAreaOfIsland(vector<vector<int>>& grid) {\n        int row=grid.size();\n        int col=grid[0].size();\n        \n        int count=0;\n\n        for(int i=0;i<row;i++){\n            for(int j=0;j<col;j++){\n                \n                if(grid[i][j]){\n                    count=max(count,dfs(grid,i,j,row,col));\n                    \n                }\n            }\n        }\n        return count;\n\n    }\n    int dfs(vector<vector<int>>&grid,int r,int c,int row,int col){\n        if(r<0||r>row-1||c<0||c>col-1||!grid[r][c]){\n            return 0;\n        }\n        int area=1;\n        if(grid[r][c]){\n            grid[r][c]=0;\n            int dr[]={1,-1,0,0};\n            int dc[]={0,0,1,-1};\n\n            for(int i=0;i<4;i++){\n                area+=dfs(grid,r+dr[i],c+dc[i],row,col);\n            }\n        }\n        return area;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "maximum-product-subarray",
+    "lcSlug": "maximum-product-subarray",
+    "id": 152,
+    "title": "Maximum Product Subarray",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 23,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/maximum-product-subarray/submission-22.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int INF=1000;\n\n    int maxProduct(vector<int>& nums) {\n        int curmax=nums[0];\n        int curmin=nums[0];\n        int ans=nums[0];\n        // int curmin2=nums[0];\n        int n=nums.size();\n        for(int i=1;i<n;i++){\n            int x=nums[i];\n\n            int lcmax=curmax;\n            curmax=max({x,lcmax*x,curmin*x});\n            int lcmin=curmin;\n            curmin=min({x,lcmin*x,lcmax*x});\n            \n            // if(x!=1){\n            //     if(lcmax==curmax||lcmin==curmin){\n            //         curmax=x;\n            //         curmin=x;\n            //     }\n                \n                    \n            // }\n            ans=max(ans,curmax);\n            cout<<curmax<<\" \"<<curmin<<endl;\n        }\n\n        return ans;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "pacific-atlantic-water-flow",
+    "lcSlug": "pacific-atlantic-water-flow",
+    "id": 417,
+    "title": "Pacific Atlantic Water Flow",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "depth-first-search",
+      "breadth-first-search",
+      "matrix"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/pacific-atlantic-water-flow/submission-4.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>> pacificAtlantic(vector<vector<int>>& heights) {\n        int row=heights.size();\n        int col=heights[0].size();\n\n        vector<vector<bool>>pac(row,vector<bool>(col,false));\n        vector<vector<bool>>at(row,vector<bool>(col,false));\n        //top\n        for(int c=0;c<col;c++){\n            dfs(heights,pac,0,c,row,col);\n        }\n        //right\n        for(int r=0;r<row;r++){\n            dfs(heights,at,r,col-1,row,col);\n        }\n        //bottom\n        for(int c=0;c<col;c++)\n            dfs(heights,at,row-1,c,row,col);\n        //left\n        for(int r=0;r<row;r++){\n            dfs(heights,pac,r,0,row,col);\n        }\n\n        vector<vector<int>>list;\n\n        for(int r=0;r<row;r++){\n            for(int c=0;c<col;c++){\n                if(pac[r][c]&&at[r][c])\n                    list.push_back({r,c});\n            }\n        }\n        return list;\n    }\n    void dfs(vector<vector<int>>& heights, vector<vector<bool>>& oc, int r, int c,int row, int col){\n        oc[r][c]=true;\n\n        int dr[]={1,-1,0,0};\n        int dc[]={0,0,-1,1};\n        for(int i=0;i<4;i++){\n            int nr=r+dr[i];\n            int nc=c+dc[i];\n\n            if(nc<0 || nc>=col || nr<0 || nr>=row){\n                continue;\n            }\n            if(oc[nr][nc])\n                continue;\n            if(heights[r][c]>heights[nr][nc])\n                continue;\n            dfs(heights,oc,nr,nc,row,col);\n        }\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "partition-equal-subset-sum",
+    "lcSlug": "partition-equal-subset-sum",
+    "id": 416,
+    "title": "Partition Equal Subset Sum",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "knapsack-problem",
+      "0-1-knapsack"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 9,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/partition-equal-subset-sum/submission-8.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>>dp;\n    int sum=0;\n    int n;\n    int rec(int i,int s,vector<int>&nums){\n        //prunning\n        if(s>sum)\n            return false;\n        //basecase\n        if(i==n){\n            if(s==sum)\n                return true;\n            return false;\n        }\n        //cache chek\n        if(dp[i][s]!=-1)\n            return dp[i][s];\n        //transition\n        int ans=0;\n        if(rec(i+1,s,nums))\n            ans=1;\n        if(rec(i+1,s+nums[i],nums))\n            ans=1;\n        //save and return\n        dp[i][s]=ans;\n        return dp[i][s];\n\n    }\n    bool canPartition(vector<int>& nums) {\n        \n        for(auto x:nums)\n            sum+=x;\n        if(sum%2)\n            return false;\n        n=nums.size();\n        sum/=2;\n        dp.assign(n, vector<int>(sum + 1, -1));\n        \n        int ans=rec(0,0,nums);\n        return ans;\n        \n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "permutation-string",
+    "lcSlug": "permutation-in-string",
+    "id": 567,
+    "title": "Permutation in String",
+    "difficulty": "Medium",
+    "tags": [
+      "hash-table",
+      "two-pointers",
+      "string",
+      "sliding-window"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 16,
+    "accepted": 3,
+    "solution": {
+      "file": "Data Structures & Algorithms/permutation-string/submission-15.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool checkInclusion(string s1, string s2) {\n        if(s1.size()>s2.size()){\n            return false;\n        }\n        vector<int>freq(128,0);\n        vector<int>win(128,0);\n        int k=s1.size();\n        for (int i = 0; i < k; i++) {\n            freq[s1[i]]++;\n            win[s2[i]]++;\n        }\n        if (win == freq) return true;\n        //window size and condition\n        //if condition remains true size can be expanded atmost k\n        //when size is k and condition is true answer is true\n        int n=s2.size();\n        int left = 0, right = 0;\n        for (int right = k; right < s2.size(); right++) {\n            win[s2[right]]++;          \n            win[s2[left]]--;\n            left++;\n\n            if (win == freq) return true;\n        }\n        return false;\n\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "regular-expression-matching",
+    "lcSlug": "regular-expression-matching",
+    "id": 10,
+    "title": "Regular Expression Matching",
+    "difficulty": "Hard",
+    "tags": [
+      "string",
+      "dynamic-programming",
+      "recursion"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 11,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/regular-expression-matching/submission-10.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    string S,P;\n    vector<vector<int>>dp;\n    int n,m;\n    int rec(int i,int j){\n    if(j==m) return i==n;                                      // only j gives a verdict\n    if(dp[i][j]!=-1) return dp[i][j];\n\n    if(j+1<m && P[j+1]=='*') return dp[i][j] = rec(i,j+1);     // starred group → defer to '*'\n\n    int ans=0;\n    if(i<n && (S[i]==P[j]||P[j]=='.')){                        // mandatory char\n        ans=rec(i+1,j+1);\n    } else if(P[j]=='*'){                                      // on the '*'\n        if(j-1>=0){\n            ans=rec(i,j+1);                                    // zero more\n            if(i<n && (P[j-1]==S[i]||P[j-1]=='.'))\n                ans = ans || rec(i+1,j);                       // one more\n        }\n    }\n    return dp[i][j]=ans;\n}\n    bool isMatch(string s, string p) {\n        S=s;\n        P=p;\n        dp.assign(21,vector<int>(21,-1));\n\n        n=s.size();\n        m=p.size();\n\n        return rec(0,0);\n\n    }\n};\n\n"
+    }
+  },
+  {
+    "ncSlug": "rotting-fruit",
+    "lcSlug": "rotting-oranges",
+    "id": 994,
+    "title": "Rotting Oranges",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "breadth-first-search",
+      "matrix"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 13,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/rotting-fruit/submission-12.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int orangesRotting(vector<vector<int>>& grid) {\n        int row=grid.size();\n        int col=grid[0].size();\n\n        queue<pair<int,int>>q;\n\n        int fresh=0;\n        int min=0;\n        for(int i=0;i<row;i++){\n            for(int j=0;j<col;j++){\n                if(grid[i][j]==2){\n                    q.push({i,j});\n                }\n                else if(grid[i][j]==1){\n                    fresh++;\n                }\n            }\n        }\n\n        \n        int dr[]={1,-1,0,0};\n        int dc[]={0,0,1,-1};\n\n        while(fresh>0 && !q.empty()){\n            int k=q.size();\n            for(int i=0;i<k;i++){\n                int r=q.front().first;\n                int c=q.front().second;\n                q.pop();\n\n                for(int j=0;j<4;j++){        // renamed i -> j\n                    int nr=r+dr[j];\n                    int nc=c+dc[j];\n                    if(nr>=0 && nr<row && nc>=0 && nc<col && grid[nr][nc]==1){\n                        grid[nr][nc]=2;\n                        fresh--;\n                        q.push({nr,nc});\n                    }\n                }\n            }\n            min++;\n        }\n        return fresh==0 ? min : -1;}\n};\n"
+    }
+  },
+  {
+    "ncSlug": "search-2d-matrix",
+    "lcSlug": "search-a-2d-matrix",
+    "id": 74,
+    "title": "Search a 2D Matrix",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search",
+      "matrix"
+    ],
+    "firstSolvedAt": "2026-06-09T17:26:24Z",
+    "lastSolvedAt": "2026-06-09T17:26:24Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/search-2d-matrix/submission-4.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool searchMatrix(vector<vector<int>>& matrix, int target) {\n        int n=matrix.size();\n        int m=matrix[0].size();\n        //i*n+j flattens\n        //t=i*n+j\n        //i=t/n, j=t%n\n        //just move t from 0 to m*n-1\n        return bin(0,m*n-1,matrix,target);\n    }\n    bool check(int mid,vector<vector<int>>& matrix,int target){\n        int n=matrix[0].size();\n        int i=mid/n;\n        int j=mid%n;\n\n        return matrix[i][j]>=target;\n    }\n\n    int bin(int lo,int hi,vector<vector<int>>& matrix,int target){\n        while(lo<hi){\n            int mid = lo + (hi-lo)/2;\n            if(check(mid,matrix,target))\n                hi=mid;\n            else\n                lo=mid+1;\n        }\n        int n=matrix[0].size();\n        int i=lo/n;\n        int j=lo%n;\n\n        if(matrix[i][j]==target)\n            return true;\n        return false;\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "target-sum",
+    "lcSlug": "target-sum",
+    "id": 494,
+    "title": "Target Sum",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "backtracking",
+      "knapsack-problem",
+      "0-1-knapsack"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 7,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/target-sum/submission-6.cpp",
+      "lang": "cpp",
+      "code": "#include <cstring>\n\nclass Solution {\npublic:\n    int x;\n    int n;\n    int offset=1000;\n    int dp[2002][1001];\n    int rec(int s,int i,vector<int>& nums){\n        //base case\n        if(i==n)\n            if(s!=x)\n                return 0;\n            else\n                return 1;\n        \n        //cache chek\n        if(dp[s+offset][i]!=-1){\n            return dp[s+offset][i];\n        }\n        //transition\n        int ans=0;\n\n        ans += rec(s-nums[i],i+1, nums);\n        ans += rec(s+nums[i],i+1, nums);    \n\n        //save and return \n        dp[s+offset][i]=ans;\n\n        return dp[s+offset][i];\n    }\n    int findTargetSumWays(vector<int>& nums, int target) {\n        x=target;\n        n=nums.size();\n        memset(dp,-1,sizeof(dp));\n        return rec(0,0,nums);\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "valid-tree",
+    "lcSlug": "graph-valid-tree",
+    "id": 261,
+    "title": "Graph Valid Tree",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "graph"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/valid-tree/submission-3.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool validTree(int n, vector<vector<int>>& edges) {\n        \n        if(edges.size()!=(n-1))\n            return false;\n\n        vector<vector<bool>>adj(n,vector<bool>(n,false));\n\n        for(auto v:edges){\n            adj[v[0]][v[1]]=true;\n            adj[v[1]][v[0]]=true;\n        }\n\n        vector<bool>vis(n,false);\n\n        dfs(adj,vis,0,n);\n\n        for(int i=0;i<n;i++){\n            if(!vis[i])\n                return false;\n        }\n        return true;\n    }\n    void dfs(vector<vector<bool>>&adj,vector<bool>&vis,int node,int n){\n        vis[node]=true;\n        \n        for(int i=0;i<n;i++){\n            if(adj[node][i]==true && vis[i]==false){\n                dfs(adj,vis,i,n);\n            }\n        }\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "validate-parentheses",
+    "lcSlug": "valid-parentheses",
+    "id": 20,
+    "title": "Valid Parentheses",
+    "difficulty": "Easy",
+    "tags": [
+      "string",
+      "stack",
+      "bracket-sequences"
+    ],
+    "firstSolvedAt": "2026-06-04T18:17:38Z",
+    "lastSolvedAt": "2026-06-04T18:17:44Z",
+    "submissions": 4,
+    "accepted": 2,
+    "solution": {
+      "file": "Data Structures & Algorithms/validate-parentheses/submission-3.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool isValid(string s) {\n        stack<char> st;\n        \n        for (char c : s) {\n            if (c == '(' || c == '{' || c == '[') {\n                st.push(c);\n            } else {\n                if (st.empty()) return false;\n                \n                char top = st.top();\n                st.pop();\n                \n                if (c == ')' && top != '(') return false;\n                if (c == '}' && top != '{') return false;\n                if (c == ']' && top != '[') return false;\n            }\n        }\n        \n        return st.empty();\n    }\n};\n"
+    }
+  },
+  {
+    "ncSlug": "word-break",
+    "lcSlug": "word-break",
+    "id": 139,
+    "title": "Word Break",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "hash-table",
+      "string",
+      "dynamic-programming",
+      "trie",
+      "memoization",
+      "brute-force-search"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/word-break/submission-0.cpp",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    string s;\n    unordered_set<string> wordSet;\n    vector<int> dp; \n\n    int rec(int i){\n        // pruning // matlab ki agar ye invalid hai to return 0 karo\n        // (koi pruning nahi chahiye yaha, kyunki i hamesha 0..n ke beech hi rahega)\n\n        // basecase\n        if(i == s.size()){\n            // poora string consume ho gaya, matlab valid segmentation mil gaya\n            return 1;\n        }\n\n        // cache check\n        if(dp[i] != -1){ // dekh liya ki ye pehle calculate hua hai ki nahi\n            return dp[i];\n        }\n\n        // transition\n        int ans = 0;\n        for(int j = i+1; j <= s.size(); j++){\n            \n            string chunk = s.substr(i, j - i);\n            if(wordSet.count(chunk)){\n                // agar ye chunk valid word hai, to baaki string (j se aage) bhi valid hona chahiye\n                if(rec(j)){\n                    ans = 1;\n                    break; \n                }\n            }\n        }\n\n        // save and return\n        dp[i] = ans;\n        return ans;\n    }\n\n    bool wordBreak(string s, vector<string>& wordDict) {\n        this->s = s;\n        wordSet = unordered_set<string>(wordDict.begin(), wordDict.end());\n        dp.assign(s.size() + 1, -1);\n\n        return rec(0) == 1;\n    }\n};"
+    }
+  }
+]

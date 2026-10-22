@@ -1,12 +1,12 @@
 import Link from "next/link";
-import { problems, countByDifficulty, dayKey, streaks, DIFFICULTIES } from "@/lib/data";
+import { problems, countByDifficulty, countBySource, dated, dayKey, streaks, DIFFICULTIES } from "@/lib/data";
 import { SECTIONS } from "@/content/taxonomy";
 import { Card, DIFF_VAR, ProblemList } from "@/components/ui";
 import { Heatmap } from "@/components/Heatmap";
 
 function buildWeeks() {
   const byDay = new Map<string, string[]>();
-  for (const p of problems) {
+  for (const p of dated(problems)) {
     const k = dayKey(p.firstSolvedAt);
     byDay.set(k, [...(byDay.get(k) ?? []), p.title]);
   }
@@ -34,7 +34,10 @@ export default function Dashboard() {
   const weeks = buildWeeks();
   const lastYear = weeks.flat().reduce((s, c) => s + (c?.count ?? 0), 0);
   const thirtyAgo = new Date(Date.now() - 30 * 864e5).toISOString();
-  const last30 = problems.filter((p) => p.firstSolvedAt >= thirtyAgo).length;
+  const last30 = dated(problems).filter((p) => p.firstSolvedAt >= thirtyAgo).length;
+  const undated = problems.length - dated(problems).length;
+  const src = countBySource(problems);
+  const both = problems.filter((p) => p.sources.length > 1).length;
 
   const sections = SECTIONS.map((s) => {
     const list = problems.filter((p) => p.section === s.id);
@@ -57,6 +60,11 @@ export default function Dashboard() {
                 {d[0]} <span className="text-ink tabular-nums">{diff[d]}</span>
               </span>
             ))}
+          </div>
+          <div className="mt-1.5 text-xs text-ink-3">
+            LeetCode <span className="text-ink-2 tabular-nums">{src.leetcode}</span> · NeetCode{" "}
+            <span className="text-ink-2 tabular-nums">{src.neetcode}</span>
+            {both > 0 && <> · {both} on both</>}
           </div>
         </Card>
         <Card>
@@ -88,6 +96,11 @@ export default function Dashboard() {
           <span className="text-xs text-ink-3">{lastYear} new problems in the past year</span>
         </div>
         <Heatmap weeks={weeks} />
+        {undated > 0 && (
+          <p className="mt-2 text-xs text-ink-3">
+            {undated} NeetCode problems came in through a bulk sync with no solve date, so they aren't on the heatmap.
+          </p>
+        )}
       </Card>
 
       <div className="grid md:grid-cols-5 gap-6">

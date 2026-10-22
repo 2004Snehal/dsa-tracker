@@ -17,11 +17,20 @@ Fully static Next.js. Data lives in `data/` as JSON, so there's no database and 
 - **Username:** set the repo variable `LEETCODE_USERNAME` (defaults to `Snehal004`).
 - **Optional secrets** `LEETCODE_SESSION` and `LEETCODE_CSRF` add your solution code and exact attempt counts to synced problems. Without them sync still works through LeetCode's public feed, which shows the last 20 accepted submissions. The session cookie expires after about 2 weeks, so the public mode is the low-maintenance default.
 
+### NeetCode
+
+The same workflow also reads [`2004Snehal/neetcode-submissions`](https://github.com/2004Snehal/neetcode-submissions), the repo NeetCode's GitHub Sync writes to, and stores the results in `data/neetcode.json`. Each NeetCode problem is matched to its LeetCode version, so it gets the same sections, patterns and notes. A problem solved on both sites counts once and shows both solutions.
+
+- NeetCode renames many problems (for example `eating-bananas` is `koko-eating-bananas`). The mapping is in `data/neetcode-map.json`. If sync warns about an unknown slug, add it there.
+- Solve dates come from the per-submission commits (`Add: <slug> - submission-<n>`). Submissions that arrived through NeetCode's **Bulk sync** have no real date. They count toward totals and sections, but not toward the heatmap or streaks.
+- To use a different repo, set `NEETCODE_REPO=owner/name`.
+
 Locally:
 
 ```sh
 npm install
 npm run sync        # recent 20 accepted (public)
+npm run neetcode    # NeetCode submissions from GitHub
 npm run backfill    # full history + code; needs LEETCODE_SESSION / LEETCODE_CSRF in .env.local
 npm run dev
 ```

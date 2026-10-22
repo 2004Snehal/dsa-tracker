@@ -14,6 +14,7 @@ export default function ProblemsPage() {
     sectionName: sectionById(p.section)?.name ?? p.section,
     patternName: patternName(p.section, p.pattern),
     firstSolvedAt: p.firstSolvedAt,
+    sources: p.sources,
     date: fmtDate(p.firstSolvedAt),
     submissions: p.submissions,
     revisit: p.revisit,

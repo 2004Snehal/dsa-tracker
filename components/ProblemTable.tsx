@@ -1,8 +1,8 @@
 "use client";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Difficulty } from "@/lib/data";
-import { DiffBadge } from "@/components/ui";
+import type { Difficulty, Source } from "@/lib/data";
+import { DiffBadge, SourceTags } from "@/components/ui";
 
 export type Row = {
   id: number;
@@ -12,12 +12,19 @@ export type Row = {
   section: string;
   sectionName: string;
   patternName: string | null;
-  firstSolvedAt: string;
+  firstSolvedAt: string | null;
+  sources: Source[];
   date: string;
   submissions: number;
   revisit: boolean;
   oa: boolean;
 };
+
+// Unknown dates always sort last.
+const byDate = (a: Row, b: Row, dir: 1 | -1) =>
+  a.firstSolvedAt && b.firstSolvedAt
+    ? dir * a.firstSolvedAt.localeCompare(b.firstSolvedAt)
+    : a.firstSolvedAt ? -1 : b.firstSolvedAt ? 1 : a.id - b.id;
 
 const sel = "rounded-lg border border-line bg-panel px-3 py-2 text-sm text-ink";
 
@@ -27,6 +34,7 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
   const [diff, setDiff] = useState("");
   const [sort, setSort] = useState<"new" | "old" | "id" | "tries">("new");
   const [flag, setFlag] = useState("");
+  const [source, setSource] = useState("");
 
   const list = useMemo(() => {
     const needle = q.trim().toLowerCase();
@@ -35,16 +43,17 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
         (!needle || r.title.toLowerCase().includes(needle) || String(r.id) === needle || r.patternName?.toLowerCase().includes(needle)) &&
         (!section || r.section === section) &&
         (!diff || r.difficulty === diff) &&
-        (!flag || (flag === "revisit" ? r.revisit : r.oa)),
+        (!flag || (flag === "revisit" ? r.revisit : r.oa)) &&
+        (!source || r.sources.includes(source as Source)),
     );
     const cmp = {
-      new: (a: Row, b: Row) => b.firstSolvedAt.localeCompare(a.firstSolvedAt),
-      old: (a: Row, b: Row) => a.firstSolvedAt.localeCompare(b.firstSolvedAt),
+      new: (a: Row, b: Row) => byDate(a, b, -1),
+      old: (a: Row, b: Row) => byDate(a, b, 1),
       id: (a: Row, b: Row) => a.id - b.id,
       tries: (a: Row, b: Row) => b.submissions - a.submissions,
     }[sort];
     return out.sort(cmp);
-  }, [rows, q, section, diff, sort, flag]);
+  }, [rows, q, section, diff, sort, flag, source]);
 
   return (
     <div>
@@ -67,6 +76,11 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
           <option>Medium</option>
           <option>Hard</option>
         </select>
+        <select value={source} onChange={(e) => setSource(e.target.value)} className={sel}>
+          <option value="">LeetCode + NeetCode</option>
+          <option value="leetcode">LeetCode</option>
+          <option value="neetcode">NeetCode</option>
+        </select>
         <select value={flag} onChange={(e) => setFlag(e.target.value)} className={sel}>
           <option value="">Any flag</option>
           <option value="revisit">Revisit</option>
@@ -87,6 +101,7 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
               <th className="px-4 py-2.5 font-medium w-14">#</th>
               <th className="px-2 py-2.5 font-medium">Title</th>
               <th className="px-2 py-2.5 font-medium">Section · Pattern</th>
+              <th className="px-2 py-2.5 font-medium">Source</th>
               <th className="px-2 py-2.5 font-medium">Difficulty</th>
               <th className="px-2 py-2.5 font-medium text-right">Subs</th>
               <th className="px-4 py-2.5 font-medium text-right">Solved</th>
@@ -105,6 +120,7 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
                   {r.sectionName}
                   {r.patternName && <span className="text-ink-3"> · {r.patternName}</span>}
                 </td>
+                <td className="px-2 py-2.5"><SourceTags sources={r.sources} /></td>
                 <td className="px-2 py-2.5"><DiffBadge d={r.difficulty} /></td>
                 <td className="px-2 py-2.5 text-right tabular-nums text-ink-2">{r.submissions}</td>
                 <td className="px-4 py-2.5 text-right tabular-nums text-ink-3 whitespace-nowrap">{r.date}</td>
