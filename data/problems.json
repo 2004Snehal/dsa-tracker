@@ -1,0 +1,1437 @@
+[
+  {
+    "id": 354,
+    "slug": "russian-doll-envelopes",
+    "title": "Russian Doll Envelopes",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "binary-search",
+      "dynamic-programming",
+      "sorting",
+      "longest-increasing-subsequence"
+    ],
+    "firstSolvedAt": "2026-10-21T17:08:02.000Z",
+    "lastSolvedAt": "2026-10-21T17:08:02.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2178171796",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int maxEnvelopes(vector<vector<int>>& envelopes) {\n        sort(envelopes.begin(),envelopes.end(),[](auto &a,auto &b){\n            if(a[0]==b[0]) return a[1]>b[1];\n            return a[0]<b[0];\n        });\n\n        //lis on height\n        vector<int>tails;\n        tails.push_back(envelopes[0][1]);\n        for(auto e:envelopes){\n            int x=e[1];\n            auto it=lower_bound(tails.begin(),tails.end(),x);\n            if(it==tails.end()){\n                tails.push_back(x);\n            }\n            else{\n                *it=x;\n            }\n        }\n        return tails.size();\n    }\n};",
+      "runtime": "95 ms",
+      "memory": "91.7 MB"
+    }
+  },
+  {
+    "id": 1368,
+    "slug": "minimum-cost-to-make-at-least-one-valid-path-in-a-grid",
+    "title": "Minimum Cost to Make at Least One Valid Path in a Grid",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "breadth-first-search",
+      "graph",
+      "heap-priority-queue",
+      "matrix",
+      "shortest-path",
+      "0-1-bfs",
+      "dijkstra"
+    ],
+    "firstSolvedAt": "2026-10-15T14:06:21.000Z",
+    "lastSolvedAt": "2026-10-15T14:06:21.000Z",
+    "submissions": 7,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2173071380",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    const int INF=1e9;\n    int minCost(vector<vector<int>>& grid) {\n        vector<vector<int>>dist,vis;\n        dist.resize(grid.size(),vector<int>(grid[0].size(),INF));\n        vis.resize(grid.size(),vector<int>(grid[0].size(),0));\n        priority_queue<pair<int,pair<int,int>>>pq;//{-dist,node}\n        pq.push({0,{0,0}});\n        int dx[4]={0,0,1,-1};\n        int dy[4]={1,-1,0,0};\n        while(!pq.empty()){\n            auto x=pq.top();\n            pq.pop();\n            int i,j;\n            i=x.second.first;\n            j=x.second.second;\n            vis[i][j]=1;\n            dist[0][0]=0;\n            for(int dir=0;dir<4;dir++){\n                int nx=i+dx[dir];\n                int ny=j+dy[dir];\n                if(nx>=0&&nx<grid.size()&&ny>=0&&ny<grid[0].size()){\n                    if(!vis[nx][ny]){\n                        int wt=0;\n                        if(grid[i][j]!=dir+1)wt=1;\n                        if(dist[nx][ny]>dist[i][j]+wt){\n                            dist[nx][ny]=dist[i][j]+wt;\n                            pq.push({-1*dist[nx][ny],{nx,ny}});\n                        }\n\n                    }\n                }\n            }\n        }\n        return dist[grid.size()-1][grid[0].size()-1];\n    }\n};",
+      "runtime": "31 ms",
+      "memory": "19.1 MB"
+    }
+  },
+  {
+    "id": 2050,
+    "slug": "parallel-courses-iii",
+    "title": "Parallel Courses III",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "graph",
+      "topological-sort",
+      "directed-acyclic-graph"
+    ],
+    "firstSolvedAt": "2026-10-15T13:00:54.000Z",
+    "lastSolvedAt": "2026-10-15T13:00:54.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2173020498",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<int>indeg;\n\n    void kahn(vector<vector<int>>&adj,vector<int>&time,int n,vector<int>&dp){\n        queue<int>q;\n        for(int i=0;i<n;i++)if(indeg[i]==0)q.push(i);\n\n        while(!q.empty()){\n                int node=q.front();\n                q.pop();\n                for(auto v:adj[node]){\n                    dp[v]=max(dp[v],time[v]+dp[node]);\n                    indeg[v]--;\n                    if(indeg[v]==0)q.push(v);\n                }\n        }\n    }\n    int minimumTime(int n, vector<vector<int>>& relations, vector<int>& time) {\n        indeg.resize(n,0);\n        vector<vector<int>>adj(n);\n        vector<int>dp=time;\n        for(auto r:relations){\n            adj[r[0]-1].push_back(r[1]-1);\n            indeg[r[1]-1]++;\n        }\n        kahn(adj,time,n,dp);\n        int ans=0;\n        for(int i=0;i<n;i++)ans=max(ans,dp[i]);\n        return ans;\n    }\n};",
+      "runtime": "120 ms",
+      "memory": "150.3 MB"
+    }
+  },
+  {
+    "id": 815,
+    "slug": "bus-routes",
+    "title": "Bus Routes",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "hash-table",
+      "breadth-first-search"
+    ],
+    "firstSolvedAt": "2026-10-13T16:01:39.000Z",
+    "lastSolvedAt": "2026-10-13T16:01:39.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2171346542",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int numBusesToDestination(vector<vector<int>>& routes, int source, int target) {\n        unordered_map<int,vector<int>>mp;\n        for(int i=0;i<routes.size();i++){\n            for(int j=0;j<routes[i].size();j++){\n                mp[routes[i][j]].push_back(i);\n            }\n        }\n        int n=routes.size();\n        queue<int> q;\n        unordered_set<int> visStp;\n        vector<bool> visB(n, 0);\n\n        q.push(source);\n        visStp.insert(source);\n        int busses=0;\n        while(!q.empty()){\n            int sz=q.size();\n\n            while(sz--){\n                int stp=q.front();\n                if(stp==target)return busses;\n                q.pop();\n                for(auto bus:mp[stp]){\n                    \n                    if(!visB[bus]){\n                        visB[bus]=1;\n                        for(auto neigh:routes[bus]){\n                            if(!visStp.count(neigh)){\n                                visStp.insert(neigh);\n                                q.push(neigh);\n                            }\n                        }\n                    }\n                }\n            }\n            busses++;\n        }\n        return -1;\n    }\n};",
+      "runtime": "132 ms",
+      "memory": "73.1 MB"
+    }
+  },
+  {
+    "id": 329,
+    "slug": "longest-increasing-path-in-a-matrix",
+    "title": "Longest Increasing Path in a Matrix",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "topological-sort",
+      "memoization",
+      "matrix",
+      "directed-acyclic-graph"
+    ],
+    "firstSolvedAt": "2026-10-13T13:51:08.000Z",
+    "lastSolvedAt": "2026-10-13T13:51:08.000Z",
+    "submissions": 8,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2171226512",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>>vis;\n    int dx[4]={-1,1,0,0};\n    int dy[4]={0,0,-1,1};\n\n    int rec(int x,int y,vector<vector<int>>& matrix){\n        //base case\n        //if() return 0;\n\n        //cache check\n        if(vis[x][y]!=-1){\n            return vis[x][y];\n        }\n        //transition\n        int ans=1;\n        for(int i=0;i<4;i++){\n            int nx=x+dx[i];\n            int ny=y+dy[i];\n\n            if(nx>=0&&nx<vis.size()&&ny>=0&&ny<vis[0].size()){\n                if(matrix[nx][ny]>matrix[x][y]){\n                    ans=max(1+rec(nx,ny,matrix),ans);\n                }\n            }\n        }\n        vis[x][y]=ans;\n\n        return ans;\n    }\n    int longestIncreasingPath(vector<vector<int>>& matrix) {\n        vis.resize(matrix.size(),vector<int>(matrix[0].size(),-1));\n        int ans=0;\n        for(int i=0;i<matrix.size();i++){\n            for(int j=0;j<matrix[0].size();j++){\n                if(vis[i][j]==-1){\n                  ans=max(ans,rec(i,j,matrix));\n                }\n            }\n        }\n    return ans;\n    }\n};",
+      "runtime": "11 ms",
+      "memory": "20.7 MB"
+    }
+  },
+  {
+    "id": 212,
+    "slug": "word-search-ii",
+    "title": "Word Search II",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "string",
+      "backtracking",
+      "trie",
+      "matrix"
+    ],
+    "firstSolvedAt": "2026-10-12T14:09:22.000Z",
+    "lastSolvedAt": "2026-10-12T14:09:22.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2170246448",
+      "lang": "cpp",
+      "code": "class Solution {\n    struct Node {\n        Node* child[26];\n        bool isEnd;\n        string word;\n\n        Node() {\n            for (int i = 0; i < 26; i++) {\n                child[i] = nullptr;\n            }\n            isEnd = false;\n            word = \"\";\n        }\n    };\n\n    Node* root = new Node();\n    vector<string> ans;\n    int m, n;\n\n    void insert(string& word) {\n        Node* cur = root;\n\n        for (int i = 0; i < word.size(); i++) {\n            int idx = word[i] - 'a';\n\n            if (cur->child[idx] == nullptr) {\n                cur->child[idx] = new Node();\n            }\n\n            cur = cur->child[idx];\n        }\n\n        cur->isEnd = true;\n        cur->word = word;\n    }\n\n    void dfs(vector<vector<char>>& board, int r, int c, Node* node) {\n        char ch = board[r][c];\n        int idx = ch - 'a';\n\n        Node* next = node->child[idx];\n\n        if (next == nullptr) return;\n\n        if (next->isEnd) {\n            ans.push_back(next->word);\n            next->isEnd = false;\n        }\n\n        board[r][c] = '#';\n\n        int dr[] = {-1, 1, 0, 0};\n        int dc[] = {0, 0, -1, 1};\n\n        for (int k = 0; k < 4; k++) {\n            int nr = r + dr[k];\n            int nc = c + dc[k];\n\n            if (nr >= 0 && nr < m &&\n                nc >= 0 && nc < n &&\n                board[nr][nc] != '#') {\n                dfs(board, nr, nc, next);\n            }\n        }\n\n        board[r][c] = ch;\n    }\n\npublic:\n    vector<string> findWords(vector<vector<char>>& board,\n                             vector<string>& words) {\n        m = board.size();\n        n = board[0].size();\n\n        for (string& word : words) {\n            insert(word);\n        }\n\n        for (int i = 0; i < m; i++) {\n            for (int j = 0; j < n; j++) {\n                dfs(board, i, j, root);\n            }\n        }\n\n        return ans;\n    }\n};",
+      "runtime": "307 ms",
+      "memory": "18.7 MB"
+    }
+  },
+  {
+    "id": 211,
+    "slug": "design-add-and-search-words-data-structure",
+    "title": "Design Add and Search Words Data Structure",
+    "difficulty": "Medium",
+    "tags": [
+      "string",
+      "depth-first-search",
+      "design",
+      "trie"
+    ],
+    "firstSolvedAt": "2026-10-11T22:05:24.000Z",
+    "lastSolvedAt": "2026-10-11T22:05:24.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2169685594",
+      "lang": "cpp",
+      "code": "class WordDictionary {\n    struct Node{\n        Node* child[26];\n        bool isEnd;\n        \n        Node(){\n            for(int i=0;i<26;i++){\n                child[i]=nullptr;\n            }\n            isEnd=false;\n        }\n    };\n\n    Node* root;\n\n    bool dfs(Node* node,string& word,int idx){\n        if(idx==word.size()) return node->isEnd;\n\n        if(word[idx]=='.'){\n            for(int i=0;i<26;i++){\n                if(node->child[i]&&dfs(node->child[i],word,idx+1))\n                    return true;\n            }\n        }\n        else{\n            if(node->child[word[idx]-'a']==nullptr)return false;\n            else if(dfs(node->child[word[idx]-'a'],word,idx+1))\n                return true;\n        }\n        return false;\n    }\npublic:\n    WordDictionary() {\n        root=new Node;\n    }\n    \n    void addWord(string word) {\n        Node* cur=root;\n        for(int i=0;i<word.size();i++){\n            if(!cur->child[word[i]-'a']){\n                cur->child[word[i]-'a']=new Node();\n            }\n            //in else case akso cur moves frwrd\n            cur=cur->child[word[i]-'a'];\n        }\n        cur->isEnd=true;\n    }\n    \n    bool search(string word) {\n        return dfs(root,word,0);\n    }\n};\n\n/**\n * Your WordDictionary object will be instantiated and called as such:\n * WordDictionary* obj = new WordDictionary();\n * obj->addWord(word);\n * bool param_2 = obj->search(word);\n */",
+      "runtime": "366 ms",
+      "memory": "583.6 MB"
+    }
+  },
+  {
+    "id": 25,
+    "slug": "reverse-nodes-in-k-group",
+    "title": "Reverse Nodes in k-Group",
+    "difficulty": "Hard",
+    "tags": [
+      "linked-list",
+      "recursion"
+    ],
+    "firstSolvedAt": "2026-10-11T20:40:54.000Z",
+    "lastSolvedAt": "2026-10-11T20:40:54.000Z",
+    "submissions": 12,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2169654492",
+      "lang": "cpp",
+      "code": "/**\n * Definition for singly-linked list.\n * struct ListNode {\n *     int val;\n *     ListNode *next;\n *     ListNode() : val(0), next(nullptr) {}\n *     ListNode(int x) : val(x), next(nullptr) {}\n *     ListNode(int x, ListNode *next) : val(x), next(next) {}\n * };\n */\nclass Solution {\npublic:\n    ListNode* reverseKGroup(ListNode* head, int k) {\n        ListNode dhead(0,head);\n        ListNode* gprev=&dhead;\n\n        while(true){\n            ListNode* knode=gprev;\n            for(int i=0;i<k && knode!=nullptr;i++){\n                knode=knode->next;\n            }\n            if(knode==nullptr)break;\n\n            ListNode* gnext=knode->next;\n            ListNode* prev=gnext;\n            ListNode* curr=gprev->next;\n\n            while(curr!=gnext){\n                ListNode* nextnode=curr->next;\n                curr->next=prev;\n                prev=curr;\n                curr=nextnode;\n            }\n            ListNode* temp=gprev->next;\n            gprev->next=knode;\n            gprev=temp;\n        }\n        return dhead.next;\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "16.6 MB"
+    }
+  },
+  {
+    "id": 41,
+    "slug": "first-missing-positive",
+    "title": "First Missing Positive",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "hash-table"
+    ],
+    "firstSolvedAt": "2026-10-11T13:18:16.000Z",
+    "lastSolvedAt": "2026-10-11T13:18:16.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2169291416",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int firstMissingPositive(vector<int>& nums) {\n        int n=nums.size();\n        for(int i=0;i<n;i++){\n            while(nums[i]>0&&nums[i]<=n && nums[i]!=i+1 && nums[nums[i]-1]!=nums[i]){\n                swap(nums[i],nums[nums[i]-1]);\n            }\n        }\n        for(int i=0;i<n;i++){\n            if(nums[i]!=i+1){\n                return i+1;\n            }\n        }\n        return n+1;\n    }\n};",
+      "runtime": "3 ms",
+      "memory": "55.1 MB"
+    }
+  },
+  {
+    "id": 76,
+    "slug": "minimum-window-substring",
+    "title": "Minimum Window Substring",
+    "difficulty": "Hard",
+    "tags": [
+      "hash-table",
+      "string",
+      "sliding-window"
+    ],
+    "firstSolvedAt": "2026-10-09T16:15:30.000Z",
+    "lastSolvedAt": "2026-10-09T16:15:30.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2167454306",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    string minWindow(string s, string t) {\n        if (t.empty() || s.size() < t.size()) return \"\";\n\n        vector<int> freq(128, 0);\n\n        for (char c : t) freq[c]++;\n\n        int l = 0, start = 0;\n        int required = t.size();\n        int best = INT_MAX;\n\n        for (int r = 0; r < s.size(); r++) {\n            if (freq[s[r]] > 0) required--;\n            freq[s[r]]--;\n\n            while (required == 0) {\n                if (r - l + 1 < best) {\n                    best = r - l + 1;\n                    start = l;\n                }\n                freq[s[l]]++;\n                if (freq[s[l]] > 0) required++;\n                l++;\n            }\n        }\n\n        return best == INT_MAX ? \"\" : s.substr(start, best);\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "11.2 MB"
+    }
+  },
+  {
+    "id": 1211,
+    "slug": "queries-quality-and-percentage",
+    "title": "Queries Quality and Percentage",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-03T18:24:44.000Z",
+    "lastSolvedAt": "2026-10-03T18:24:44.000Z",
+    "submissions": 6,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2161381723",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect query_name, round(avg(rating/position),2) as quality,round(AVG(rating<3)*100,2) as poor_query_percentage\nfrom Queries\nwhere query_name is not null\ngroup by query_name;",
+      "runtime": "384 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1633,
+    "slug": "percentage-of-users-attended-a-contest",
+    "title": "Percentage of Users Attended a Contest",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-03T14:39:02.000Z",
+    "lastSolvedAt": "2026-10-03T14:39:02.000Z",
+    "submissions": 8,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2161164260",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect r.contest_id,round(count(distinct(r.user_id))/(select count(*) from Users)*100,2) as percentage\nfrom Register r\ngroup by r.contest_id\norder by percentage DESC,contest_id",
+      "runtime": "1072 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1075,
+    "slug": "project-employees-i",
+    "title": "Project Employees I",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-03T14:27:23.000Z",
+    "lastSolvedAt": "2026-10-03T14:27:23.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2161154302",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect p.project_id,round(avg(e.experience_years),2) as average_years\nfrom Project p\njoin Employee e on p.employee_id=e.employee_id\ngroup by p.project_id;",
+      "runtime": "768 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1251,
+    "slug": "average-selling-price",
+    "title": "Average Selling Price",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-03T14:21:32.000Z",
+    "lastSolvedAt": "2026-10-03T14:21:32.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2161149045",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect p.product_id,IFNULL(round(sum(p.price*u.units)/sum(u.units),2),0) as average_price\nfrom Prices p\nleft join UnitsSold as u on p.product_id=u.product_id and u.purchase_date between p.start_date and p.end_date\ngroup by p.product_id; ",
+      "runtime": "928 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 620,
+    "slug": "not-boring-movies",
+    "title": "Not Boring Movies",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T20:05:32.000Z",
+    "lastSolvedAt": "2026-10-02T20:05:32.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160533413",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement belo\nselect *\nfrom Cinema\nwhere mod(id,2)=1 and description!=\"boring\"\norder by rating desc;\n",
+      "runtime": "273 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1934,
+    "slug": "confirmation-rate",
+    "title": "Confirmation Rate",
+    "difficulty": "Medium",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T19:51:56.000Z",
+    "lastSolvedAt": "2026-10-02T19:51:56.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160526196",
+      "lang": "mysql",
+      "code": "SELECT s.user_id,\nROUND(IFNULL(AVG(c.action = 'confirmed'), 0), 2)\nAS confirmation_rate\nFROM Signups s\nLEFT JOIN Confirmations c ON s.user_id = c.user_id\nGROUP BY s.user_id;",
+      "runtime": "761 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 570,
+    "slug": "managers-with-at-least-5-direct-reports",
+    "title": "Managers with at Least 5 Direct Reports",
+    "difficulty": "Medium",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T17:41:38.000Z",
+    "lastSolvedAt": "2026-10-02T17:41:38.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160416405",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect m.name\nfrom Employee m\ninner join Employee e on m.id=e.managerID\ngroup by m.id,e.managerID\nhaving count(*)>=5;\n",
+      "runtime": "381 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1280,
+    "slug": "students-and-examinations",
+    "title": "Students and Examinations",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T15:18:37.000Z",
+    "lastSolvedAt": "2026-10-02T15:18:37.000Z",
+    "submissions": 12,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160274478",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect s.student_id,s.student_name,sub.subject_name, COUNT(e.subject_name) as attended_exams\nfrom Students s\ncross join Subjects sub\nleft join Examinations e on e.student_id=s.student_id AND sub.subject_name=e.subject_name\ngroup by s.student_id,sub.subject_name,s.student_name\nORDER BY s.student_id, sub.subject_name;",
+      "runtime": "951 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 577,
+    "slug": "employee-bonus",
+    "title": "Employee Bonus",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T14:51:27.000Z",
+    "lastSolvedAt": "2026-10-02T14:51:27.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160250619",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect e.name,b.bonus\nfrom Employee e\nleft join bonus b on e.empID=b.empID\nwhere b.bonus<1000 or b.bonus is null;",
+      "runtime": "1025 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1661,
+    "slug": "average-time-of-process-per-machine",
+    "title": "Average Time of Process per Machine",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T14:43:48.000Z",
+    "lastSolvedAt": "2026-10-02T14:44:49.000Z",
+    "submissions": 4,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2160244676",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect a.machine_id,ROUND(AVG(b.timestamp - a.timestamp), 3) AS processing_time\nfrom Activity a\nJoin activity b on a.machine_id=b.machine_id and a.process_id=b.process_id\nwhere a.activity_type='start' and b.activity_type='end'\ngroup by machine_id;\n",
+      "runtime": "302 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 197,
+    "slug": "rising-temperature",
+    "title": "Rising Temperature",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T10:28:27.000Z",
+    "lastSolvedAt": "2026-10-02T10:28:27.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160038955",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect w1.id\nfrom Weather w1\nJoin Weather w2 on w1.recordDate=DATE_ADD(w2.recordDate,INTERVAL 1 day)\nwhere w1.temperature>w2.temperature;\n",
+      "runtime": "416 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1581,
+    "slug": "customer-who-visited-but-did-not-make-any-transactions",
+    "title": "Customer Who Visited but Did Not Make Any Transactions",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T10:04:45.000Z",
+    "lastSolvedAt": "2026-10-02T10:04:45.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160021409",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect customer_id,COUNT(*) AS count_no_trans\nfrom Visits v\nleft join Transactions t on v.visit_id=t.visit_id\nwhere t.visit_id is null\ngroup by customer_id;",
+      "runtime": "1258 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1068,
+    "slug": "product-sales-analysis-i",
+    "title": "Product Sales Analysis I",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T09:39:31.000Z",
+    "lastSolvedAt": "2026-10-02T09:39:31.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2160003148",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect product_name,year,price\nfrom Sales\nLeft join Product on Sales.product_id=Product.product_id",
+      "runtime": "1296 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1378,
+    "slug": "replace-employee-id-with-the-unique-identifier",
+    "title": "Replace Employee ID With The Unique Identifier",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T09:35:10.000Z",
+    "lastSolvedAt": "2026-10-02T09:35:10.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2159999987",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect unique_id,name\nfrom Employees\nleft join EmployeeUNI ON Employees.id=EmployeeUNI.id;\n",
+      "runtime": "1176 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1683,
+    "slug": "invalid-tweets",
+    "title": "Invalid Tweets",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-02T09:20:02.000Z",
+    "lastSolvedAt": "2026-10-02T09:20:02.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2159989025",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect tweet_id\nfrom Tweets\nwhere length(content)>15;",
+      "runtime": "619 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1148,
+    "slug": "article-views-i",
+    "title": "Article Views I",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-01T20:28:58.000Z",
+    "lastSolvedAt": "2026-10-01T20:28:58.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2159605008",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect Distinct author_id as id\nfrom Views\nwhere author_id=viewer_id\nOrder by author_id;",
+      "runtime": "459 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 595,
+    "slug": "big-countries",
+    "title": "Big Countries",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-01T20:22:12.000Z",
+    "lastSolvedAt": "2026-10-01T20:22:12.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2159601620",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nselect name,population,area\nfrom World\nwhere area>=3000000 or population>=25000000;",
+      "runtime": "283 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 584,
+    "slug": "find-customer-referee",
+    "title": "Find Customer Referee",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-01T20:19:51.000Z",
+    "lastSolvedAt": "2026-10-01T20:19:51.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2159600483",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nSELECT name\nFrom Customer\nWhere referee_id!=2 OR referee_id is null;",
+      "runtime": "467 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 1757,
+    "slug": "recyclable-and-low-fat-products",
+    "title": "Recyclable and Low Fat Products",
+    "difficulty": "Easy",
+    "tags": [
+      "database"
+    ],
+    "firstSolvedAt": "2026-10-01T20:12:04.000Z",
+    "lastSolvedAt": "2026-10-01T20:12:04.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2159596439",
+      "lang": "mysql",
+      "code": "# Write your MySQL query statement below\nSELECT product_id\nFROM Products\nWHERE Products.low_fats=Products.recyclable AND Products.low_fats='Y';",
+      "runtime": "558 ms",
+      "memory": "0B"
+    }
+  },
+  {
+    "id": 371,
+    "slug": "sum-of-two-integers",
+    "title": "Sum of Two Integers",
+    "difficulty": "Medium",
+    "tags": [
+      "math",
+      "bit-manipulation"
+    ],
+    "firstSolvedAt": "2026-09-13T18:51:29.000Z",
+    "lastSolvedAt": "2026-09-13T18:51:29.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2140938492",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int getSum(int a, int b) {\n        while(b!=0){\n            int carry=(a&b)<<1;\n            a=a^b;\n            b=carry;\n        }\n        return a;\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "7.7 MB"
+    }
+  },
+  {
+    "id": 4,
+    "slug": "median-of-two-sorted-arrays",
+    "title": "Median of Two Sorted Arrays",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "binary-search",
+      "divide-and-conquer"
+    ],
+    "firstSolvedAt": "2026-09-03T07:48:10.000Z",
+    "lastSolvedAt": "2026-09-03T07:48:10.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2129359864",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool check(int i, int n, int m, vector<int>& nums1, vector<int>& nums2) {\n        int j = (m + n + 1) / 2 - i;\n\n        int Aleft  = (i == 0) ? INT_MIN : nums1[i - 1];\n        int Aright = (i == m) ? INT_MAX : nums1[i];\n\n        int Bleft  = (j == 0) ? INT_MIN : nums2[j - 1];\n        int Bright = (j == n) ? INT_MAX : nums2[j];\n\n        if (Aleft <= Bright && Bleft <= Aright) {\n            return 1;\n        }\n\n        return 0;\n    }\n\n    double findMedianSortedArrays(vector<int>& nums1, vector<int>& nums2) {\n        if (nums1.size() > nums2.size()) {\n            swap(nums1, nums2);\n        }\n\n        int m = nums1.size();\n        int n = nums2.size();\n\n        int l = 0;\n        int r = m;\n\n        while (l <= r) {\n            int i = l + (r - l) / 2;\n            int j = (m + n + 1) / 2 - i;\n            \n            int Aleft  = (i == 0) ? INT_MIN : nums1[i - 1];\n            int Aright = (i == m) ? INT_MAX : nums1[i];\n\n            int Bleft  = (j == 0) ? INT_MIN : nums2[j - 1];\n            int Bright = (j == n) ? INT_MAX : nums2[j];\n            if (check(i, n, m, nums1, nums2)) {\n                if ((n + m) % 2 == 0) {\n                    return (max(Aleft, Bleft) + min(Aright, Bright)) / 2.0;\n                }\n                else {\n                    return max(Aleft, Bleft);\n                }\n            }\n            if (Aleft > Bright) {\n                r = i - 1;\n            }\n            else {\n                l = i + 1;\n            }\n        }\n\n        return 0;\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "95.3 MB"
+    }
+  },
+  {
+    "id": 239,
+    "slug": "sliding-window-maximum",
+    "title": "Sliding Window Maximum",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "queue",
+      "sliding-window",
+      "heap-priority-queue",
+      "monotonic-queue",
+      "range-minimum-maximum-query"
+    ],
+    "firstSolvedAt": "2026-09-02T17:19:22.000Z",
+    "lastSolvedAt": "2026-09-02T17:19:22.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2128752032",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<int> maxSlidingWindow(vector<int>& nums, int k) {\n        deque<int>dq;\n        vector<int>ans;\n        //i is your right pointer\n        for(int r=0;r<nums.size();r++){\n            while(!dq.empty()&& dq.front()<=r-k){\n                dq.pop_front();\n            }\n            //remove smaller elements\n            while(!dq.empty() && nums[dq.back()]<=nums[r]){\n                dq.pop_back();\n            }\n            dq.push_back(r);\n            if(r>=k-1){\n                ans.push_back(nums[dq.front()]);\n            }\n        }\n        return ans;\n\n    }\n};",
+      "runtime": "26 ms",
+      "memory": "139.3 MB"
+    }
+  },
+  {
+    "id": 102,
+    "slug": "binary-tree-level-order-traversal",
+    "title": "Binary Tree Level Order Traversal",
+    "difficulty": "Medium",
+    "tags": [
+      "tree",
+      "breadth-first-search",
+      "binary-tree"
+    ],
+    "firstSolvedAt": "2026-08-26T16:01:08.000Z",
+    "lastSolvedAt": "2026-08-26T16:01:08.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2120995275",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>> levelOrder(TreeNode* root) {\n        if (!root) return {};\n\n        queue<TreeNode*> q;\n        q.push(root);\n\n        vector<vector<int>> res;\n\n        while (!q.empty()) {\n            int n = q.size();\n            vector<int> level;\n\n            while (n--) {\n                TreeNode* cur = q.front();\n                q.pop();\n\n                level.push_back(cur->val);\n\n                if (cur->left) q.push(cur->left);\n                if (cur->right) q.push(cur->right);\n            }\n\n            res.push_back(level);\n        }\n\n        return res;\n    }\n};",
+      "runtime": "1 ms",
+      "memory": "17 MB"
+    }
+  },
+  {
+    "id": 145,
+    "slug": "binary-tree-postorder-traversal",
+    "title": "Binary Tree Postorder Traversal",
+    "difficulty": "Easy",
+    "tags": [
+      "stack",
+      "tree",
+      "depth-first-search",
+      "binary-tree"
+    ],
+    "firstSolvedAt": "2026-08-26T15:23:12.000Z",
+    "lastSolvedAt": "2026-08-26T15:23:12.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2120955700",
+      "lang": "cpp",
+      "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n    vector<int> postorderTraversal(TreeNode* root) {\n        if (!root) return {};\n        TreeNode* cur=root;\n        stack<TreeNode*>st;\n        st.push(root);\n        vector<int>res;\n        while(!st.empty()){\n            cur=st.top();\n            st.pop();\n            res.push_back(cur->val);\n            if(cur->left)st.push(cur->left);\n            if(cur->right)st.push(cur->right);\n            \n        }\n        reverse(res.begin(),res.end());\n        \n        return res;\n\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "11 MB"
+    }
+  },
+  {
+    "id": 94,
+    "slug": "binary-tree-inorder-traversal",
+    "title": "Binary Tree Inorder Traversal",
+    "difficulty": "Easy",
+    "tags": [
+      "stack",
+      "tree",
+      "depth-first-search",
+      "binary-tree"
+    ],
+    "firstSolvedAt": "2026-08-26T14:11:04.000Z",
+    "lastSolvedAt": "2026-08-26T14:30:24.000Z",
+    "submissions": 3,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2120901762",
+      "lang": "cpp",
+      "code": "/**\n * Definition for a binary tree node.\n * struct TreeNode {\n *     int val;\n *     TreeNode *left;\n *     TreeNode *right;\n *     TreeNode() : val(0), left(nullptr), right(nullptr) {}\n *     TreeNode(int x) : val(x), left(nullptr), right(null;ptr) {}\n *     TreeNode(int x, TreeNode *left, TreeNode *right) : val(x), left(left), right(right) {}\n * };\n */\nclass Solution {\npublic:\n\n    void inorder(TreeNode* root,vector<int>&res){\n        if(!root)return;//if node empty return void\n        inorder(root->left, res); //left\n        res.push_back(root->val);\n        inorder(root->right,res);\n    }\n    vector<int> inorderTraversal(TreeNode* root) {\n        vector<int>res;\n        stack<TreeNode*>st;\n\n        TreeNode* cur=root;\n\n        while(cur!=nullptr || !st.empty()){\n            while(cur!=nullptr){//go left\n                st.push(cur);\n                cur=cur->left;\n            }\n            cur=st.top();\n            st.pop();\n            res.push_back(cur->val);\n            cur=cur->right;\n        }\n        \n        return res;\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "10.8 MB"
+    }
+  },
+  {
+    "id": 1334,
+    "slug": "find-the-city-with-the-smallest-number-of-neighbors-at-a-threshold-distance",
+    "title": "Find the City With the Smallest Number of Neighbors at a Threshold Distance",
+    "difficulty": "Medium",
+    "tags": [
+      "dynamic-programming",
+      "graph",
+      "shortest-path",
+      "dijkstra",
+      "bellman-ford-algorithm",
+      "floyd-warshall-algorithm"
+    ],
+    "firstSolvedAt": "2026-08-23T11:26:20.000Z",
+    "lastSolvedAt": "2026-08-23T11:26:20.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2117270248",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int findTheCity(int n, vector<vector<int>>& edges, int distanceThreshold) {\n        vector<vector<int>>adj(n,vector<int>(n,INT_MAX));\n        \n        for(auto e:edges){\n            adj[e[0]][e[1]]=e[2];\n            adj[e[1]][e[0]]=e[2];\n        }\n        for(int i=0;i<n;i++){\n            adj[i][i]=0;\n        }\n        \n        for(int k=0;k<n;k++){\n            for(int i=0;i<n;i++){\n                for(int j=0;j<n;j++){\n                    if (adj[i][k] != INT_MAX && adj[k][j] != INT_MAX) {\n                        adj[i][j] = min(adj[i][j], adj[i][k] + adj[k][j]);\n                    }\n                }\n            }\n        }\n\n        int min_reach=INT_MAX;\n        int ans=INT_MAX;\n        for(int i=0;i<n;i++){\n            int cnt=0;\n            for(int j=0;j<n;j++){\n                if(adj[i][j]<=distanceThreshold){\n                    cnt++;\n                }\n            }\n            if(cnt<=min_reach){\n                ans=i;\n                min_reach=cnt;\n            }\n        }\n        return ans;\n\n    }\n};",
+      "runtime": "19 ms",
+      "memory": "17.5 MB"
+    }
+  },
+  {
+    "id": 787,
+    "slug": "cheapest-flights-within-k-stops",
+    "title": "Cheapest Flights Within K Stops",
+    "difficulty": "Medium",
+    "tags": [
+      "dynamic-programming",
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "heap-priority-queue",
+      "shortest-path"
+    ],
+    "firstSolvedAt": "2026-08-23T10:42:42.000Z",
+    "lastSolvedAt": "2026-08-23T10:42:42.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2117230126",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int findCheapestPrice(int n, vector<vector<int>>& flights, int src, int dst, int k) {\n        vector<int>dist(n,INT_MAX);\n\n        dist[src]=0;\n\n        for(int i=0;i<=k;i++){\n            vector<int>temp=dist;\n\n            for(auto f:flights){\n                int u=f[0],v=f[1],cost=f[2];\n                if(dist[u]!=INT_MAX && dist[u]+cost<temp[v]){\n                    temp[v]=dist[u]+cost;\n                }\n            }\n            dist=temp;\n        }\n\n        return dist[dst]==INT_MAX ? -1: dist[dst];\n    }\n};",
+      "runtime": "159 ms",
+      "memory": "54.2 MB"
+    }
+  },
+  {
+    "id": 1514,
+    "slug": "path-with-maximum-probability",
+    "title": "Path with Maximum Probability",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "graph",
+      "heap-priority-queue",
+      "shortest-path",
+      "dijkstra"
+    ],
+    "firstSolvedAt": "2026-08-23T10:01:44.000Z",
+    "lastSolvedAt": "2026-08-23T10:01:44.000Z",
+    "submissions": 6,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2117192615",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    double maxProbability(int n, vector<vector<int>>& edges, vector<double>& succProb, int start_node, int end_node) {\n        vector<vector<pair<int,double>>>adj(n);\n        for(int i=0;i<succProb.size();i++){\n            int u=edges[i][0];\n            int v=edges[i][1];\n            adj[u].push_back({v,succProb[i]});\n            adj[v].push_back({u,succProb[i]});\n        }\n\n        priority_queue<pair<double,int>,vector<pair<double,int>>>pq;//prob,node\n        pq.push({1,start_node});\n        vector<double>prob(n,0);\n        while(!pq.empty()){\n            auto [p,node]=pq.top();\n            pq.pop();\n\n            if(p<prob[node])continue;\n\n            for(auto v:adj[node]){\n                //v is a pair\n                auto u=v.first;\n                auto prob_current=v.second;\n\n                double new_prob=prob_current*p;\n                if(new_prob>prob[u]){\n                    prob[u]=new_prob;\n                    pq.push({new_prob,u});\n                }\n            }\n        }\n\n        return prob[end_node];\n    }\n};",
+      "runtime": "50 ms",
+      "memory": "71 MB"
+    }
+  },
+  {
+    "id": 1631,
+    "slug": "path-with-minimum-effort",
+    "title": "Path With Minimum Effort",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search",
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "heap-priority-queue",
+      "matrix",
+      "dijkstra"
+    ],
+    "firstSolvedAt": "2026-08-23T07:56:21.000Z",
+    "lastSolvedAt": "2026-08-23T07:56:21.000Z",
+    "submissions": 10,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2117090850",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int minimumEffortPath(vector<vector<int>>& heights) {\n        int dx[] = {1,-1,0,0};\n        int dy[] = {0,0,1,-1};\n\n        priority_queue<pair<int,pair<int,int>>,vector<pair<int,pair<int,int>>>,greater<>>pq;\n        int n=heights.size();\n        int m=heights[0].size();\n\n        vector<vector<int>>dist(n,vector<int>(m,INT_MAX));\n        dist[0][0]=0;\n        pq.push({0,{0,0}});\n        while(!pq.empty()){\n            auto [d,node]=pq.top();\n            pq.pop();\n            int x=node.first;\n            int y=node.second;\n            \n            if(d>dist[x][y])continue;\n\n            for(int i=0;i<4;i++){\n                int nx=x+dx[i];\n                int ny=y+dy[i];\n                if(nx<0||nx>=n||ny<0||ny>=m){\n                    continue;\n                }\n                int new_d = max(d, abs(heights[x][y]-heights[nx][ny]));\n                if(new_d<dist[nx][ny]){\n                    dist[nx][ny]=new_d;\n                    pq.push({new_d,{nx,ny}});\n                }\n\n            }\n        }\n        return dist[n-1][m-1];\n    }\n};",
+      "runtime": "63 ms",
+      "memory": "24.6 MB"
+    }
+  },
+  {
+    "id": 743,
+    "slug": "network-delay-time",
+    "title": "Network Delay Time",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "heap-priority-queue",
+      "shortest-path",
+      "dijkstra"
+    ],
+    "firstSolvedAt": "2026-08-23T07:31:37.000Z",
+    "lastSolvedAt": "2026-08-23T07:31:37.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2117069986",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int networkDelayTime(vector<vector<int>>& times, int n, int k) {\n        // Build adjacency list: node -> [(neighbor, weight), ...]\n        vector<vector<pair<int,int>>> graph(n + 1);\n        for (auto& t : times) {\n            int u = t[0], v = t[1], w = t[2];\n            graph[u].push_back({v, w});\n        }\n        \n        // Min-heap of (distance, node)\n        priority_queue<pair<int,int>, vector<pair<int,int>>, greater<>> pq;\n        pq.push({0, k});\n        \n        vector<int> dist(n + 1, INT_MAX);\n        dist[k] = 0;\n        \n        while (!pq.empty()) {\n            auto [d, node] = pq.top();\n            pq.pop();\n            \n            if (d > dist[node]) continue; // stale entry, skip\n            \n            for (auto& [neighbor, weight] : graph[node]) {\n                int newDist = d + weight;\n                if (newDist < dist[neighbor]) {\n                    dist[neighbor] = newDist;\n                    pq.push({newDist, neighbor});\n                }\n            }\n        }\n        \n        int maxDist = 0;\n        for (int i = 1; i <= n; i++) {\n            if (dist[i] == INT_MAX) return -1; // unreachable node\n            maxDist = max(maxDist, dist[i]);\n        }\n        \n        return maxDist;\n    }\n};",
+      "runtime": "84 ms",
+      "memory": "44.5 MB"
+    }
+  },
+  {
+    "id": 1489,
+    "slug": "find-critical-and-pseudo-critical-edges-in-minimum-spanning-tree",
+    "title": "Find Critical and Pseudo-Critical Edges in Minimum Spanning Tree",
+    "difficulty": "Hard",
+    "tags": [
+      "union-find",
+      "graph",
+      "sorting",
+      "minimum-spanning-tree",
+      "strongly-connected-component",
+      "prims-algorithm",
+      "kruskals-algorithm",
+      "boruvkas-algorithm"
+    ],
+    "firstSolvedAt": "2026-08-22T14:17:21.000Z",
+    "lastSolvedAt": "2026-08-22T14:17:21.000Z",
+    "submissions": 7,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2116226605",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    struct DSU{\n        int par[100100];\n        int rank[100100];\n\n\n        void init(int n){\n            for(int i=0;i<n;i++){\n                par[i]=i;\n                rank[i]=0;\n            }\n        }\n\n        int find(int x){\n            if(par[x]==x)return x;\n            else return par[x]=find(par[x]);\n        }\n\n        bool unite(int x,int y){\n            int rootx=find(x);\n            int rooty=find(y);\n            if(rootx==rooty)return false;\n            //rankx>ranky assumed\n            if(rank[rootx]<rank[rooty])swap(rootx,rooty);\n            if(rank[rootx]==rank[rooty]){\n                rank[rootx]++;\n            }\n            par[rooty]=rootx;\n            return true;\n        }\n\n    };\n    int kruskal(int n,vector<vector<int>>&edges,int skip,int force){\n        DSU dsu;\n        dsu.init(n);\n\n        int weight=0;\n        int cnt=0;\n\n        if(force!=-1){\n            int u=edges[force][0];\n            int v=edges[force][1];\n            int w=edges[force][2];\n\n            if(dsu.unite(u,v)){\n            weight+=w;\n            cnt++;\n            }\n        }\n        for(int i=0;i<edges.size();i++){\n            if(i==skip||i==force)continue;\n            int u=edges[i][0];\n            int v=edges[i][1];\n            int w=edges[i][2];\n\n            if(dsu.unite(u,v)){\n                weight+=w;\n                cnt++;\n            }\n        }\n        if(cnt!=n-1)return INT_MAX;\n        return weight;\n    }\n    vector<vector<int>> findCriticalAndPseudoCriticalEdges(int n, vector<vector<int>>& edges) {\n        vector<vector<int>>ans(2);\n\n        for(int i=0;i<edges.size();i++){\n            edges[i].push_back(i);\n            //storing the actual index of edges befor sorting\n        }\n        sort(edges.begin(),edges.end(),[](auto& a,auto& b){return a[2]<b[2];});\n        int m=edges.size();\n        int mst=kruskal(n,edges,-1,-1);\n        for(int i=0;i<m;i++){\n            int without=kruskal(n,edges,i,-1);//skip\n            if(without>mst){\n                //critical\n                ans[0].push_back(edges[i][3]);//pushing the original index as answer\n                continue;\n            }\n            int with=kruskal(n,edges,-1,i);\n            if(with==mst){\n                ans[1].push_back(edges[i][3]);\n            }\n            \n        }\n        return ans;\n    }\n};",
+      "runtime": "62 ms",
+      "memory": "14.4 MB"
+    }
+  },
+  {
+    "id": 802,
+    "slug": "find-eventual-safe-states",
+    "title": "Find Eventual Safe States",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "topological-sort",
+      "kosarajus-algorithm",
+      "tarjans-scc-algorithm"
+    ],
+    "firstSolvedAt": "2026-08-16T10:59:27.000Z",
+    "lastSolvedAt": "2026-08-16T11:29:29.000Z",
+    "submissions": 20,
+    "accepted": 3,
+    "solution": {
+      "submissionId": "2108908278",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n\n    bool dfscycle(int node,vector<vector<int>>& graph,vector<bool>&instack,vector<bool>&vis){\n        \n        if(instack[node]){\n            return true;\n        }\n        if(vis[node]){\n            return false;\n        }\n        vis[node]=1;\n        instack[node]=1;\n\n        for(auto v:graph[node]){    \n            if(dfscycle(v,graph,instack,vis)){\n                return true;\n                \n            }\n        }\n        instack[node]=0;\n        return false;\n    }\n    vector<int> eventualSafeNodes(vector<vector<int>>& graph) {\n        int n = graph.size();\n        vector<bool>vis(n,0);\n        vector<bool>instack(n,0);\n\n        for(int i=0;i<n;i++){\n            dfscycle(i,graph,instack,vis);\n            \n        }\n\n        vector<int>ans;\n        for(int i=0;i<n;i++){\n            if(!instack[i]){\n                ans.push_back(i);\n            }\n        }\n        return ans;\n    } \n};",
+      "runtime": "4 ms",
+      "memory": "51.3 MB"
+    }
+  },
+  {
+    "id": 210,
+    "slug": "course-schedule-ii",
+    "title": "Course Schedule II",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "topological-sort"
+    ],
+    "firstSolvedAt": "2026-08-15T12:54:02.000Z",
+    "lastSolvedAt": "2026-08-15T12:54:02.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2107656847",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n\n    // bool dfscycle(int node,vector<vector<int>>&adj,vector<int>&vis,vector<int>&instack){\n    //     vis[node]=true;\n    //     instack[node]=true;\n\n    //     for(auto v:adj[node]){\n    //         if(instack[v])\n    //             return true;\n    //         if(!vis[v]&& dfscycle(v,adj,vis,instack)){\n    //             return true;\n    //         }\n    //     }\n    //     instack[node]=false;\n    //     return false;\n    // }\n\n\n    bool kahn(vector<vector<int>>&adj,int numCourses,vector<int>&topo){\n        int n=adj.size();\n        queue<int>q;\n        vector<int>indeg(n,0);\n        \n        for(int u=0;u<n;u++){\n            for(auto v:adj[u]){\n                indeg[v]++;\n            }\n        }\n        for(int i=0;i<n;i++){\n            if(indeg[i]==0)q.push(i);\n        }\n\n        while(!q.empty()){\n            int cur=q.front();\n            q.pop();\n            topo.push_back(cur);\n            for(auto v:adj[cur]){\n                indeg[v]--;\n                if(indeg[v]==0){\n                    q.push(v);\n                }\n            }\n        }\n        if(topo.size()!=numCourses){\n            return false;\n        }\n        return true;\n    }\n    vector<int> findOrder(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>>adj(numCourses);\n        for(auto v:prerequisites){\n            adj[v[1]].push_back(v[0]);\n        }\n        // int n=adj.size();\n        // vector<int>vis(n,0);\n        // vector<int>instack(n,0);\n        // for(int i=0;i<n;i++){\n        //     if(!vis[i]){\n        //         if(dfscycle(i,adj,vis,instack)){\n        //             return false;\n        //         }\n        //     }\n        // }\n        // return true;\n\n        //kahn's algo \n        vector<int>topo;\n        if(kahn(adj,numCourses,topo)){\n            return topo;\n        }\n        else{\n            return {};\n        }\n    \n\n    }\n};",
+      "runtime": "8 ms",
+      "memory": "18.9 MB"
+    }
+  },
+  {
+    "id": 207,
+    "slug": "course-schedule",
+    "title": "Course Schedule",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "graph",
+      "topological-sort",
+      "directed-acyclic-graph"
+    ],
+    "firstSolvedAt": "2026-08-15T10:09:29.000Z",
+    "lastSolvedAt": "2026-08-15T10:43:26.000Z",
+    "submissions": 5,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2107538172",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n\n    bool dfscycle(int node,vector<vector<int>>&adj,vector<int>&vis,vector<int>&instack){\n        vis[node]=true;\n        instack[node]=true;\n\n        for(auto v:adj[node]){\n            if(instack[v])\n                return true;\n            if(!vis[v]&& dfscycle(v,adj,vis,instack)){\n                return true;\n            }\n        }\n        instack[node]=false;\n        return false;\n    }\n\n\n    bool kahn(vector<vector<int>>&adj,int numCourses){\n        int n=adj.size();\n        queue<int>q;\n        vector<int>indeg(n,0);\n        vector<int>topo;\n        for(int u=0;u<n;u++){\n            for(auto v:adj[u]){\n                indeg[v]++;\n            }\n        }\n        for(int i=0;i<n;i++){\n            if(indeg[i]==0)q.push(i);\n        }\n\n        while(!q.empty()){\n            int cur=q.front();\n            q.pop();\n            topo.push_back(cur);\n            for(auto v:adj[cur]){\n                indeg[v]--;\n                if(indeg[v]==0){\n                    q.push(v);\n                }\n            }\n        }\n        if(topo.size()!=numCourses){\n            return false;\n        }\n        return true;\n    }\n    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {\n        vector<vector<int>>adj(numCourses);\n        for(auto v:prerequisites){\n            adj[v[1]].push_back(v[0]);\n        }\n        // int n=adj.size();\n        // vector<int>vis(n,0);\n        // vector<int>instack(n,0);\n        // for(int i=0;i<n;i++){\n        //     if(!vis[i]){\n        //         if(dfscycle(i,adj,vis,instack)){\n        //             return false;\n        //         }\n        //     }\n        // }\n        // return true;\n\n        //kahn's algo \n        return kahn(adj,numCourses);\n\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "20.3 MB"
+    }
+  },
+  {
+    "id": 785,
+    "slug": "is-graph-bipartite",
+    "title": "Is Graph Bipartite?",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "graph",
+      "graph-coloring",
+      "bipartite-graph"
+    ],
+    "firstSolvedAt": "2026-08-15T09:05:19.000Z",
+    "lastSolvedAt": "2026-08-15T09:05:19.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2107449072",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    bool is_bipartite=true;\n    \n    void dfs(int node,int color,vector<vector<int>>& graph,vector<int>&vis){\n        vis[node]=color;\n        for(auto v:graph[node]){\n            if(!vis[v]){\n                dfs(v,3-color,graph,vis);\n            }\n            else if(vis[v]==vis[node]){\n                is_bipartite=false;\n            }\n        }\n    }\n    bool isBipartite(vector<vector<int>>& graph) {\n        int n=graph.size();\n        int color=1;\n        vector<int>vis(n,0);\n        for(int i=0;i<n;i++){\n            if(!vis[i]){\n                dfs(i,color,graph,vis);\n                if(!is_bipartite){\n                    return is_bipartite;\n                }\n            }\n        }\n        return is_bipartite;\n    }\n};",
+      "runtime": "4 ms",
+      "memory": "17.3 MB"
+    }
+  },
+  {
+    "id": 684,
+    "slug": "redundant-connection",
+    "title": "Redundant Connection",
+    "difficulty": "Medium",
+    "tags": [
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "graph"
+    ],
+    "firstSolvedAt": "2026-08-14T21:40:46.000Z",
+    "lastSolvedAt": "2026-08-14T21:40:46.000Z",
+    "submissions": 11,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2107072277",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n\n    struct DSU{\n        int par[100100];\n        int rank[100100];\n\n        void init(int n){\n            for(int i=1;i<=n;i++){\n                par[i]=i;\n                rank[i]=1;//union by size\n            }\n        }\n\n        int find(int x){\n            if(par[x]==x)return x;\n            else return (par[x]=find(par[x]));\n        }\n\n        int unite(int x,int y){\n            int rootx=find(x);\n            int rooty=find(y);\n\n            if(rootx==rooty)return false;\n\n            //by size\n\n            //assume x>y\n            if(rank[rootx]<rank[rooty])swap(rootx,rooty);\n\n            rank[rootx]+=rank[rooty];//by size\n            par[rooty]=rootx;\n            return true;\n        }\n    };\n    vector<int> findRedundantConnection(vector<vector<int>>& edges) {\n        DSU dsu;\n        int n=edges.size();\n        dsu.init(n);\n        \n        for(auto e:edges){\n            if(dsu.unite(e[0],e[1])==false){\n                return e;\n            }\n        }\n        return {};\n\n    }\n};",
+      "runtime": "3 ms",
+      "memory": "13.1 MB"
+    }
+  },
+  {
+    "id": 1155,
+    "slug": "number-of-dice-rolls-with-target-sum",
+    "title": "Number of Dice Rolls With Target Sum",
+    "difficulty": "Medium",
+    "tags": [
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": "2026-06-24T19:09:43.000Z",
+    "lastSolvedAt": "2026-06-24T19:09:43.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "2045016985",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int dp[31][1001];\n    int n, k, target;\n    const int MOD = 1e9 + 7;\n\n    int rec(int dice, int sum) {\n        // base case: all dice used\n        if (dice == n)\n            return sum == target ? 1 : 0;\n        // pruning\n        if (sum > target)\n            return 0;\n        // cache check\n        if (dp[dice][sum] != -1)\n            return dp[dice][sum];\n        // transition: try each face value\n        int ans = 0;\n        for (int face = 1; face <= k; face++) {\n            ans = (ans + rec(dice + 1, sum + face)) % MOD;\n        }\n        return dp[dice][sum] = ans;\n    }\n\n    int numRollsToTarget(int n, int k, int target) {\n        this->n = n;\n        this->k = k;\n        this->target = target;\n        memset(dp, -1, sizeof(dp));\n        return rec(0, 0);\n    }\n};",
+      "runtime": "7 ms",
+      "memory": "8 MB"
+    }
+  },
+  {
+    "id": 3007,
+    "slug": "maximum-number-that-sum-of-the-prices-is-less-than-or-equal-to-k",
+    "title": "Maximum Number That Sum of the Prices Is Less Than or Equal to K",
+    "difficulty": "Medium",
+    "tags": [
+      "math",
+      "binary-search",
+      "dynamic-programming",
+      "bit-manipulation"
+    ],
+    "firstSolvedAt": "2025-10-29T18:32:28.000Z",
+    "lastSolvedAt": "2025-10-29T18:32:28.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1815327820",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    unsigned long long bitCount(unsigned long long num, int b) {\n        if (b >= 63) return 0;  \n        unsigned long long full = (num + 1) / (1ULL << (b + 1));\n        unsigned long long rem = (num + 1) % (1ULL << (b + 1));\n        return full * (1ULL << b) + (rem > (1ULL << b) ? rem - (1ULL << b) : 0);\n    }\n\n    unsigned long long accPrice(unsigned long long num, int x) {\n        unsigned long long ans = 0;\n        for (int b = x - 1; b < 63; b += x) {\n            ans += bitCount(num, b);\n        }\n        return ans;\n    }\n\n    long long findMaximumNumber(long long k, int x) {\n        unsigned long long low = 0, high = 1e18, ans = 0;\n        while (low <= high) {\n            unsigned long long mid = (low + high) / 2;\n            if (accPrice(mid, x) <= (unsigned long long)k) {\n                ans = mid;\n                low = mid + 1;\n            } else {\n                high = mid - 1;\n            }\n        }\n        return ans;\n    }\n};\n",
+      "runtime": "7 ms",
+      "memory": "9 MB"
+    }
+  },
+  {
+    "id": 5,
+    "slug": "longest-palindromic-substring",
+    "title": "Longest Palindromic Substring",
+    "difficulty": "Medium",
+    "tags": [
+      "two-pointers",
+      "string",
+      "dynamic-programming",
+      "manacher"
+    ],
+    "firstSolvedAt": "2025-08-16T12:03:08.000Z",
+    "lastSolvedAt": "2025-08-16T12:03:08.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1737226010",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n\n    vector<vector<bool>>dp;\n    vector<vector<bool>>vis;\n    bool rec(int l,int r,string& s){\n        //base case\n        if(l>r){\n            return 1;\n        }\n        if(l==r){\n            return 1;\n        }\n        //cache check\n        if(vis[l][r]==true){\n            return dp[l][r];\n        }\n        //transition\n\n        bool ans;\n        if(s[l]==s[r]){\n            ans=rec(l+1,r-1,s);\n        }\n        else{\n            ans=false;\n        }\n        //save and return\n        vis[l][r]=true;\n        return dp[l][r]=ans;\n    }\n    string longestPalindrome(string s) {\n        int n=s.length();\n        dp.assign(n,vector<bool>(n,false));\n        vis.assign(n,vector<bool>(n,false));\n        //memset(dp,-1,size¯of(dp));\n        \n        int ans=0;\n        int l=0,r=0;\n        for(int st=0;st<n;st++){\n            for(int en=st;en<n;en++){\n                if(rec(st,en,s)){\n                    if(en-st+1>ans){\n                    l=st;\n                    r=en;\n                    ans=en-st+1;\n                }\n                }\n            }\n        }\n        string res=\"\";\n        for(int i=l;i<=r;i++){\n            res+=s[i];\n        }\n        cout<<l<<r<<endl;\n        return res;\n    }\n};",
+      "runtime": "485 ms",
+      "memory": "41.8 MB"
+    }
+  },
+  {
+    "id": 1584,
+    "slug": "min-cost-to-connect-all-points",
+    "title": "Min Cost to Connect All Points",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "union-find",
+      "graph",
+      "minimum-spanning-tree",
+      "prims-algorithm",
+      "kruskals-algorithm",
+      "boruvkas-algorithm"
+    ],
+    "firstSolvedAt": "2025-07-28T18:05:55.000Z",
+    "lastSolvedAt": "2026-08-18T15:50:38.000Z",
+    "submissions": 2,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2111637726",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    typedef tuple<int,int,int> Edge;\n\n    int mdist(vector<int>& p1, vector<int>& p2){\n        int distx = abs(p1[0] - p2[0]);\n        int disty = abs(p1[1] - p2[1]);\n\n        return distx + disty;\n    }\n\n    int minCostConnectPoints(vector<vector<int>>& points) {\n        priority_queue<Edge, vector<Edge>, greater<Edge>> pq;\n\n        int n = points.size();\n        vector<bool> vis(n, false);\n\n        int cost = 0;\n\n        pq.push({0, 0, -1});\n\n        while(!pq.empty()){\n            auto [weight, node, parent] = pq.top();\n            pq.pop();\n\n            if(vis[node]) continue;\n\n            vis[node] = true;\n            cost += weight;\n\n            for(int v = 0; v < n; v++){\n                if(!vis[v]){\n                    pq.push({mdist(points[node], points[v]), v, node});\n                }\n            }\n        }\n\n        return cost;\n    }\n};",
+      "runtime": "513 ms",
+      "memory": "62.9 MB"
+    }
+  },
+  {
+    "id": 221,
+    "slug": "maximal-square",
+    "title": "Maximal Square",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "matrix"
+    ],
+    "firstSolvedAt": "2025-07-18T11:13:46.000Z",
+    "lastSolvedAt": "2026-09-13T19:32:31.000Z",
+    "submissions": 5,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2140968199",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int rec(int i,int j,vector<vector<char>>& matrix,vector<vector<int>>& dp){\n        int n=matrix.size();\n        int m=matrix[0].size();\n        //base case\n        if(i==n || j==m){\n            return 0;\n        }\n        //cache chek\n        if(dp[i][j]!=-1){\n            return dp[i][j];\n        }\n        //transition\n        int ans=matrix[i][j]-'0';\n        if(ans){\n            ans+=min(min(rec(i+1,j,matrix,dp),rec(i,j+1,matrix,dp)),min(rec(i+1,j,matrix,dp),rec(i+1,j+1,matrix,dp)));\n        }\n        //save and return\n        return dp[i][j]=ans;\n    }\n    int maximalSquare(vector<vector<char>>& matrix) {\n        vector<vector<int>>dp(matrix.size(),vector<int>(matrix[0].size(),-1));\n        int ans=0;\n        for(int i=0;i<matrix.size();i++)\n            for(int j=0;j<matrix[0].size();j++){\n                ans=max(ans,rec(i,j,matrix,dp));\n            }\n        return ans*ans;\n    }\n};",
+      "runtime": "24 ms",
+      "memory": "31.1 MB"
+    }
+  },
+  {
+    "id": 560,
+    "slug": "subarray-sum-equals-k",
+    "title": "Subarray Sum Equals K",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "hash-table",
+      "prefix-sum"
+    ],
+    "firstSolvedAt": "2025-07-09T14:08:15.000Z",
+    "lastSolvedAt": "2026-09-12T15:33:19.000Z",
+    "submissions": 5,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2139706837",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int subarraySum(vector<int>& nums, int k) {\n        unordered_map<int, int> mp;\n        mp[0] = 1;\n\n        int sum = 0;\n        int ans = 0;\n\n        for (int x : nums) {\n            sum += x;\n\n            if (mp.count(sum - k))\n                ans += mp[sum - k];\n\n            mp[sum]++;\n        }\n\n        return ans;\n    }\n};",
+      "runtime": "34 ms",
+      "memory": "45.4 MB"
+    }
+  },
+  {
+    "id": 134,
+    "slug": "gas-station",
+    "title": "Gas Station",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-07-09T10:00:04.000Z",
+    "lastSolvedAt": "2025-07-09T10:00:04.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1691831481",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {\n        int total = 0, curr = 0, start = 0;\n        for (int i = 0; i < gas.size(); i++) {\n            int diff = gas[i] - cost[i];\n            total += diff;\n            curr += diff;\n            if (curr < 0) {\n                start = i + 1;\n                curr = 0;\n            }\n        }\n        return total >= 0 ? start : -1;\n    }\n};\n",
+      "runtime": "0 ms",
+      "memory": "112.4 MB"
+    }
+  },
+  {
+    "id": 42,
+    "slug": "trapping-rain-water",
+    "title": "Trapping Rain Water",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "two-pointers",
+      "dynamic-programming",
+      "stack",
+      "monotonic-stack"
+    ],
+    "firstSolvedAt": "2025-07-08T21:17:29.000Z",
+    "lastSolvedAt": "2026-09-02T17:58:38.000Z",
+    "submissions": 3,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2128808895",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int trap(vector<int>& height) {\n        int l=0;\n        int r=height.size()-1;\n        int leftmax=0;\n        int rightmax=0;\n        int ans=0;\n        while(l<r){\n            leftmax=max(leftmax,height[l]);\n            rightmax=max(rightmax,height[r]);\n\n            // smaller max is our concern\n            if(leftmax<rightmax){\n                ans+=leftmax-height[l];\n                l++;\n            }\n            else{\n                ans+=rightmax-height[r];\n                r--;\n            }\n        }\n        return ans;\n    }\n};",
+      "runtime": "0 ms",
+      "memory": "26 MB"
+    }
+  },
+  {
+    "id": 778,
+    "slug": "swim-in-rising-water",
+    "title": "Swim in Rising Water",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "binary-search",
+      "depth-first-search",
+      "breadth-first-search",
+      "union-find",
+      "minimax-algorithm",
+      "heap-priority-queue",
+      "matrix",
+      "dijkstra"
+    ],
+    "firstSolvedAt": "2025-07-08T15:30:27.000Z",
+    "lastSolvedAt": "2026-09-13T17:45:45.000Z",
+    "submissions": 7,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2140873687",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int swimInWater(vector<vector<int>>& grid) {\n    priority_queue<\n        pair<int, pair<int,int>>,\n        vector<pair<int, pair<int,int>>>,\n        greater<>> pq;//store dist and not individual cost\n        pq.push({grid[0][0],{0,0}});\n        int dx[]={-1,1,0,0};\n        int dy[]={0,0,-1,1};\n        vector<vector<int>>vis(grid.size(),vector<int>(grid.size(),0));\n        int cost=0;\n        int n=grid.size();\n        while(!pq.empty()){\n            auto node=pq.top();\n            cost=max(cost,node.first);\n            pq.pop();\n            int x=node.second.first;\n            int y=node.second.second;\n            if(x==n-1&&y==n-1){\n                break;\n            }\n            vis[x][y]=1;\n\n            for(int i=0;i<4;i++){\n                int nx=x+dx[i];\n                int ny=y+dy[i];\n                if(nx<0||ny<0||nx>=n||ny>=n)continue;\n                if(!vis[nx][ny]){\n                    pq.push({grid[nx][ny],{nx,ny}});\n                }\n            }\n        }\n        return cost;\n    }\n};",
+      "runtime": "7 ms",
+      "memory": "13.7 MB"
+    }
+  },
+  {
+    "id": 127,
+    "slug": "word-ladder",
+    "title": "Word Ladder",
+    "difficulty": "Hard",
+    "tags": [
+      "hash-table",
+      "string",
+      "breadth-first-search",
+      "bidirectional-search"
+    ],
+    "firstSolvedAt": "2025-07-02T08:48:48.000Z",
+    "lastSolvedAt": "2026-10-13T12:56:54.000Z",
+    "submissions": 10,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "2171178944",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int ladderLength(string beginWord, string endWord, vector<string>& wordList) {\n        unordered_set<string>st(wordList.begin(),wordList.end());\n        if(!st.count(endWord))return 0;\n        queue<pair<string,int>>q;\n        q.push({beginWord,0});\n        st.erase(beginWord);\n        while(!q.empty()){\n            auto nde=q.front();\n            string node=nde.first;\n            int level=nde.second;\n            if(node==endWord)return level+1;\n            q.pop();\n            for(int i=0;i<node.size();i++){\n                for(char c='a';c<='z';c++){\n                    string neigh=node;\n                    neigh[i]=c;\n                    if(st.count(neigh)){\n                        q.push({neigh,level+1});\n                        st.erase(neigh);\n                    }\n                }\n            }\n        }\n        return 0;\n    }\n};",
+      "runtime": "71 ms",
+      "memory": "21.1 MB"
+    }
+  },
+  {
+    "id": 1591,
+    "slug": "strange-printer-ii",
+    "title": "Strange Printer II",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "graph",
+      "topological-sort",
+      "matrix",
+      "directed-acyclic-graph"
+    ],
+    "firstSolvedAt": "2025-07-01T19:38:12.000Z",
+    "lastSolvedAt": "2025-07-01T19:38:12.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1683112966",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    vector<vector<int>> g;\n    vector<int> vis;\n    vector<int> topo;\n    int maxNode;\n    int n, m;\n    unordered_map<int, array<int, 4>> rect;\n    bool is_cycle=false;\n    vector<int>in_stack;\n\n    void dfs(int node) {\n        vis[node] = 1;\n        in_stack[node]=1;\n        for (auto v : g[node]) {\n            if (!vis[v])\n                dfs(v);\n            else if(in_stack[v]){\n                is_cycle=true;\n            }\n        }\n        in_stack[node]=0;\n        topo.push_back(node);\n    }\n\n    bool isPrintable(vector<vector<int>>& targetGrid) {\n        n = targetGrid.size();\n        m = targetGrid[0].size();\n        \n        maxNode = INT_MIN;\n\n        for (int i = 0; i < n; i++) {\n            for (int j = 0; j < m; j++) {\n                int val = targetGrid[i][j];\n                if (rect.find(val) == rect.end()) {\n                    rect[val] = {i, j, i, j}; \n                } else {\n                    rect[val][0] = min(rect[val][0], i);\n                    rect[val][1] = min(rect[val][1], j);\n                    rect[val][2] = max(rect[val][2], i);\n                    rect[val][3] = max(rect[val][3], j);\n                }\n                maxNode = max(maxNode, val);\n            }\n        }\n\n        g.resize(maxNode + 1);\n        vis.assign(maxNode + 1, 0);\n        in_stack.assign(maxNode+1,0);\n        for (auto &p : rect) {\n            int color = p.first;\n            auto box = p.second;\n            int r1 = box[0], c1 = box[1];\n            int r2 = box[2], c2 = box[3];\n\n            unordered_set<int> deps;\n            for (int i = r1; i <= r2; i++) {\n                for (int j = c1; j <= c2; j++) {\n                    int other = targetGrid[i][j];\n                    if (other != color)\n                        deps.insert(other);\n                }\n            }\n            for (int v : deps) {\n                g[color].push_back(v);\n            }\n        }\n\n        for (auto &p : rect) {\n            int color = p.first;\n            if (!vis[color])\n                dfs(color);\n        }\n        for(auto v:topo){\n            cout<<v<<endl;\n        }\n        if(is_cycle){cout<<\"cycle\";}\n        return (topo.size() == rect.size()&& !is_cycle);\n    }\n};\n",
+      "runtime": "55 ms",
+      "memory": "27 MB"
+    }
+  },
+  {
+    "id": 1955,
+    "slug": "count-number-of-special-subsequences",
+    "title": "Count Number of Special Subsequences",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "dynamic-programming"
+    ],
+    "firstSolvedAt": "2025-06-29T08:59:59.000Z",
+    "lastSolvedAt": "2025-06-29T08:59:59.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1680179738",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n\n    int dp[100001][2][2][2];\n    const int MOD=1e9+7;\n    int rec(int i,bool zero,bool one,bool two,vector<int>& nums,int n)\n    {\n        //pruning\n\n        //base case\n        if(i==n){\n            if(zero&&one&&two){\n                return 1;\n            }\n            return 0;\n        }\n        //cache check\n        if(dp[i][zero][one][two]!=-1){\n            return dp[i][zero][one][two];\n        }\n        //transition\n        long long ans=0;\n\n        ans+=rec(i+1,zero,one ,two,nums,n);\n        //take it or donot take it\n        if(nums[i]==0 && !one && !two){\n            ans+=rec(i+1,true,one ,two,nums,n);\n            //ans+=rec(i+1,false,one ,two,nums,n);\n        }\n        if(nums[i]==1 && zero && !two){\n            ans+=rec(i+1,zero,true ,two,nums,n);\n            //ans+=rec(i+1,zero,false ,two,nums,n);\n        }\n        if(nums[i]==2 && zero && one){\n            ans+=rec(i+1,zero,one,true,nums,n);\n            //ans+=rec(i+1,zero,one,false,nums,n);\n        }\n\n        //save and return;\n        return dp[i][zero][one][two]=ans%MOD;\n    }\n    int countSpecialSubsequences(vector<int>& nums) {\n        int n = nums.size();\n        memset(dp,-1,sizeof(dp));\n        return rec(0,false,false,false,nums,n);\n    }\n};",
+      "runtime": "144 ms",
+      "memory": "195.2 MB"
+    }
+  },
+  {
+    "id": 1866,
+    "slug": "number-of-ways-to-rearrange-sticks-with-k-sticks-visible",
+    "title": "Number of Ways to Rearrange Sticks With K Sticks Visible",
+    "difficulty": "Hard",
+    "tags": [
+      "math",
+      "dynamic-programming",
+      "combinatorics"
+    ],
+    "firstSolvedAt": "2025-06-29T07:51:44.000Z",
+    "lastSolvedAt": "2025-06-29T07:51:44.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1680127687",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    const int MOD = 1e9 + 7;\n    int dp[1001][1001];\n\n    int rec(int i, int visible, int n, int k) {\n        if (i == n) return visible == k ? 1 : 0;\n        if (dp[i][visible] != -1) return dp[i][visible];\n\n        long long ans = 0;\n        // Case 1: Place tallest stick → visibility increases\n        ans += rec(i + 1, visible + 1, n, k);    // 1 way (tallest at end)\n\n        // Case 2: Place smaller stick → (n - 1 - i) choices to hide\n        ans += (long long)(n - 1 - i) * rec(i + 1, visible, n, k);\n\n        return dp[i][visible] = ans % MOD;\n    }\n\n    int rearrangeSticks(int n, int k) {\n        memset(dp, -1, sizeof(dp));\n        return rec(0, 0, n, k);\n    }\n};\n",
+      "runtime": "106 ms",
+      "memory": "12.4 MB"
+    }
+  },
+  {
+    "id": 2400,
+    "slug": "number-of-ways-to-reach-a-position-after-exactly-k-steps",
+    "title": "Number of Ways to Reach a Position After Exactly k Steps",
+    "difficulty": "Medium",
+    "tags": [
+      "math",
+      "dynamic-programming",
+      "combinatorics"
+    ],
+    "firstSolvedAt": "2025-06-24T21:06:20.000Z",
+    "lastSolvedAt": "2025-06-24T21:06:20.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1675371666",
+      "lang": "cpp",
+      "code": "\nvector<vector<int>>dp;\nint mod=1e9+7;\nclass Solution {\n    int rec(int i,int pos,int startPos,int endPos,int k){\n        //i,k is my state, i is no of moves\n        //rec will return no of ways to reach from state to end\n        //pruning\n        //basecase\n        //shifting start-k..........start.........k\n        //         0................x.............2k\n        \n        if(i==k){\n            if(pos==endPos){\n                return 1;\n            }\n            else {\n                return 0;\n            }\n        }\n        //cache\n        if(dp[i][pos-(startPos-k)]!=-1){\n            return dp[i][pos-(startPos-k)];\n        }\n        //transition\n        int ans=rec(i+1,pos-1,startPos,endPos,k)+rec(i+1,pos+1,startPos,endPos,k);\n        ans%=mod;\n        //save and return\n        return dp[i][pos-(startPos-k)]=ans;\n    }\npublic:\n    int numberOfWays(int startPos, int endPos, int k) {\n        dp.clear();\n        dp.assign(k,vector<int>(2*k+1,-1));\n        return rec(0,startPos,startPos,endPos,k);\n    }\n};",
+      "runtime": "87 ms",
+      "memory": "95.4 MB"
+    }
+  },
+  {
+    "id": 1824,
+    "slug": "minimum-sideway-jumps",
+    "title": "Minimum Sideway Jumps",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-06-24T19:50:07.000Z",
+    "lastSolvedAt": "2025-06-24T19:50:07.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1675325291",
+      "lang": "cpp",
+      "code": "int n;\nvector<vector<int>> dp;\nint INF = 1e9;\n\nclass Solution {\npublic:\n    int rec(int i, int lane, vector<int>& obstacles) {\n        if (i == n)\n            return 0;\n\n        if (dp[i][lane] != -1)\n            return dp[i][lane];\n\n        int ans;\n        // no obstacle → move forward\n        if (obstacles[i + 1] != lane) {\n            ans =\n                rec(i + 1, lane, obstacles); // <— assign and return this branch\n        } else {\n            // obstacle → must side-jump\n            ans = INT_MAX;\n            for (int j = 1; j <= 3; ++j) {\n                if (j == lane || obstacles[i] == j)\n                    continue;\n                ans = min(ans, 1 + rec(i, j, obstacles));\n            }\n        }\n\n        return dp[i][lane] = ans;\n    }\n\n    int minSideJumps(vector<int>& obstacles) {\n        n = obstacles.size() - 1;\n        dp.assign(n + 1, vector<int>(4, -1)); // lanes 1 to 3\n        return rec(0, 2, obstacles);          // start at lane 2\n    }\n};\n",
+      "runtime": "273 ms",
+      "memory": "308.2 MB"
+    }
+  },
+  {
+    "id": 162,
+    "slug": "find-peak-element",
+    "title": "Find Peak Element",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search"
+    ],
+    "firstSolvedAt": "2025-06-17T08:30:58.000Z",
+    "lastSolvedAt": "2025-06-17T08:42:07.000Z",
+    "submissions": 2,
+    "accepted": 2,
+    "solution": {
+      "submissionId": "1666943100",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int check(vector<int>& nums, int i) {\n        if (i + 1 >= nums.size()) return 1; // treat end as peak\n        return nums[i] > nums[i + 1];\n    }\n\n    int findPeakElement(vector<int>& nums) {\n        int lo = 0, hi = nums.size() - 1;\n        int mid = -1, ans = -1;\n\n        while (hi >= lo) {\n            mid = lo + (hi - lo) / 2;\n            if (check(nums, mid)) {\n                ans = mid;\n                hi=mid-1;\n            } else {\n                lo=mid+1;\n            }\n        }\n\n        return ans;\n    }\n};\n",
+      "runtime": "0 ms",
+      "memory": "12.4 MB"
+    }
+  },
+  {
+    "id": 1838,
+    "slug": "frequency-of-the-most-frequent-element",
+    "title": "Frequency of the Most Frequent Element",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "binary-search",
+      "greedy",
+      "sliding-window",
+      "sorting",
+      "prefix-sum"
+    ],
+    "firstSolvedAt": "2025-06-04T10:52:35.000Z",
+    "lastSolvedAt": "2025-06-04T10:52:35.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "solution": {
+      "submissionId": "1653625508",
+      "lang": "cpp",
+      "code": "class Solution {\npublic:\n    int check(int f, int k, vector<int>& nums, vector<long long>& pf) {\n        int n = nums.size();\n        for (int i = f - 1; i < n; i++) {\n            int l = i - f + 1;\n            long long sum_window = pf[i] - (l > 0 ? pf[l - 1] : 0);\n            long long cost = (long long)nums[i] * f - sum_window;\n            if (cost <= k) return 1;\n        }\n        return 0;\n    }\n\n    int maxFrequency(vector<int>& nums, int k) {\n        sort(nums.begin(), nums.end());\n        int n = nums.size();\n\n        vector<long long> pf(n);\n        pf[0] = nums[0];\n        for (int i = 1; i < n; i++) {\n            pf[i] = pf[i - 1] + nums[i];\n        }\n\n        int ans = 1; // Not n — frequency can't exceed n\n        int lo = 1, hi = n;\n        while (lo <= hi) {\n            int mid = lo + (hi - lo) / 2;\n            if (check(mid, k, nums, pf)) {\n                ans = mid;\n                lo = mid + 1;\n            } else {\n                hi = mid - 1;\n            }\n        }\n        return ans;\n    }\n};\n",
+      "runtime": "55 ms",
+      "memory": "115.1 MB"
+    }
+  },
+  {
+    "id": 1,
+    "slug": "two-sum",
+    "title": "Two Sum",
+    "difficulty": "Easy",
+    "tags": [
+      "array",
+      "hash-table"
+    ],
+    "firstSolvedAt": "2024-01-31T12:30:14.000Z",
+    "lastSolvedAt": "2024-01-31T12:30:42.000Z",
+    "submissions": 3,
+    "accepted": 3,
+    "solution": {
+      "submissionId": "1161976363",
+      "lang": "c",
+      "code": "/**\n * Note: The returned array must be malloced, assume caller calls free().\n */\nint* twoSum(int* nums, int numsSize, int target, int* returnSize) {\n    *returnSize = 2;\n    int* returnA =(int*) malloc(2*sizeof(int));\n    for(int i=0;i<numsSize-1;i++)\n    {\n        for(int j=i+1;j<numsSize;j++)\n        {\n            if(nums[i]+nums[j]==target)\n            {\n                returnA[0]=i;\n                returnA[1]=j;\n                return returnA;\n            }\n        }\n    }\n    return -1;\n}",
+      "runtime": "103 ms",
+      "memory": "6.3 MB"
+    }
+  }
+]

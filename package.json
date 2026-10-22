@@ -1,0 +1,33 @@
+{
+  "name": "dsa-tracker",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "sync": "node --env-file-if-exists=.env.local scripts/sync.mjs",
+    "backfill": "node --env-file-if-exists=.env.local scripts/sync.mjs --full"
+  },
+  "dependencies": {
+    "@shikijs/rehype": "^4.5.0",
+    "gray-matter": "^4.0.3",
+    "next": "^16.4.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "rehype-stringify": "^10.0.1",
+    "remark-gfm": "^4.0.1",
+    "remark-parse": "^11.0.0",
+    "remark-rehype": "^11.1.2",
+    "shiki": "^4.5.0",
+    "unified": "^11.0.5"
+  },
+  "devDependencies": {
+    "@tailwindcss/postcss": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "tailwindcss": "^4.3.3",
+    "typescript": "5.9"
+  }
+}

@@ -1,0 +1,33 @@
+name: Sync LeetCode
+
+on:
+  schedule:
+    - cron: "30 18 * * *" # 00:00 IST daily
+  workflow_dispatch: {}   # "Run workflow" button for a manual sync
+
+permissions:
+  contents: write
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - name: Fetch new accepted submissions
+        env:
+          LEETCODE_USERNAME: ${{ vars.LEETCODE_USERNAME || 'Snehal004' }}
+          # Optional. With these set, sync also pulls your solution code and exact attempt counts.
+          LEETCODE_SESSION: ${{ secrets.LEETCODE_SESSION }}
+          LEETCODE_CSRF: ${{ secrets.LEETCODE_CSRF }}
+        run: node scripts/sync.mjs
+      - name: Commit if changed
+        run: |
+          if git diff --quiet data/; then echo "No new problems"; exit 0; fi
+          git config user.name "leetcode-sync"
+          git config user.email "actions@users.noreply.github.com"
+          git add data/
+          git commit -m "sync: $(date -u +%F)"
+          git push
