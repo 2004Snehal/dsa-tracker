@@ -1,5 +1,23 @@
 [
   {
+    "id": 1697,
+    "slug": "checking-existence-of-edge-length-limited-paths",
+    "title": "Checking Existence of Edge Length Limited Paths",
+    "difficulty": "Hard",
+    "tags": [
+      "array",
+      "two-pointers",
+      "union-find",
+      "graph",
+      "sorting"
+    ],
+    "firstSolvedAt": "2026-10-23T09:14:17.000Z",
+    "lastSolvedAt": "2026-10-23T09:14:17.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
     "id": 928,
     "slug": "minimize-malware-spread-ii",
     "title": "Minimize Malware Spread II",
