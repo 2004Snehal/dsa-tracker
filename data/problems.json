@@ -1,5 +1,22 @@
 [
   {
+    "id": 387,
+    "slug": "first-unique-character-in-a-string",
+    "title": "First Unique Character in a String",
+    "difficulty": "Easy",
+    "tags": [
+      "hash-table",
+      "string",
+      "queue",
+      "counting"
+    ],
+    "firstSolvedAt": "2026-11-10T14:47:40.000Z",
+    "lastSolvedAt": "2026-11-10T14:47:40.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
     "id": 1697,
     "slug": "checking-existence-of-edge-length-limited-paths",
     "title": "Checking Existence of Edge Length Limited Paths",
