@@ -1,5 +1,55 @@
 [
   {
+    "id": 56,
+    "slug": "merge-intervals",
+    "title": "Merge Intervals",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "sorting",
+      "quicksort"
+    ],
+    "firstSolvedAt": "2026-11-12T13:15:38.000Z",
+    "lastSolvedAt": "2026-11-12T13:15:38.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
+    "id": 3,
+    "slug": "longest-substring-without-repeating-characters",
+    "title": "Longest Substring Without Repeating Characters",
+    "difficulty": "Medium",
+    "tags": [
+      "hash-table",
+      "string",
+      "sliding-window"
+    ],
+    "firstSolvedAt": "2026-11-12T10:12:27.000Z",
+    "lastSolvedAt": "2026-11-12T10:12:27.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
+    "id": 215,
+    "slug": "kth-largest-element-in-an-array",
+    "title": "Kth Largest Element in an Array",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "divide-and-conquer",
+      "sorting",
+      "heap-priority-queue",
+      "quickselect"
+    ],
+    "firstSolvedAt": "2026-11-12T10:07:53.000Z",
+    "lastSolvedAt": "2026-11-12T10:07:53.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
     "id": 387,
     "slug": "first-unique-character-in-a-string",
     "title": "First Unique Character in a String",
