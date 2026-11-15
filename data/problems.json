@@ -1,5 +1,22 @@
 [
   {
+    "id": 435,
+    "slug": "non-overlapping-intervals",
+    "title": "Non-overlapping Intervals",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "dynamic-programming",
+      "greedy",
+      "sorting"
+    ],
+    "firstSolvedAt": "2026-11-15T17:21:18.000Z",
+    "lastSolvedAt": "2026-11-15T17:21:18.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "solution": null
+  },
+  {
     "id": 56,
     "slug": "merge-intervals",
     "title": "Merge Intervals",

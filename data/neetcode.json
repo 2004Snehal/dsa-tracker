@@ -635,6 +635,30 @@
     }
   },
   {
+    "ncSlug": "meeting-schedule-ii",
+    "lcSlug": "meeting-rooms-ii",
+    "id": 253,
+    "title": "Meeting Rooms II",
+    "difficulty": "Medium",
+    "tags": [
+      "array",
+      "two-pointers",
+      "greedy",
+      "sorting",
+      "heap-priority-queue",
+      "prefix-sum"
+    ],
+    "firstSolvedAt": null,
+    "lastSolvedAt": null,
+    "submissions": 3,
+    "accepted": 1,
+    "solution": {
+      "file": "Data Structures & Algorithms/meeting-schedule-ii/submission-2.cpp",
+      "lang": "cpp",
+      "code": "/**\n * Definition of Interval:\n * class Interval {\n * public:\n *     int start, end;\n *     Interval(int start, int end) {\n *         this->start = start;\n *         this->end = end;\n *     }\n * }\n */\n\nclass Solution {\npublic:\n    int minMeetingRooms(vector<Interval>& intervals) {\n    vector<pair<int,int>>meet;\n    int n11=intervals.size();\n    for(int i=0;i<n11;i++){\n        meet.push_back({intervals[i].start,intervals[i].end});\n    }\n    sort(meet.begin(),meet.end());\n    priority_queue<int,vector<int>,greater<int>>pq;\n    int ans=0;\n    for(int i=0;i<n11;i++){\n        if(!pq.empty()&& pq.top()<=meet[i].first){\n            pq.pop();\n        }\n        pq.push(meet[i].second);\n        ans=max(ans,(int)pq.size());\n    }\n    return ans;\n    }\n};\n"
+    }
+  },
+  {
     "ncSlug": "pacific-atlantic-water-flow",
     "lcSlug": "pacific-atlantic-water-flow",
     "id": 417,
