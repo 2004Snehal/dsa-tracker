@@ -1,11 +1,12 @@
 "use client";
 import Link from "next/link";
 import { useMemo, useState } from "react";
-import type { Difficulty, Source } from "@/lib/data";
+import { SOURCES, SOURCE_NAME, type Difficulty, type Source } from "@/lib/data";
 import { DiffBadge, SourceTags } from "@/components/ui";
 
 export type Row = {
   id: number;
+  code: string;
   slug: string;
   title: string;
   difficulty: Difficulty;
@@ -40,7 +41,7 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
     const needle = q.trim().toLowerCase();
     const out = rows.filter(
       (r) =>
-        (!needle || r.title.toLowerCase().includes(needle) || String(r.id) === needle || r.patternName?.toLowerCase().includes(needle)) &&
+        (!needle || r.title.toLowerCase().includes(needle) || r.code.toLowerCase() === needle || r.patternName?.toLowerCase().includes(needle)) &&
         (!section || r.section === section) &&
         (!diff || r.difficulty === diff) &&
         (!flag || (flag === "revisit" ? r.revisit : r.oa)) &&
@@ -77,9 +78,10 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
           <option>Hard</option>
         </select>
         <select value={source} onChange={(e) => setSource(e.target.value)} className={sel}>
-          <option value="">LeetCode + NeetCode</option>
-          <option value="leetcode">LeetCode</option>
-          <option value="neetcode">NeetCode</option>
+          <option value="">All sources</option>
+          {SOURCES.map((s) => (
+            <option key={s} value={s}>{SOURCE_NAME[s]}</option>
+          ))}
         </select>
         <select value={flag} onChange={(e) => setFlag(e.target.value)} className={sel}>
           <option value="">Any flag</option>
@@ -98,7 +100,7 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
         <table className="w-full text-sm">
           <thead className="text-left text-xs text-ink-3 border-b border-line">
             <tr>
-              <th className="px-4 py-2.5 font-medium w-14">#</th>
+              <th className="px-4 py-2.5 font-medium w-20">#</th>
               <th className="px-2 py-2.5 font-medium">Title</th>
               <th className="px-2 py-2.5 font-medium">Section · Pattern</th>
               <th className="px-2 py-2.5 font-medium">Source</th>
@@ -110,7 +112,7 @@ export function ProblemTable({ rows, sections }: { rows: Row[]; sections: { id: 
           <tbody className="divide-y divide-line">
             {list.map((r) => (
               <tr key={r.slug} className="hover:bg-bg">
-                <td className="px-4 py-2.5 tabular-nums text-ink-3">{r.id}</td>
+                <td className="px-4 py-2.5 tabular-nums text-ink-3">{r.code}</td>
                 <td className="px-2 py-2.5">
                   <Link href={`/problems/${r.slug}`} className="font-medium hover:text-accent">{r.title}</Link>
                   {r.revisit && <span className="ml-2 text-xs text-ink-3">↻ revisit</span>}

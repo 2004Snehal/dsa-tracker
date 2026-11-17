@@ -1,11 +1,13 @@
 import rawLeetcode from "@/data/problems.json";
 import rawNeetcode from "@/data/neetcode.json";
+import rawCodeforces from "@/data/codeforces.json";
 import rawOverrides from "@/data/overrides.json";
 import { classify } from "@/content/taxonomy";
 
 export type Difficulty = "Easy" | "Medium" | "Hard";
-export type Source = "leetcode" | "neetcode";
-export const SOURCE_NAME: Record<Source, string> = { leetcode: "LeetCode", neetcode: "NeetCode" };
+export type Source = "leetcode" | "neetcode" | "codeforces";
+export const SOURCE_NAME: Record<Source, string> = { leetcode: "LeetCode", neetcode: "NeetCode", codeforces: "Codeforces" };
+export const SOURCES = Object.keys(SOURCE_NAME) as Source[];
 
 type LeetcodeRaw = {
   id: number;
@@ -34,15 +36,35 @@ type NeetcodeRaw = {
   solution: { file: string; lang: string; code: string };
 };
 
+type CodeforcesRaw = {
+  key: string;
+  contestId: number;
+  index: string;
+  title: string;
+  rating: number | null;
+  tags: string[];
+  firstSolvedAt: string;
+  lastSolvedAt: string;
+  submissions: number;
+  accepted: number;
+  lang: string;
+  submissionId: number;
+};
+
 type Override = { section?: string; pattern?: string; notes?: string; oa?: boolean; revisit?: boolean };
 
 export type Solution = { source: Source; lang: string; code: string; runtime?: string; memory?: string };
 
 export type Problem = {
+  /** LeetCode number, or contest id for Codeforces. Used for sorting. */
   id: number;
+  /** Display number: "300" on LeetCode, "2258C" on Codeforces. */
+  code: string;
   slug: string;
   title: string;
   difficulty: Difficulty;
+  /** Codeforces rating; null for LeetCode/NeetCode and unrated CF problems. */
+  rating: number | null;
   tags: string[];
   /** null when the solve date is unknown (NeetCode bulk sync). */
   firstSolvedAt: string | null;
@@ -58,6 +80,8 @@ export type Problem = {
   oa: boolean;
   revisit: boolean;
   url: string;
+  /** Link to the latest accepted Codeforces submission. */
+  cfSubmissionUrl: string | null;
 };
 
 const overrides = rawOverrides as unknown as Record<string, Override>;
@@ -65,12 +89,14 @@ const overrides = rawOverrides as unknown as Record<string, Override>;
 const minDate = (a: string | null, b: string | null) => (!a ? b : !b ? a : a < b ? a : b);
 const maxDate = (a: string | null, b: string | null) => (!a ? b : !b ? a : a > b ? a : b);
 
-const merged = new Map<string, Omit<Problem, "section" | "pattern" | "notes" | "oa" | "revisit" | "url">>();
+const merged = new Map<string, Omit<Problem, "section" | "pattern" | "notes" | "oa" | "revisit" | "url" | "cfSubmissionUrl"> & { cf?: CodeforcesRaw }>();
 
 for (const p of rawLeetcode as LeetcodeRaw[]) {
   const { solution, ...rest } = p;
   merged.set(p.slug, {
     ...rest,
+    code: String(p.id),
+    rating: null,
     sources: ["leetcode"],
     solutions: solution ? [{ source: "leetcode", lang: solution.lang, code: solution.code, runtime: solution.runtime, memory: solution.memory }] : [],
     ncSlug: null,
@@ -91,6 +117,8 @@ for (const n of rawNeetcode as NeetcodeRaw[]) {
   } else {
     merged.set(n.lcSlug, {
       id: n.id,
+      code: String(n.id),
+      rating: null,
       slug: n.lcSlug,
       title: n.title,
       difficulty: n.difficulty,
@@ -106,6 +134,34 @@ for (const n of rawNeetcode as NeetcodeRaw[]) {
   }
 }
 
+/** Codeforces rating mapped onto LeetCode's three buckets. Unrated (new) problems count as Medium. */
+export const cfDifficulty = (rating: number | null): Difficulty =>
+  rating === null ? "Medium" : rating <= 1100 ? "Easy" : rating <= 1600 ? "Medium" : "Hard";
+
+// Codeforces problems never merge with LeetCode ones; the "cf-" prefix keeps slugs apart.
+for (const c of rawCodeforces as CodeforcesRaw[]) {
+  merged.set(`cf-${c.key.toLowerCase()}`, {
+    id: c.contestId,
+    code: c.key,
+    slug: `cf-${c.key.toLowerCase()}`,
+    title: c.title,
+    difficulty: cfDifficulty(c.rating),
+    rating: c.rating,
+    tags: c.tags,
+    firstSolvedAt: c.firstSolvedAt,
+    lastSolvedAt: c.lastSolvedAt,
+    submissions: c.submissions,
+    accepted: c.accepted,
+    sources: ["codeforces"],
+    solutions: [],
+    ncSlug: null,
+    cf: c,
+  });
+}
+
+// Gym contests (id >= 100000) live under /gym/ instead of /contest/.
+const cfBase = (contestId: number) => `https://codeforces.com/${contestId >= 100000 ? "gym" : "contest"}/${contestId}`;
+
 /** Newest first; problems with unknown dates go last, by problem number. */
 export const byNewest = (a: { firstSolvedAt: string | null; id: number }, b: { firstSolvedAt: string | null; id: number }) =>
   a.firstSolvedAt && b.firstSolvedAt
@@ -117,7 +173,7 @@ export const byNewest = (a: { firstSolvedAt: string | null; id: number }, b: { f
         : a.id - b.id;
 
 export const problems: Problem[] = [...merged.values()]
-  .map((p) => {
+  .map(({ cf, ...p }) => {
     const o = overrides[p.slug] ?? {};
     const auto = classify(p.tags);
     const section = o.section ?? auto.section;
@@ -128,7 +184,8 @@ export const problems: Problem[] = [...merged.values()]
       notes: o.notes ?? null,
       oa: o.oa ?? false,
       revisit: o.revisit ?? false,
-      url: `https://leetcode.com/problems/${p.slug}/`,
+      url: cf ? `${cfBase(cf.contestId)}/problem/${cf.index}` : `https://leetcode.com/problems/${p.slug}/`,
+      cfSubmissionUrl: cf ? `${cfBase(cf.contestId)}/submission/${cf.submissionId}` : null,
     };
   })
   .sort(byNewest);
@@ -144,10 +201,7 @@ export function countByDifficulty(list: Problem[]) {
 }
 
 export function countBySource(list: Problem[]) {
-  return {
-    leetcode: list.filter((p) => p.sources.includes("leetcode")).length,
-    neetcode: list.filter((p) => p.sources.includes("neetcode")).length,
-  } as Record<Source, number>;
+  return Object.fromEntries(SOURCES.map((s) => [s, list.filter((p) => p.sources.includes(s)).length])) as Record<Source, number>;
 }
 
 /** Local date key (YYYY-MM-DD) in IST, since that's where solving happens. */

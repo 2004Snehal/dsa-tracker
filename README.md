@@ -1,6 +1,6 @@
 # DSA Tracker
 
-Personal LeetCode tracker. It groups solved problems by section and pattern, and includes DP / Graph / Binary Search notes with C++ templates linked to the problems you've solved.
+Personal LeetCode, NeetCode and Codeforces tracker. It groups solved problems by section and pattern, and includes DP / Graph / Binary Search notes with C++ templates linked to the problems you've solved.
 
 Fully static Next.js. Data lives in `data/` as JSON, so there's no database and no runtime secrets.
 
@@ -25,12 +25,23 @@ The same workflow also reads [`2004Snehal/neetcode-submissions`](https://github.
 - Solve dates come from the per-submission commits (`Add: <slug> - submission-<n>`). Submissions that arrived through NeetCode's **Bulk sync** have no real date. They count toward totals and sections, but not toward the heatmap or streaks.
 - To use a different repo, set `NEETCODE_REPO=owner/name`.
 
+### Codeforces
+
+The workflow also pulls your accepted Codeforces submissions from the public API (`user.status`) into `data/codeforces.json`. No login is needed, and each run rebuilds the file from your full history.
+
+- **Handle:** set the repo variable `CODEFORCES_HANDLE` (defaults to `freakedcoder`).
+- **Difficulty:** Codeforces ratings map to Easy (≤1100), Medium (1200–1600) or Hard (≥1700). Unrated problems count as Medium. The cutoffs are in `cfDifficulty` in `lib/data.ts`. Each problem page also shows the exact rating.
+- **Sections:** Codeforces tags go through the same rules in `taxonomy.ts`. Problems tagged only constructive, implementation, brute force or games land in **Constructive & Ad Hoc**.
+- **Overrides:** Codeforces problems use slugs like `cf-2258c` in `data/overrides.json`.
+- **No code:** the API doesn't return source code, and submission pages are behind Cloudflare. Each problem page links to your latest accepted submission on Codeforces instead.
+
 Locally:
 
 ```sh
 npm install
 npm run sync        # recent 20 accepted (public)
 npm run neetcode    # NeetCode submissions from GitHub
+npm run codeforces  # Codeforces accepted submissions
 npm run backfill    # full history + code; needs LEETCODE_SESSION / LEETCODE_CSRF in .env.local
 npm run dev
 ```

@@ -56,7 +56,7 @@ export default async function LearnSection({ params }: { params: Promise<{ secti
                 <ul className="space-y-1.5 text-sm">
                   {pt.solved.map((p) => (
                     <li key={p.slug} className="flex flex-wrap items-center gap-x-3">
-                      <Link href={`/problems/${p.slug}`} className="hover:text-accent">{p.id}. {p.title}</Link>
+                      <Link href={`/problems/${p.slug}`} className="hover:text-accent">{p.code}. {p.title}</Link>
                       <DiffBadge d={p.difficulty} />
                     </li>
                   ))}

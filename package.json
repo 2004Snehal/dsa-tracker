@@ -9,7 +9,8 @@
     "start": "next start",
     "sync": "node --env-file-if-exists=.env.local scripts/sync.mjs",
     "neetcode": "node --env-file-if-exists=.env.local scripts/neetcode.mjs",
-    "backfill": "node --env-file-if-exists=.env.local scripts/sync.mjs --full"
+    "backfill": "node --env-file-if-exists=.env.local scripts/sync.mjs --full",
+    "codeforces": "node --env-file-if-exists=.env.local scripts/codeforces.mjs"
   },
   "dependencies": {
     "@shikijs/rehype": "^4.5.0",

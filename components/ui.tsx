@@ -1,6 +1,6 @@
 import Link from "next/link";
 import type { Difficulty, Problem, Source } from "@/lib/data";
-import { fmtDate } from "@/lib/data";
+import { fmtDate, SOURCE_NAME } from "@/lib/data";
 import { patternName, sectionById } from "@/content/taxonomy";
 
 export const DIFF_VAR: Record<Difficulty, string> = { Easy: "var(--easy)", Medium: "var(--medium)", Hard: "var(--hard)" };
@@ -14,14 +14,13 @@ export function DiffBadge({ d }: { d: Difficulty }) {
   );
 }
 
-const SOURCE_SHORT: Record<Source, string> = { leetcode: "LC", neetcode: "NC" };
-const SOURCE_TITLE: Record<Source, string> = { leetcode: "Solved on LeetCode", neetcode: "Solved on NeetCode" };
+const SOURCE_SHORT: Record<Source, string> = { leetcode: "LC", neetcode: "NC", codeforces: "CF" };
 
 export function SourceTags({ sources }: { sources: Source[] }) {
   return (
     <span className="inline-flex gap-1">
       {sources.map((s) => (
-        <span key={s} title={SOURCE_TITLE[s]} className="rounded border border-line px-1 text-[10px] leading-4 font-medium text-ink-3">
+        <span key={s} title={`Solved on ${SOURCE_NAME[s]}`} className="rounded border border-line px-1 text-[10px] leading-4 font-medium text-ink-3">
           {SOURCE_SHORT[s]}
         </span>
       ))}
@@ -51,7 +50,7 @@ export function ProblemList({ list, showSection = true }: { list: Problem[]; sho
       {list.map((p) => (
         <li key={p.slug} className="flex flex-wrap items-center gap-x-3 gap-y-1 py-2.5">
           <Link href={`/problems/${p.slug}`} className="font-medium hover:text-accent min-w-0 flex-1">
-            <span className="text-ink-3 tabular-nums mr-2">{p.id}.</span>
+            <span className="text-ink-3 tabular-nums mr-2">{p.code}.</span>
             {p.title}
           </Link>
           {showSection && (

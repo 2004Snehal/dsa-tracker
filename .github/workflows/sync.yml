@@ -27,6 +27,10 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ github.token }}
         run: node scripts/neetcode.mjs
+      - name: Fetch Codeforces submissions
+        env:
+          CODEFORCES_HANDLE: ${{ vars.CODEFORCES_HANDLE || 'freakedcoder' }}
+        run: node scripts/codeforces.mjs
       - name: Commit if changed
         run: |
           if git diff --quiet data/; then echo "No new problems"; exit 0; fi

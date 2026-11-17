@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "DSA Tracker",
-  description: "LeetCode progress by topic, with pattern notes and templates.",
+  description: "LeetCode, NeetCode and Codeforces progress by topic, with pattern notes and templates.",
 };
 
 const NAV = [

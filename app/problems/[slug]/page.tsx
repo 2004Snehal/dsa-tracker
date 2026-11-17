@@ -10,7 +10,7 @@ export const dynamicParams = false;
 
 export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
   const p = problemBySlug((await params).slug);
-  return { title: p ? `${p.id}. ${p.title} · DSA Tracker` : "Not found" };
+  return { title: p ? `${p.code}. ${p.title} · DSA Tracker` : "Not found" };
 }
 
 export default async function ProblemPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -28,17 +28,23 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
       <div>
         <Link href="/problems" className="text-sm text-ink-3 hover:text-ink">← Problems</Link>
         <h1 className="text-2xl font-semibold tracking-tight mt-2">
-          <span className="text-ink-3 tabular-nums">{p.id}.</span> {p.title}
+          <span className="text-ink-3 tabular-nums">{p.code}.</span> {p.title}
         </h1>
         <div className="mt-3 flex flex-wrap items-center gap-3 text-sm">
           <DiffBadge d={p.difficulty} />
+          {p.rating && <span className="text-ink-3 tabular-nums">Rating {p.rating}</span>}
           <Link href={`/sections/${p.section}`} className="text-ink-2 hover:text-ink">{section?.name}</Link>
           {pName && (
             <Link href={`/learn/${p.section}#${p.pattern}`} className="text-accent hover:underline">
               {pName} notes →
             </Link>
           )}
-          <a href={p.url} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">LeetCode ↗</a>
+          <a href={p.url} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">
+            {p.sources.includes("codeforces") ? "Codeforces" : "LeetCode"} ↗
+          </a>
+          {p.cfSubmissionUrl && (
+            <a href={p.cfSubmissionUrl} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">My submission ↗</a>
+          )}
           {p.ncSlug && (
             <a href={neetcodeUrl(p.ncSlug)} target="_blank" rel="noreferrer" className="text-ink-2 hover:text-ink">NeetCode ↗</a>
           )}
@@ -81,7 +87,7 @@ export default async function ProblemPage({ params }: { params: Promise<{ slug: 
           <ul className="space-y-1.5 text-sm">
             {siblings.map((s) => (
               <li key={s.slug} className="flex items-center gap-3">
-                <Link href={`/problems/${s.slug}`} className="hover:text-accent">{s.id}. {s.title}</Link>
+                <Link href={`/problems/${s.slug}`} className="hover:text-accent">{s.code}. {s.title}</Link>
                 <DiffBadge d={s.difficulty} />
               </li>
             ))}

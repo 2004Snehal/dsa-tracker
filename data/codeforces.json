@@ -1,0 +1,2069 @@
+[
+  {
+    "key": "2258C",
+    "contestId": 2258,
+    "index": "C",
+    "title": "Far Cities",
+    "rating": 1600,
+    "tags": [
+      "interactive",
+      "trees",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2026-08-29T15:29:30.000Z",
+    "lastSolvedAt": "2026-08-29T15:29:30.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 388810363
+  },
+  {
+    "key": "2258B2",
+    "contestId": 2258,
+    "index": "B2",
+    "title": "Carrot Chopdown (Hard Version)",
+    "rating": 1600,
+    "tags": [
+      "brute-force",
+      "greedy",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2026-08-29T14:50:26.000Z",
+    "lastSolvedAt": "2026-08-29T14:50:26.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 388789257
+  },
+  {
+    "key": "2258B1",
+    "contestId": 2258,
+    "index": "B1",
+    "title": "Carrot Chopdown (Easy Version)",
+    "rating": 900,
+    "tags": [
+      "brute-force",
+      "games",
+      "math"
+    ],
+    "firstSolvedAt": "2026-08-29T14:44:50.000Z",
+    "lastSolvedAt": "2026-08-29T14:44:50.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 388784793
+  },
+  {
+    "key": "2258A",
+    "contestId": 2258,
+    "index": "A",
+    "title": "Odd Eraser",
+    "rating": 800,
+    "tags": [
+      "math"
+    ],
+    "firstSolvedAt": "2026-08-29T14:42:38.000Z",
+    "lastSolvedAt": "2026-08-29T14:42:38.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 388782997
+  },
+  {
+    "key": "1881E",
+    "contestId": 1881,
+    "index": "E",
+    "title": "Block Sequence",
+    "rating": 1500,
+    "tags": [
+      "dp"
+    ],
+    "firstSolvedAt": "2025-12-21T19:23:40.000Z",
+    "lastSolvedAt": "2025-12-21T19:23:40.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 354478659
+  },
+  {
+    "key": "1857E",
+    "contestId": 1857,
+    "index": "E",
+    "title": "Power of Points",
+    "rating": 1500,
+    "tags": [
+      "math",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-12-13T20:10:29.000Z",
+    "lastSolvedAt": "2025-12-13T20:10:29.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 353377961
+  },
+  {
+    "key": "2147C",
+    "contestId": 2147,
+    "index": "C",
+    "title": "Rabbits",
+    "rating": 1500,
+    "tags": [
+      "constructive-algorithms",
+      "dp",
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-12-12T20:42:54.000Z",
+    "lastSolvedAt": "2025-12-12T20:42:54.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 353250455
+  },
+  {
+    "key": "1850G",
+    "contestId": 1850,
+    "index": "G",
+    "title": "The Morning Star",
+    "rating": 1500,
+    "tags": [
+      "combinatorics",
+      "data-structures",
+      "geometry",
+      "implementation",
+      "math",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-12-11T20:51:20.000Z",
+    "lastSolvedAt": "2025-12-11T20:51:20.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 353120017
+  },
+  {
+    "key": "149C",
+    "contestId": 149,
+    "index": "C",
+    "title": "Division into Teams",
+    "rating": 1500,
+    "tags": [
+      "greedy",
+      "math",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-12-11T20:05:36.000Z",
+    "lastSolvedAt": "2025-12-11T20:05:36.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 353116676
+  },
+  {
+    "key": "2164C",
+    "contestId": 2164,
+    "index": "C",
+    "title": "Dungeon",
+    "rating": 1400,
+    "tags": [
+      "binary-search",
+      "brute-force",
+      "data-structures",
+      "greedy",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-12-10T16:29:31.000Z",
+    "lastSolvedAt": "2025-12-10T16:29:31.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 352879612
+  },
+  {
+    "key": "2173C",
+    "contestId": 2173,
+    "index": "C",
+    "title": "Kanade's Perfect Multiples",
+    "rating": 1400,
+    "tags": [
+      "brute-force",
+      "constructive-algorithms",
+      "greedy",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2025-12-05T16:13:36.000Z",
+    "lastSolvedAt": "2025-12-05T16:13:36.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 352089089
+  },
+  {
+    "key": "2173B",
+    "contestId": 2173,
+    "index": "B",
+    "title": "Niko's Tactical Cards",
+    "rating": 1100,
+    "tags": [
+      "dp",
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2025-12-05T15:25:44.000Z",
+    "lastSolvedAt": "2025-12-05T15:25:44.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 352064320
+  },
+  {
+    "key": "2173A",
+    "contestId": 2173,
+    "index": "A",
+    "title": "Sleeping Through Classes",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-12-05T15:19:57.000Z",
+    "lastSolvedAt": "2025-12-05T15:19:57.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 352060573
+  },
+  {
+    "key": "2169D1",
+    "contestId": 2169,
+    "index": "D1",
+    "title": "Removal of a Sequence (Easy Version)",
+    "rating": 1500,
+    "tags": [
+      "binary-search",
+      "implementation",
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2025-12-03T20:47:02.000Z",
+    "lastSolvedAt": "2025-12-03T20:47:02.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351782050
+  },
+  {
+    "key": "2169C",
+    "contestId": 2169,
+    "index": "C",
+    "title": "Range Operation",
+    "rating": 1300,
+    "tags": [
+      "dp",
+      "greedy",
+      "math",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2025-12-03T20:04:51.000Z",
+    "lastSolvedAt": "2025-12-03T20:04:51.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351778785
+  },
+  {
+    "key": "2157C",
+    "contestId": 2157,
+    "index": "C",
+    "title": "Meximum Array 2",
+    "rating": 1400,
+    "tags": [
+      "constructive-algorithms",
+      "greedy",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2025-12-03T10:41:43.000Z",
+    "lastSolvedAt": "2025-12-03T10:41:43.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351711058
+  },
+  {
+    "key": "2B",
+    "contestId": 2,
+    "index": "B",
+    "title": "The least round way",
+    "rating": 2000,
+    "tags": [
+      "dp",
+      "math"
+    ],
+    "firstSolvedAt": "2025-12-02T21:35:25.000Z",
+    "lastSolvedAt": "2025-12-02T21:35:25.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351658686
+  },
+  {
+    "key": "349B",
+    "contestId": 349,
+    "index": "B",
+    "title": "Color the Fence",
+    "rating": 1700,
+    "tags": [
+      "data-structures",
+      "dp",
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-12-02T19:44:19.000Z",
+    "lastSolvedAt": "2025-12-02T19:44:19.000Z",
+    "submissions": 8,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351651940
+  },
+  {
+    "key": "788A",
+    "contestId": 788,
+    "index": "A",
+    "title": "Functions again",
+    "rating": 1600,
+    "tags": [
+      "dp",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2025-12-02T09:41:18.000Z",
+    "lastSolvedAt": "2025-12-02T09:41:18.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351574980
+  },
+  {
+    "key": "736A",
+    "contestId": 736,
+    "index": "A",
+    "title": "Tennis Championship",
+    "rating": 1600,
+    "tags": [
+      "combinatorics",
+      "constructive-algorithms",
+      "dfs-and-similar",
+      "dp",
+      "math"
+    ],
+    "firstSolvedAt": "2025-12-01T21:48:39.000Z",
+    "lastSolvedAt": "2025-12-01T21:48:39.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351527925
+  },
+  {
+    "key": "189A",
+    "contestId": 189,
+    "index": "A",
+    "title": "Cut Ribbon",
+    "rating": 1300,
+    "tags": [
+      "brute-force",
+      "dp"
+    ],
+    "firstSolvedAt": "2025-12-01T20:26:23.000Z",
+    "lastSolvedAt": "2025-12-01T20:26:23.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351522753
+  },
+  {
+    "key": "1418C",
+    "contestId": 1418,
+    "index": "C",
+    "title": "Mortal Kombat Tower",
+    "rating": 1500,
+    "tags": [
+      "dp",
+      "graphs",
+      "greedy",
+      "shortest-paths"
+    ],
+    "firstSolvedAt": "2025-12-01T20:06:59.000Z",
+    "lastSolvedAt": "2025-12-01T20:06:59.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351521327
+  },
+  {
+    "key": "2158C",
+    "contestId": 2158,
+    "index": "C",
+    "title": "Annoying Game",
+    "rating": 1400,
+    "tags": [
+      "dp",
+      "games",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-12-01T10:27:51.000Z",
+    "lastSolvedAt": "2025-12-01T10:27:51.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351448722
+  },
+  {
+    "key": "2170C",
+    "contestId": 2170,
+    "index": "C",
+    "title": "Quotient and Remainder",
+    "rating": 1300,
+    "tags": [
+      "binary-search",
+      "greedy",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2025-11-28T16:00:26.000Z",
+    "lastSolvedAt": "2025-11-28T16:00:26.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351048704
+  },
+  {
+    "key": "2170B",
+    "contestId": 2170,
+    "index": "B",
+    "title": "Addition on a Segment",
+    "rating": 1200,
+    "tags": [
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-28T15:14:54.000Z",
+    "lastSolvedAt": "2025-11-28T15:14:54.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351024593
+  },
+  {
+    "key": "2170A",
+    "contestId": 2170,
+    "index": "A",
+    "title": "Maximum Neighborhood",
+    "rating": 800,
+    "tags": [
+      "bitmasks",
+      "brute-force",
+      "greedy",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-28T14:51:09.000Z",
+    "lastSolvedAt": "2025-11-28T14:51:09.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 351006296
+  },
+  {
+    "key": "2063C",
+    "contestId": 2063,
+    "index": "C",
+    "title": "Remove Exactly Two",
+    "rating": 1600,
+    "tags": [
+      "brute-force",
+      "data-structures",
+      "dfs-and-similar",
+      "dp",
+      "graphs",
+      "greedy",
+      "sortings",
+      "trees"
+    ],
+    "firstSolvedAt": "2025-11-28T14:10:59.000Z",
+    "lastSolvedAt": "2025-11-28T14:10:59.000Z",
+    "submissions": 9,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 350990363
+  },
+  {
+    "key": "2152C",
+    "contestId": 2152,
+    "index": "C",
+    "title": "Triple Removal",
+    "rating": 1400,
+    "tags": [
+      "data-structures",
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-26T21:05:38.000Z",
+    "lastSolvedAt": "2025-11-26T21:05:38.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 350785049
+  },
+  {
+    "key": "2163C",
+    "contestId": 2163,
+    "index": "C",
+    "title": "Monopati",
+    "rating": 1500,
+    "tags": [
+      "brute-force",
+      "combinatorics",
+      "dp",
+      "math",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2025-11-26T20:49:56.000Z",
+    "lastSolvedAt": "2025-11-26T20:49:56.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 350784173
+  },
+  {
+    "key": "1990C",
+    "contestId": 1990,
+    "index": "C",
+    "title": "Mad MAD Sum",
+    "rating": 1500,
+    "tags": [
+      "brute-force",
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-24T18:18:39.000Z",
+    "lastSolvedAt": "2025-11-24T18:18:39.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 350525860
+  },
+  {
+    "key": "1971E",
+    "contestId": 1971,
+    "index": "E",
+    "title": "Find the Car",
+    "rating": 1500,
+    "tags": [
+      "binary-search",
+      "math",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-11-24T15:27:17.000Z",
+    "lastSolvedAt": "2025-11-24T15:27:17.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 350504588
+  },
+  {
+    "key": "1915F",
+    "contestId": 1915,
+    "index": "F",
+    "title": "Greetings",
+    "rating": 1500,
+    "tags": [
+      "data-structures",
+      "divide-and-conquer",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-11-24T14:31:17.000Z",
+    "lastSolvedAt": "2025-11-24T14:31:17.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 350497461
+  },
+  {
+    "key": "2137E",
+    "contestId": 2137,
+    "index": "E",
+    "title": "Mexification",
+    "rating": 1500,
+    "tags": [
+      "brute-force",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-17T15:47:34.000Z",
+    "lastSolvedAt": "2025-11-17T15:47:34.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 349466720
+  },
+  {
+    "key": "2166C",
+    "contestId": 2166,
+    "index": "C",
+    "title": "Cyclic Merging",
+    "rating": 1300,
+    "tags": [
+      "constructive-algorithms",
+      "data-structures",
+      "dsu",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-11-16T17:34:26.000Z",
+    "lastSolvedAt": "2025-11-16T17:34:26.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 349330221
+  },
+  {
+    "key": "1985F",
+    "contestId": 1985,
+    "index": "F",
+    "title": "Final Boss",
+    "rating": 1500,
+    "tags": [
+      "binary-search",
+      "data-structures"
+    ],
+    "firstSolvedAt": "2025-11-15T19:38:33.000Z",
+    "lastSolvedAt": "2025-11-15T19:38:33.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 349164186
+  },
+  {
+    "key": "1950E",
+    "contestId": 1950,
+    "index": "E",
+    "title": "Nearly Shortest Repeating Substring",
+    "rating": 1500,
+    "tags": [
+      "brute-force",
+      "implementation",
+      "number-theory",
+      "strings"
+    ],
+    "firstSolvedAt": "2025-11-15T14:01:19.000Z",
+    "lastSolvedAt": "2025-11-15T14:01:19.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 349116322
+  },
+  {
+    "key": "1922C",
+    "contestId": 1922,
+    "index": "C",
+    "title": "Closest Cities",
+    "rating": 1300,
+    "tags": [
+      "greedy",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-13T13:46:54.000Z",
+    "lastSolvedAt": "2025-11-13T13:46:54.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 348758666
+  },
+  {
+    "key": "520B",
+    "contestId": 520,
+    "index": "B",
+    "title": "Two Buttons",
+    "rating": 1400,
+    "tags": [
+      "dfs-and-similar",
+      "graphs",
+      "greedy",
+      "implementation",
+      "math",
+      "shortest-paths"
+    ],
+    "firstSolvedAt": "2025-11-12T16:44:36.000Z",
+    "lastSolvedAt": "2025-11-12T16:44:36.000Z",
+    "submissions": 6,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 348647663
+  },
+  {
+    "key": "1869C",
+    "contestId": 1869,
+    "index": "C",
+    "title": "Fill in the Matrix",
+    "rating": 1300,
+    "tags": [
+      "constructive-algorithms",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-11T16:46:27.000Z",
+    "lastSolvedAt": "2025-11-11T16:46:27.000Z",
+    "submissions": 5,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 348507044
+  },
+  {
+    "key": "2072D",
+    "contestId": 2072,
+    "index": "D",
+    "title": "For Wizards, the Exam Is Easy, but I Couldn't Handle It",
+    "rating": 1300,
+    "tags": [
+      "brute-force",
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-11-08T18:26:44.000Z",
+    "lastSolvedAt": "2025-11-08T18:26:44.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 348058228
+  },
+  {
+    "key": "2085C",
+    "contestId": 2085,
+    "index": "C",
+    "title": "Serval and The Formula",
+    "rating": 1600,
+    "tags": [
+      "bitmasks",
+      "constructive-algorithms",
+      "dp",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-11-07T16:09:27.000Z",
+    "lastSolvedAt": "2025-11-07T16:09:27.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347904827
+  },
+  {
+    "key": "1891C",
+    "contestId": 1891,
+    "index": "C",
+    "title": "Smilo and Monsters",
+    "rating": 1500,
+    "tags": [
+      "binary-search",
+      "constructive-algorithms",
+      "greedy",
+      "sortings",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2025-11-05T20:32:01.000Z",
+    "lastSolvedAt": "2025-11-05T20:32:01.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347607584
+  },
+  {
+    "key": "1999F",
+    "contestId": 1999,
+    "index": "F",
+    "title": "Expected Median",
+    "rating": 1500,
+    "tags": [
+      "combinatorics",
+      "math"
+    ],
+    "firstSolvedAt": "2025-11-05T06:47:56.000Z",
+    "lastSolvedAt": "2025-11-05T06:47:56.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347506879
+  },
+  {
+    "key": "1926E",
+    "contestId": 1926,
+    "index": "E",
+    "title": "Vlad and an Odd Ordering",
+    "rating": 1500,
+    "tags": [
+      "binary-search",
+      "bitmasks",
+      "data-structures",
+      "dp",
+      "implementation",
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2025-11-04T18:58:54.000Z",
+    "lastSolvedAt": "2025-11-04T18:58:54.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347458036
+  },
+  {
+    "key": "1903C",
+    "contestId": 1903,
+    "index": "C",
+    "title": "Theofanis' Nightmare",
+    "rating": 1400,
+    "tags": [
+      "constructive-algorithms",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-11-04T08:04:34.000Z",
+    "lastSolvedAt": "2025-11-04T08:04:34.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347365812
+  },
+  {
+    "key": "1944C",
+    "contestId": 1944,
+    "index": "C",
+    "title": "MEX Game 1",
+    "rating": 1300,
+    "tags": [
+      "constructive-algorithms",
+      "games",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-11-03T18:53:56.000Z",
+    "lastSolvedAt": "2025-11-03T18:53:56.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347313324
+  },
+  {
+    "key": "1972C",
+    "contestId": 1972,
+    "index": "C",
+    "title": "Permutation Counting",
+    "rating": 1400,
+    "tags": [
+      "binary-search",
+      "constructive-algorithms",
+      "greedy",
+      "implementation",
+      "math",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-11-03T15:41:03.000Z",
+    "lastSolvedAt": "2025-11-03T15:41:03.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347283116
+  },
+  {
+    "key": "441C",
+    "contestId": 441,
+    "index": "C",
+    "title": "Valera and Tubes ",
+    "rating": 1500,
+    "tags": [
+      "constructive-algorithms",
+      "dfs-and-similar",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-11-02T14:22:56.000Z",
+    "lastSolvedAt": "2025-11-02T14:22:56.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347114629
+  },
+  {
+    "key": "268C",
+    "contestId": 268,
+    "index": "C",
+    "title": "Beautiful Sets of Points",
+    "rating": 1500,
+    "tags": [
+      "constructive-algorithms",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-11-02T13:34:33.000Z",
+    "lastSolvedAt": "2025-11-02T13:34:33.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 347108936
+  },
+  {
+    "key": "401C",
+    "contestId": 401,
+    "index": "C",
+    "title": "Team",
+    "rating": 1400,
+    "tags": [
+      "constructive-algorithms",
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-10-27T14:37:28.000Z",
+    "lastSolvedAt": "2025-10-27T14:37:28.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 346035279
+  },
+  {
+    "key": "2155D",
+    "contestId": 2155,
+    "index": "D",
+    "title": "Batteries",
+    "rating": 1800,
+    "tags": [
+      "brute-force",
+      "constructive-algorithms",
+      "graph-matchings",
+      "graphs",
+      "interactive",
+      "math"
+    ],
+    "firstSolvedAt": "2025-10-15T17:32:28.000Z",
+    "lastSolvedAt": "2025-10-15T17:32:28.000Z",
+    "submissions": 7,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 343909091
+  },
+  {
+    "key": "2160D",
+    "contestId": 2160,
+    "index": "D",
+    "title": "MAD Interactive Problem",
+    "rating": 1700,
+    "tags": [
+      "constructive-algorithms",
+      "greedy",
+      "interactive",
+      "math"
+    ],
+    "firstSolvedAt": "2025-10-12T17:02:03.000Z",
+    "lastSolvedAt": "2025-10-12T17:02:03.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 343400591
+  },
+  {
+    "key": "2160B",
+    "contestId": 2160,
+    "index": "B",
+    "title": "Distinct Elements",
+    "rating": 1100,
+    "tags": [
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2025-10-12T15:55:56.000Z",
+    "lastSolvedAt": "2025-10-12T15:55:56.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 343369481
+  },
+  {
+    "key": "2160A",
+    "contestId": 2160,
+    "index": "A",
+    "title": "MEX Partition",
+    "rating": 800,
+    "tags": [
+      "math"
+    ],
+    "firstSolvedAt": "2025-10-12T14:42:03.000Z",
+    "lastSolvedAt": "2025-10-12T14:42:03.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 343311897
+  },
+  {
+    "key": "2153C",
+    "contestId": 2153,
+    "index": "C",
+    "title": "Symmetrical Polygons",
+    "rating": 1500,
+    "tags": [
+      "constructive-algorithms",
+      "geometry",
+      "greedy",
+      "implementation",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-10-11T19:19:40.000Z",
+    "lastSolvedAt": "2025-10-11T19:19:40.000Z",
+    "submissions": 7,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 343192445
+  },
+  {
+    "key": "2153B",
+    "contestId": 2153,
+    "index": "B",
+    "title": "Bitwise Reversion",
+    "rating": 800,
+    "tags": [
+      "bitmasks",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-10-10T14:54:32.000Z",
+    "lastSolvedAt": "2025-10-10T14:54:32.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342946617
+  },
+  {
+    "key": "2153A",
+    "contestId": 2153,
+    "index": "A",
+    "title": "Circle of Apple Trees",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-10-10T14:42:34.000Z",
+    "lastSolvedAt": "2025-10-10T14:42:34.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342932046
+  },
+  {
+    "key": "2078C",
+    "contestId": 2078,
+    "index": "C",
+    "title": "Breach of Faith",
+    "rating": 1500,
+    "tags": [
+      "constructive-algorithms",
+      "greedy",
+      "math",
+      "probabilities",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-10-09T15:12:17.000Z",
+    "lastSolvedAt": "2025-10-09T15:12:17.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342777358
+  },
+  {
+    "key": "1747B",
+    "contestId": 1747,
+    "index": "B",
+    "title": "BAN BAN",
+    "rating": 900,
+    "tags": [
+      "constructive-algorithms"
+    ],
+    "firstSolvedAt": "2025-10-09T08:58:15.000Z",
+    "lastSolvedAt": "2025-10-09T08:58:15.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342719757
+  },
+  {
+    "key": "2062C",
+    "contestId": 2062,
+    "index": "C",
+    "title": "Cirno and Operations",
+    "rating": 1200,
+    "tags": [
+      "brute-force",
+      "math"
+    ],
+    "firstSolvedAt": "2025-10-08T19:00:20.000Z",
+    "lastSolvedAt": "2025-10-08T19:00:20.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342643741
+  },
+  {
+    "key": "2145C",
+    "contestId": 2145,
+    "index": "C",
+    "title": "Monocarp's String",
+    "rating": 1300,
+    "tags": [
+      "binary-search",
+      "greedy",
+      "strings"
+    ],
+    "firstSolvedAt": "2025-10-07T18:06:27.000Z",
+    "lastSolvedAt": "2025-10-07T18:06:27.000Z",
+    "submissions": 12,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342490882
+  },
+  {
+    "key": "2145B",
+    "contestId": 2145,
+    "index": "B",
+    "title": "Deck of Cards",
+    "rating": 1000,
+    "tags": [
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-10-06T15:28:19.000Z",
+    "lastSolvedAt": "2025-10-06T15:28:19.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342283632
+  },
+  {
+    "key": "2145A",
+    "contestId": 2145,
+    "index": "A",
+    "title": "Candies for Nephews",
+    "rating": 800,
+    "tags": [
+      "math"
+    ],
+    "firstSolvedAt": "2025-10-06T14:41:57.000Z",
+    "lastSolvedAt": "2025-10-06T14:41:57.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342241654
+  },
+  {
+    "key": "1732B",
+    "contestId": 1732,
+    "index": "B",
+    "title": "Ugu",
+    "rating": 900,
+    "tags": [
+      "brute-force",
+      "dp",
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2025-10-06T14:24:07.000Z",
+    "lastSolvedAt": "2025-10-06T14:24:07.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342225958
+  },
+  {
+    "key": "71A",
+    "contestId": 71,
+    "index": "A",
+    "title": "Way Too Long Words",
+    "rating": 800,
+    "tags": [
+      "strings"
+    ],
+    "firstSolvedAt": "2025-10-06T13:29:30.000Z",
+    "lastSolvedAt": "2025-10-06T13:29:30.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 342217933
+  },
+  {
+    "key": "2126D",
+    "contestId": 2126,
+    "index": "D",
+    "title": "This Is the Last Time",
+    "rating": 1200,
+    "tags": [
+      "data-structures",
+      "greedy",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-07-17T16:14:53.000Z",
+    "lastSolvedAt": "2025-07-17T16:14:53.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 329490838
+  },
+  {
+    "key": "2126C",
+    "contestId": 2126,
+    "index": "C",
+    "title": "I Will Definitely Make It",
+    "rating": 1100,
+    "tags": [
+      "greedy",
+      "sortings"
+    ],
+    "firstSolvedAt": "2025-07-17T15:31:30.000Z",
+    "lastSolvedAt": "2025-07-17T15:31:30.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 329443793
+  },
+  {
+    "key": "2126A",
+    "contestId": 2126,
+    "index": "A",
+    "title": "Only One Digit",
+    "rating": 800,
+    "tags": [
+      "brute-force",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2025-07-17T14:58:53.000Z",
+    "lastSolvedAt": "2025-07-17T14:58:53.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 329398780
+  },
+  {
+    "key": "2126B",
+    "contestId": 2126,
+    "index": "B",
+    "title": "No Casino in the Mountains",
+    "rating": 800,
+    "tags": [
+      "dp",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-07-17T14:55:28.000Z",
+    "lastSolvedAt": "2025-07-17T14:55:28.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 329393169
+  },
+  {
+    "key": "2123E",
+    "contestId": 2123,
+    "index": "E",
+    "title": "MEX Count",
+    "rating": 1400,
+    "tags": [
+      "binary-search",
+      "data-structures",
+      "greedy",
+      "sortings",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2025-07-01T16:43:45.000Z",
+    "lastSolvedAt": "2025-07-01T16:43:45.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 326969608
+  },
+  {
+    "key": "2123D",
+    "contestId": 2123,
+    "index": "D",
+    "title": "Binary String Battle",
+    "rating": 1200,
+    "tags": [
+      "constructive-algorithms",
+      "games",
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-07-01T16:16:01.000Z",
+    "lastSolvedAt": "2025-07-01T16:16:01.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 326949063
+  },
+  {
+    "key": "2123C",
+    "contestId": 2123,
+    "index": "C",
+    "title": "Prefix Min and Suffix Max",
+    "rating": 1000,
+    "tags": [
+      "brute-force",
+      "data-structures"
+    ],
+    "firstSolvedAt": "2025-07-01T15:28:01.000Z",
+    "lastSolvedAt": "2025-07-01T15:28:01.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 326900207
+  },
+  {
+    "key": "2123B",
+    "contestId": 2123,
+    "index": "B",
+    "title": "Tournament",
+    "rating": 800,
+    "tags": [
+      "greedy"
+    ],
+    "firstSolvedAt": "2025-07-01T15:06:45.000Z",
+    "lastSolvedAt": "2025-07-01T15:06:45.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 326868427
+  },
+  {
+    "key": "2123A",
+    "contestId": 2123,
+    "index": "A",
+    "title": "Blackboard Game",
+    "rating": 800,
+    "tags": [
+      "math"
+    ],
+    "firstSolvedAt": "2025-07-01T14:42:54.000Z",
+    "lastSolvedAt": "2025-07-01T14:42:54.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 326822874
+  },
+  {
+    "key": "2120B",
+    "contestId": 2120,
+    "index": "B",
+    "title": "Square Pool",
+    "rating": 1000,
+    "tags": [
+      "geometry"
+    ],
+    "firstSolvedAt": "2025-06-21T16:02:22.000Z",
+    "lastSolvedAt": "2025-06-21T16:02:22.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 325467977
+  },
+  {
+    "key": "2120A",
+    "contestId": 2120,
+    "index": "A",
+    "title": "Square of Rectangles",
+    "rating": 800,
+    "tags": [
+      "geometry",
+      "math"
+    ],
+    "firstSolvedAt": "2025-06-21T15:25:37.000Z",
+    "lastSolvedAt": "2025-06-21T15:25:37.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 325448593
+  },
+  {
+    "key": "896A",
+    "contestId": 896,
+    "index": "A",
+    "title": "Nephren gives a riddle",
+    "rating": 1700,
+    "tags": [
+      "binary-search",
+      "dfs-and-similar"
+    ],
+    "firstSolvedAt": "2025-06-06T12:28:17.000Z",
+    "lastSolvedAt": "2025-06-06T12:28:17.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 323127690
+  },
+  {
+    "key": "1914D",
+    "contestId": 1914,
+    "index": "D",
+    "title": "Three Activities",
+    "rating": 1200,
+    "tags": [
+      "brute-force",
+      "dp",
+      "greedy",
+      "implementation",
+      "sortings"
+    ],
+    "firstSolvedAt": "2024-11-30T18:13:00.000Z",
+    "lastSolvedAt": "2024-11-30T18:13:00.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 294095380
+  },
+  {
+    "key": "1931D",
+    "contestId": 1931,
+    "index": "D",
+    "title": "Divisible Pairs",
+    "rating": 1300,
+    "tags": [
+      "combinatorics",
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2024-11-29T18:13:41.000Z",
+    "lastSolvedAt": "2024-11-29T18:13:41.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 293893502
+  },
+  {
+    "key": "2041A",
+    "contestId": 2041,
+    "index": "A",
+    "title": "The Bento Box Adventure",
+    "rating": 1300,
+    "tags": [
+      "implementation",
+      "sortings"
+    ],
+    "firstSolvedAt": "2024-11-28T15:02:31.000Z",
+    "lastSolvedAt": "2024-11-28T15:02:31.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 293670347
+  },
+  {
+    "key": "2041E",
+    "contestId": 2041,
+    "index": "E",
+    "title": "Beautiful Array",
+    "rating": 1200,
+    "tags": [
+      "constructive-algorithms",
+      "math"
+    ],
+    "firstSolvedAt": "2024-11-28T14:49:03.000Z",
+    "lastSolvedAt": "2024-11-28T14:49:03.000Z",
+    "submissions": 4,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 293667872
+  },
+  {
+    "key": "2028A",
+    "contestId": 2028,
+    "index": "A",
+    "title": "Alice's Adventures in ''Chess''",
+    "rating": 900,
+    "tags": [
+      "brute-force",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-11-14T16:07:31.000Z",
+    "lastSolvedAt": "2024-11-14T16:07:31.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 291475136
+  },
+  {
+    "key": "2027B",
+    "contestId": 2027,
+    "index": "B",
+    "title": "Stalin Sort",
+    "rating": 1100,
+    "tags": [
+      "brute-force",
+      "greedy"
+    ],
+    "firstSolvedAt": "2024-10-26T16:11:09.000Z",
+    "lastSolvedAt": "2024-10-26T16:11:09.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 288164340
+  },
+  {
+    "key": "2027A",
+    "contestId": 2027,
+    "index": "A",
+    "title": "Rectangle Arrangement",
+    "rating": 800,
+    "tags": [
+      "geometry",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-10-26T14:51:40.000Z",
+    "lastSolvedAt": "2024-10-26T14:51:40.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 288122561
+  },
+  {
+    "key": "2033B",
+    "contestId": 2033,
+    "index": "B",
+    "title": "Sakurako and Water",
+    "rating": 900,
+    "tags": [
+      "brute-force",
+      "constructive-algorithms",
+      "greedy"
+    ],
+    "firstSolvedAt": "2024-10-24T16:10:26.000Z",
+    "lastSolvedAt": "2024-10-24T16:10:26.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 287775938
+  },
+  {
+    "key": "2033A",
+    "contestId": 2033,
+    "index": "A",
+    "title": "Sakurako and Kosuke",
+    "rating": 800,
+    "tags": [
+      "constructive-algorithms",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-10-24T14:44:39.000Z",
+    "lastSolvedAt": "2024-10-24T14:44:39.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 287694391
+  },
+  {
+    "key": "2008F",
+    "contestId": 2008,
+    "index": "F",
+    "title": "Sakurako's Box",
+    "rating": 1400,
+    "tags": [
+      "combinatorics",
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2024-10-24T13:34:56.000Z",
+    "lastSolvedAt": "2024-10-24T13:34:56.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 287670549
+  },
+  {
+    "key": "2020B",
+    "contestId": 2020,
+    "index": "B",
+    "title": "Brightness Begins",
+    "rating": 1200,
+    "tags": [
+      "binary-search",
+      "math"
+    ],
+    "firstSolvedAt": "2024-10-24T10:55:59.000Z",
+    "lastSolvedAt": "2024-10-24T10:55:59.000Z",
+    "submissions": 6,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 287648897
+  },
+  {
+    "key": "1993C",
+    "contestId": 1993,
+    "index": "C",
+    "title": "Light Switches",
+    "rating": 1400,
+    "tags": [
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-10-03T16:37:50.000Z",
+    "lastSolvedAt": "2024-10-03T16:37:50.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 284204411
+  },
+  {
+    "key": "2010A",
+    "contestId": 2010,
+    "index": "A",
+    "title": "Alternating Sum of Numbers",
+    "rating": 800,
+    "tags": [
+      "brute-force",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-09-04T13:38:44.000Z",
+    "lastSolvedAt": "2024-09-04T13:38:44.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 279811773
+  },
+  {
+    "key": "2007C",
+    "contestId": 2007,
+    "index": "C",
+    "title": "Dora and C++",
+    "rating": 1500,
+    "tags": [
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2024-08-30T16:53:41.000Z",
+    "lastSolvedAt": "2024-08-30T16:53:41.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278839773
+  },
+  {
+    "key": "2007B",
+    "contestId": 2007,
+    "index": "B",
+    "title": "Index and Maximum Value",
+    "rating": 900,
+    "tags": [
+      "data-structures",
+      "greedy"
+    ],
+    "firstSolvedAt": "2024-08-30T15:42:26.000Z",
+    "lastSolvedAt": "2024-08-30T15:42:26.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278816993
+  },
+  {
+    "key": "2007A",
+    "contestId": 2007,
+    "index": "A",
+    "title": "Dora's Set",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2024-08-30T15:08:22.000Z",
+    "lastSolvedAt": "2024-08-30T15:08:22.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278798928
+  },
+  {
+    "key": "1998B",
+    "contestId": 1998,
+    "index": "B",
+    "title": "Minimize Equal Sum Subarrays",
+    "rating": 1000,
+    "tags": [
+      "constructive-algorithms",
+      "math",
+      "number-theory"
+    ],
+    "firstSolvedAt": "2024-08-27T13:38:12.000Z",
+    "lastSolvedAt": "2024-08-27T13:38:12.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278392530
+  },
+  {
+    "key": "2003C",
+    "contestId": 2003,
+    "index": "C",
+    "title": "Turtle and Good Pairs",
+    "rating": 1200,
+    "tags": [
+      "constructive-algorithms",
+      "greedy",
+      "sortings",
+      "strings"
+    ],
+    "firstSolvedAt": "2024-08-26T14:30:16.000Z",
+    "lastSolvedAt": "2024-08-26T14:30:16.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278270471
+  },
+  {
+    "key": "2003B",
+    "contestId": 2003,
+    "index": "B",
+    "title": "Turtle and Piggy Are Playing a Game 2",
+    "rating": 800,
+    "tags": [
+      "games",
+      "greedy",
+      "sortings"
+    ],
+    "firstSolvedAt": "2024-08-25T15:36:53.000Z",
+    "lastSolvedAt": "2024-08-25T15:36:53.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278113804
+  },
+  {
+    "key": "2003A",
+    "contestId": 2003,
+    "index": "A",
+    "title": "Turtle and Good Strings",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "strings"
+    ],
+    "firstSolvedAt": "2024-08-25T15:13:54.000Z",
+    "lastSolvedAt": "2024-08-25T15:13:54.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 278095314
+  },
+  {
+    "key": "2004A",
+    "contestId": 2004,
+    "index": "A",
+    "title": "Closest Point",
+    "rating": 800,
+    "tags": [
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-08-16T17:35:48.000Z",
+    "lastSolvedAt": "2024-08-16T17:35:48.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 276820653
+  },
+  {
+    "key": "1998A",
+    "contestId": 1998,
+    "index": "A",
+    "title": "Find K Distinct Points with Fixed Center",
+    "rating": 800,
+    "tags": [
+      "constructive-algorithms",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-08-15T07:08:30.000Z",
+    "lastSolvedAt": "2024-08-15T10:23:38.000Z",
+    "submissions": 3,
+    "accepted": 2,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 276518022
+  },
+  {
+    "key": "2000B",
+    "contestId": 2000,
+    "index": "B",
+    "title": "Seating in a Bus",
+    "rating": 800,
+    "tags": [
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2024-08-13T15:30:57.000Z",
+    "lastSolvedAt": "2024-08-13T15:30:57.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 276207221
+  },
+  {
+    "key": "2000A",
+    "contestId": 2000,
+    "index": "A",
+    "title": "Primary Task",
+    "rating": 800,
+    "tags": [
+      "implementation",
+      "math",
+      "strings"
+    ],
+    "firstSolvedAt": "2024-08-13T15:00:20.000Z",
+    "lastSolvedAt": "2024-08-13T15:00:20.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 276151461
+  },
+  {
+    "key": "1975A",
+    "contestId": 1975,
+    "index": "A",
+    "title": "Bazoka and Mocha's Array",
+    "rating": 800,
+    "tags": [
+      "brute-force",
+      "greedy",
+      "implementation",
+      "sortings"
+    ],
+    "firstSolvedAt": "2024-08-12T17:30:50.000Z",
+    "lastSolvedAt": "2024-08-12T18:13:10.000Z",
+    "submissions": 2,
+    "accepted": 2,
+    "lang": "C++20 (GCC 13-64)",
+    "submissionId": 275999247
+  },
+  {
+    "key": "1999D",
+    "contestId": 1999,
+    "index": "D",
+    "title": "Slavic's Exam",
+    "rating": 1100,
+    "tags": [
+      "greedy",
+      "implementation",
+      "strings"
+    ],
+    "firstSolvedAt": "2024-08-06T15:58:52.000Z",
+    "lastSolvedAt": "2024-08-06T15:58:52.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 274872950
+  },
+  {
+    "key": "1999B",
+    "contestId": 1999,
+    "index": "B",
+    "title": "Card Game",
+    "rating": 1000,
+    "tags": [
+      "brute-force",
+      "constructive-algorithms",
+      "implementation"
+    ],
+    "firstSolvedAt": "2024-08-06T15:18:54.000Z",
+    "lastSolvedAt": "2024-08-06T15:18:54.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 274815470
+  },
+  {
+    "key": "1999C",
+    "contestId": 1999,
+    "index": "C",
+    "title": "Showering",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "implementation"
+    ],
+    "firstSolvedAt": "2024-08-06T15:13:47.000Z",
+    "lastSolvedAt": "2024-08-06T15:13:47.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 274806109
+  },
+  {
+    "key": "1999A",
+    "contestId": 1999,
+    "index": "A",
+    "title": "A+B Again?",
+    "rating": 800,
+    "tags": [
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-08-06T14:46:07.000Z",
+    "lastSolvedAt": "2024-08-06T14:46:07.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 274742389
+  },
+  {
+    "key": "1995A",
+    "contestId": 1995,
+    "index": "A",
+    "title": "Diagonals",
+    "rating": 800,
+    "tags": [
+      "brute-force",
+      "greedy",
+      "implementation",
+      "math"
+    ],
+    "firstSolvedAt": "2024-08-04T13:29:18.000Z",
+    "lastSolvedAt": "2024-08-04T13:29:18.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 274327900
+  },
+  {
+    "key": "1974B",
+    "contestId": 1974,
+    "index": "B",
+    "title": "Symmetric Encoding",
+    "rating": 800,
+    "tags": [
+      "implementation",
+      "sortings",
+      "strings"
+    ],
+    "firstSolvedAt": "2024-05-25T06:45:37.000Z",
+    "lastSolvedAt": "2024-05-25T06:45:37.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 262470394
+  },
+  {
+    "key": "1974A",
+    "contestId": 1974,
+    "index": "A",
+    "title": "Phone Desktop",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2024-05-23T19:44:15.000Z",
+    "lastSolvedAt": "2024-05-23T19:44:15.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 262307583
+  },
+  {
+    "key": "1972A",
+    "contestId": 1972,
+    "index": "A",
+    "title": "Contest Proposal",
+    "rating": 800,
+    "tags": [
+      "brute-force",
+      "greedy",
+      "two-pointers"
+    ],
+    "firstSolvedAt": "2024-05-23T18:45:56.000Z",
+    "lastSolvedAt": "2024-05-23T18:45:56.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "C++14 (GCC 6-32)",
+    "submissionId": 262302744
+  },
+  {
+    "key": "653A",
+    "contestId": 653,
+    "index": "A",
+    "title": "Bear and Three Balls",
+    "rating": 900,
+    "tags": [
+      "brute-force",
+      "implementation",
+      "sortings"
+    ],
+    "firstSolvedAt": "2024-03-06T05:32:07.000Z",
+    "lastSolvedAt": "2024-03-06T05:32:07.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "GNU C11",
+    "submissionId": 249889680
+  },
+  {
+    "key": "1921A",
+    "contestId": 1921,
+    "index": "A",
+    "title": "Square",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "math"
+    ],
+    "firstSolvedAt": "2024-03-06T04:13:20.000Z",
+    "lastSolvedAt": "2024-03-06T04:13:20.000Z",
+    "submissions": 2,
+    "accepted": 1,
+    "lang": "GNU C11",
+    "submissionId": 249883887
+  },
+  {
+    "key": "1927A",
+    "contestId": 1927,
+    "index": "A",
+    "title": "Make it White",
+    "rating": 800,
+    "tags": [
+      "greedy",
+      "strings"
+    ],
+    "firstSolvedAt": "2024-03-03T15:05:59.000Z",
+    "lastSolvedAt": "2024-03-03T15:05:59.000Z",
+    "submissions": 3,
+    "accepted": 1,
+    "lang": "GNU C11",
+    "submissionId": 249480946
+  },
+  {
+    "key": "1919A",
+    "contestId": 1919,
+    "index": "A",
+    "title": "Wallet Exchange",
+    "rating": 800,
+    "tags": [
+      "games",
+      "math"
+    ],
+    "firstSolvedAt": "2024-02-18T16:35:13.000Z",
+    "lastSolvedAt": "2024-02-18T16:35:13.000Z",
+    "submissions": 7,
+    "accepted": 1,
+    "lang": "GNU C11",
+    "submissionId": 247117703
+  },
+  {
+    "key": "617A",
+    "contestId": 617,
+    "index": "A",
+    "title": "Elephant",
+    "rating": 800,
+    "tags": [
+      "math"
+    ],
+    "firstSolvedAt": "2024-02-17T10:19:28.000Z",
+    "lastSolvedAt": "2024-02-17T10:19:28.000Z",
+    "submissions": 1,
+    "accepted": 1,
+    "lang": "GNU C11",
+    "submissionId": 246787708
+  }
+]

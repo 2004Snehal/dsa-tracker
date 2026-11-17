@@ -96,6 +96,16 @@ export const SECTIONS: Section[] = [
   },
   { id: "greedy", name: "Greedy", short: "Greedy", patterns: [{ id: "greedy", name: "Greedy" }, { id: "intervals", name: "Intervals" }] },
   { id: "backtracking", name: "Backtracking", short: "Backtrack", patterns: [{ id: "backtracking", name: "Backtracking" }] },
+  {
+    id: "adhoc",
+    name: "Constructive & Ad Hoc",
+    short: "Ad Hoc",
+    patterns: [
+      { id: "constructive", name: "Constructive" },
+      { id: "implementation", name: "Implementation & Brute Force" },
+      { id: "games", name: "Games" },
+    ],
+  },
   { id: "math", name: "Math & Bit Manipulation", short: "Math/Bits", patterns: [{ id: "bits", name: "Bit Tricks" }, { id: "math", name: "Math" }] },
   {
     id: "sql",
@@ -114,7 +124,8 @@ export const patternName = (section: string, pattern?: string | null) =>
   sectionById(section)?.patterns.find((p) => p.id === pattern)?.name ?? null;
 
 // Auto-classification for problems without an override. First matching rule wins,
-// so specific techniques come before broad tags.
+// so specific techniques come before broad tags. Codeforces tags are stored kebab-cased
+// ("dfs and similar" -> "dfs-and-similar") and sit next to their LeetCode equivalents.
 const RULES: [tag: string, section: string, pattern: string | null][] = [
   ["database", "sql", null],
   ["longest-increasing-subsequence", "dp", "lis"],
@@ -125,15 +136,19 @@ const RULES: [tag: string, section: string, pattern: string | null][] = [
   ["topological-sort", "graphs", "topo"],
   ["minimum-spanning-tree", "graphs", "mst"],
   ["shortest-path", "graphs", "shortest-path"],
+  ["shortest-paths", "graphs", "shortest-path"],
   ["dijkstra", "graphs", "shortest-path"],
   ["bipartite-graph", "graphs", "bipartite"],
   ["strongly-connected-component", "graphs", "scc-bridges"],
   ["biconnected-component", "graphs", "scc-bridges"],
   ["union-find", "graphs", "dsu"],
+  ["dsu", "graphs", "dsu"],
   ["trie", "trie", "trie"],
   ["dynamic-programming", "dp", null],
   ["memoization", "dp", null],
+  ["dp", "dp", null],
   ["graph", "graphs", "bfs-dfs"],
+  ["graphs", "graphs", "bfs-dfs"],
   ["monotonic-stack", "stack-queue", "monotonic-stack"],
   ["monotonic-queue", "stack-queue", "monotonic-deque"],
   ["binary-search", "binary-search", null],
@@ -142,17 +157,27 @@ const RULES: [tag: string, section: string, pattern: string | null][] = [
   ["binary-search-tree", "trees", "bst"],
   ["tree", "trees", null],
   ["binary-tree", "trees", null],
+  ["trees", "trees", null],
   ["heap-priority-queue", "heap", null],
   ["linked-list", "linked-list", null],
   ["backtracking", "backtracking", "backtracking"],
   ["prefix-sum", "arrays", "prefix-sum"],
   ["greedy", "greedy", "greedy"],
   ["bit-manipulation", "math", "bits"],
+  ["bitmasks", "math", "bits"],
   ["stack", "stack-queue", "stack"],
   ["breadth-first-search", "graphs", "bfs-dfs"],
   ["depth-first-search", "graphs", "bfs-dfs"],
+  ["dfs-and-similar", "graphs", "bfs-dfs"],
   ["math", "math", "math"],
+  ["number-theory", "math", "math"],
+  ["combinatorics", "math", "math"],
+  ["probabilities", "math", "math"],
   ["hash-table", "arrays", "hashing"],
+  ["games", "adhoc", "games"],
+  ["constructive-algorithms", "adhoc", "constructive"],
+  ["implementation", "adhoc", "implementation"],
+  ["brute-force", "adhoc", "implementation"],
 ];
 
 export function classify(tags: string[]): { section: string; pattern: string | null } {

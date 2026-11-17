@@ -63,7 +63,8 @@ export default function Dashboard() {
           </div>
           <div className="mt-1.5 text-xs text-ink-3">
             LeetCode <span className="text-ink-2 tabular-nums">{src.leetcode}</span> · NeetCode{" "}
-            <span className="text-ink-2 tabular-nums">{src.neetcode}</span>
+            <span className="text-ink-2 tabular-nums">{src.neetcode}</span> · Codeforces{" "}
+            <span className="text-ink-2 tabular-nums">{src.codeforces}</span>
             {both > 0 && <> · {both} on both</>}
           </div>
         </Card>

@@ -7,6 +7,7 @@ export const metadata = { title: "Problems · DSA Tracker" };
 export default function ProblemsPage() {
   const rows: Row[] = problems.map((p) => ({
     id: p.id,
+    code: p.code,
     slug: p.slug,
     title: p.title,
     difficulty: p.difficulty,
